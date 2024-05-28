@@ -1,6 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -13,12 +12,12 @@ kotlin {
     explicitApi()
 
     jvm()
-    js {
-        browser {
-        }
-        nodejs {
-        }
-    }
+//    js {
+//        browser {
+//        }
+//        nodejs {
+//        }
+//    }
     // For ARM, should be changed to iosArm32 or iosArm64
     // For Linux, should be changed to e.g. linuxX64
     // For MacOS, should be changed to e.g. macosX64
@@ -47,11 +46,11 @@ kotlin {
     sourceSets["jvmTest"].dependencies {
     }
 
-    sourceSets["jsMain"].dependencies {
-    }
-
-    sourceSets["jsTest"].dependencies {
-    }
+//    sourceSets["jsMain"].dependencies {
+//    }
+//
+//    sourceSets["jsTest"].dependencies {
+//    }
 
     sourceSets["nativeMain"].dependencies {
     }
@@ -93,11 +92,11 @@ kotlin {
     }
 }
 
-tasks.named("jsBrowserTest") { enabled = false }
+//tasks.named("jsBrowserTest") { enabled = false }
 
 tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
     // custom output directory
-    outputDirectory.set(buildDir.resolve("$rootDir/docs/api"))
+    outputDirectory.set(layout.buildDirectory.asFile.get().resolve("$rootDir/docs/api"))
 }
 
 tasks.withType(KotlinCompile::class.java).configureEach {
