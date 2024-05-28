@@ -12,6 +12,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "spatial-k"
+rootProject.name = "GeoKJSON"
 
 include("geojson", "turf")
