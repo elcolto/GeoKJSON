@@ -1,7 +1,8 @@
 [versions]
 kotlin = "2.0.0"
-resources = "0.4.1"
+resources = "0.4.0"
 benchmark = "0.4.10"
+agp = "8.3.0"
 
 [libraries]
 resources = { module = "com.goncalossilva:resources", version.ref = "resources" }
@@ -16,3 +17,4 @@ kotlinx-benchmark = { id = "org.jetbrains.kotlinx.benchmark", version.ref = "ben
 publish = { id = "com.vanniktech.maven.publish", version = "0.28.0" }
 dokka = { id = "org.jetbrains.dokka", version = "1.9.20" }
 resources = { id = "com.goncalossilva.resources", version.ref = "resources" }
+android-library = { id = "com.android.library", version.ref = "agp" }

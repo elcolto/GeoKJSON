@@ -5,3 +5,6 @@
 
 /site
 /docs/api
+
+local.properties
+.kotlin

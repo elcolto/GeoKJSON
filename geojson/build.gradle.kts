@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -7,12 +8,33 @@ plugins {
     alias(libs.plugins.dokka)
     alias(libs.plugins.publish)
     alias(libs.plugins.kotlinx.benchmark)
+    alias(libs.plugins.android.library) apply true
 }
 
+android {
+    compileSdk = 34
+    defaultConfig {
+        minSdk = 21
+        lint.targetSdk = 34
+    }
+    namespace = "io.github.elcolto.geokjson.geojson"
+}
+
+@OptIn(ExperimentalKotlinGradlePluginApi::class)
 kotlin {
     explicitApi()
 
+    androidTarget {
+        publishLibraryVariants("release")
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
+
     jvm {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
         compilations.create("bench")
     }
     js {
@@ -20,21 +42,39 @@ kotlin {
         }
         nodejs {
         }
-
         compilations.create("bench")
     }
-    // For ARM, should be changed to iosArm32 or iosArm64
-    // For Linux, should be changed to e.g. linuxX64
-    // For MacOS, should be changed to e.g. macosX64
-    // For Windows, should be changed to e.g. mingwX64
+
+    val macosX64 = macosX64()
+    val macosArm64 = macosArm64()
+    val iosArm64 = iosArm64()
+    val iosX64 = iosX64()
+    val iosSimulatorArm64 = iosSimulatorArm64()
+    val watchosArm32 = watchosArm32()
+    val watchosArm64 = watchosArm64()
+    val watchosX64 = watchosX64()
+    val watchosSimulatorArm64 = watchosSimulatorArm64()
+    val appleTargets = listOf(
+        macosX64, macosArm64,
+        iosArm64, iosX64, iosSimulatorArm64,
+        watchosArm32, watchosArm64, watchosX64,
+        watchosSimulatorArm64,
+    )
+
+    appleTargets.forEach { target ->
+        with(target) {
+            binaries {
+                framework {
+                    baseName = "GeoKJSON"
+                }
+            }
+        }
+    }
+
     linuxX64("native") {
         compilations.create("bench")
     }
-    mingwX64("mingw")
-    macosX64("macos")
-    iosArm64()
-    iosX64()
-    iosSimulatorArm64()
+    mingwX64("windows")
 
     sourceSets {
         all {
@@ -63,15 +103,9 @@ kotlin {
 
         val jvmMain by getting {}
 
-        val nativeMain by getting {
-            getByName("macosMain").dependsOn(this)
-            getByName("mingwMain").dependsOn(this)
-        }
+        val nativeMain by getting
 
-        val nativeTest by getting {
-            getByName("macosTest").dependsOn(this)
-            getByName("mingwTest").dependsOn(this)
-        }
+        val nativeTest by getting
 
         val commonBench by creating {
             dependsOn(commonMain)
@@ -116,6 +150,7 @@ kotlin {
         }
     }
 }
+
 
 benchmark {
     this.configurations {
