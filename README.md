@@ -1,28 +1,7 @@
-# Spatial K
+# GeoKJson
 
-Spatial K is a set of libraries for working with geospatial data in Kotlin inlcuding an implementation of GeoJson and 
-a port of Turfjs written in pure Kotlin. It supports Kotlin Multiplatform and Java projects while also featuring a 
-Kotlin DSL for building GeoJson objects.
+GeoKJson is a Kotlin Multiplatform library. Based on [Spatial K](https://github.com/dellisd/spatial-k)
+by [Derek Ellis](https://github.com/dellisd) this library is designed to work with geospatial data in Kotlin including
+an implementation of GeoJson and a port of Turfjs written in pure Kotlin. It supports Kotlin Multiplatform and Java
+projects while also featuring a Kotlin DSL for building GeoJson objects.
 
-See the [project site](https://dellisd.github.io/spatial-k) form more info.
-
-## Installation
-
-#### Java and Kotlin/JVM
-
-```kotlin
-dependencies {
-    implementation("io.github.dellisd.spatialk:geojson:0.3.0")
-    implementation("io.github.dellisd.spatialk:turf:0.3.0")
-}
-```
-
-#### Kotlin Multiplatform
-```kotlin
-commonMain {
-    dependencies {
-        implementation("io.github.dellisd.spatialk:geojson:0.3.0")
-        implementation("io.github.dellisd.spatialk:turf:0.3.0")
-    }
-}
-```
