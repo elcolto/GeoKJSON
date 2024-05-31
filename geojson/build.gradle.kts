@@ -69,7 +69,3 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
     // custom output directory
     outputDirectory.set(buildDir.resolve("$rootDir/docs/api"))
 }
-
-tasks.withType(KotlinCompile::class.java).configureEach {
-    compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
-}
