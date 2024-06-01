@@ -43,6 +43,7 @@ public fun along(line: LineString, distance: Double, units: Units = Units.Kilome
         when {
             distance >= travelled && i == line.coordinates.size - 1 -> {
             }
+
             travelled >= distance -> {
                 val overshot = distance - travelled
                 return if (overshot == 0.0) {
@@ -60,6 +61,7 @@ public fun along(line: LineString, distance: Double, units: Units = Units.Kilome
                     )
                 }
             }
+
             else -> travelled += distance(
                 coordinate,
                 line.coordinates[i + 1],
@@ -85,6 +87,7 @@ public fun area(geometry: Geometry): Double {
                 geom,
             )
         }
+
         else -> calculateArea(geometry)
     }
 }
@@ -97,6 +100,7 @@ private fun calculateArea(geometry: Geometry): Double {
                 coords,
             )
         }
+
         else -> 0.0
     }
 }
@@ -140,11 +144,13 @@ private fun ringArea(coordinates: List<Position>): Double {
                     middleIndex = coordinates.size - 1
                     upperIndex = 0
                 }
+
                 coordinates.size - 1 -> {
                     lowerIndex = coordinates.size - 1
                     middleIndex = 0
                     upperIndex = 1
                 }
+
                 else -> {
                     lowerIndex = i
                     middleIndex = i + 1
@@ -642,11 +648,8 @@ public fun greatCircle(
 
     val arc = buildList {
         add(start)
-        (1 until (pointCount - 1)).forEach { i ->
-            add(
-                intermediateCoordinate((i + 1).toDouble() / (pointCount - 2 + 1)),
-            )
-        }
+        for (i in 1..<pointCount)
+            add(intermediateCoordinate((i + 1).toDouble() / (pointCount - 2 + 1)),)
         add(end)
     }
 
