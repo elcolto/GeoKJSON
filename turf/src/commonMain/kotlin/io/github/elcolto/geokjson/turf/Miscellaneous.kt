@@ -103,7 +103,12 @@ public fun lineSlice(start: Position, stop: Position, line: LineString): LineStr
  * @property index Index of the segment of the line on which [point] lies.
  */
 @ExperimentalTurfApi
-public data class NearestPointOnLineResult(val point: Position, val distance: Double, val location: Double, val index: Int)
+public data class NearestPointOnLineResult(
+    val point: Position,
+    val distance: Double,
+    val location: Double,
+    val index: Int,
+)
 
 /**
  * Finds the closest [Position] along a [LineString] to a given position
@@ -113,7 +118,11 @@ public data class NearestPointOnLineResult(val point: Position, val distance: Do
  * @return The closest position along the line
  */
 @ExperimentalTurfApi
-public fun nearestPointOnLine(line: LineString, point: Position, units: Units = Units.Kilometers): NearestPointOnLineResult {
+public fun nearestPointOnLine(
+    line: LineString,
+    point: Position,
+    units: Units = Units.Kilometers,
+): NearestPointOnLineResult {
     return nearestPointOnLine(listOf(line.coordinates), point, units)
 }
 
@@ -128,7 +137,7 @@ public fun nearestPointOnLine(line: LineString, point: Position, units: Units = 
 public fun nearestPointOnLine(
     lines: MultiLineString,
     point: Position,
-    units: Units = Units.Kilometers
+    units: Units = Units.Kilometers,
 ): NearestPointOnLineResult {
     return nearestPointOnLine(lines.coordinates, point, units)
 }
@@ -138,13 +147,13 @@ public fun nearestPointOnLine(
 internal fun nearestPointOnLine(
     lines: List<List<Position>>,
     point: Position,
-    units: Units = Units.Kilometers
+    units: Units = Units.Kilometers,
 ): NearestPointOnLineResult {
     var closest = NearestPointOnLineResult(
         Position(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY),
         Double.POSITIVE_INFINITY,
         Double.POSITIVE_INFINITY,
-        -1
+        -1,
     )
 
     var length = 0.0
@@ -174,7 +183,7 @@ internal fun nearestPointOnLine(
                     point = stop,
                     location = length + sectionLength,
                     distance = stopDistance,
-                    index = i + 1
+                    index = i + 1,
                 )
             }
 
@@ -184,7 +193,7 @@ internal fun nearestPointOnLine(
                     point = intersect,
                     distance = intersectDistance,
                     location = length + distance(start, intersect, units = units),
-                    index = i
+                    index = i,
                 )
             }
 

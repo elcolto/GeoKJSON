@@ -41,7 +41,7 @@ public object PositionSerializer : KSerializer<Position> {
         return Position(
             array[0].jsonPrimitive.double,
             array[1].jsonPrimitive.double,
-            array.getOrNull(2)?.jsonPrimitive?.double
+            array.getOrNull(2)?.jsonPrimitive?.double,
         )
     }
 

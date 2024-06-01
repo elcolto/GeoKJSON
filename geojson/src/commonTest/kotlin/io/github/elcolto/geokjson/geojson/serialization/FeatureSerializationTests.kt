@@ -20,10 +20,10 @@ class FeatureSerializationTests {
             geometry,
             mapOf(
                 "size" to JsonPrimitive(45.1),
-                "name" to JsonPrimitive("Nowhere")
+                "name" to JsonPrimitive("Nowhere"),
             ),
             "001",
-            BoundingBox(11.6, 45.1, 12.7, 45.7)
+            BoundingBox(11.6, 45.1, 12.7, 45.7),
         )
 
         val json =
@@ -42,10 +42,10 @@ class FeatureSerializationTests {
             geometry,
             properties = mapOf(
                 "size" to JsonPrimitive(45.1),
-                "name" to JsonPrimitive("Nowhere")
+                "name" to JsonPrimitive("Nowhere"),
             ),
             id = "001",
-            bbox = BoundingBox(11.6, 45.1, 12.7, 45.7)
+            bbox = BoundingBox(11.6, 45.1, 12.7, 45.7),
         )
 
         assertEquals(
@@ -61,8 +61,8 @@ class FeatureSerializationTests {
                     |"size":45.1,
                     |"name":"Nowhere"
                 |}}
-            """.trimMargin().replace("\n", "")
-            )
+                """.trimMargin().replace("\n", ""),
+            ),
         )
     }
 }

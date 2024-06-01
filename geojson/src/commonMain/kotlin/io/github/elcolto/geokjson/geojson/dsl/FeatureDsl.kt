@@ -38,5 +38,5 @@ public inline fun feature(
     geometry: Geometry? = null,
     id: String? = null,
     bbox: BoundingBox? = null,
-    properties: PropertiesBuilder.() -> Unit = {}
+    properties: PropertiesBuilder.() -> Unit = {},
 ): Feature = Feature(geometry, PropertiesBuilder().apply(properties).build(), id, bbox)

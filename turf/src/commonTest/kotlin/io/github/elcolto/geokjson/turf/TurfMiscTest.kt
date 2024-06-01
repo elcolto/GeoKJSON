@@ -34,7 +34,7 @@ class TurfMiscTest {
         val result = lineSlice(
             (start.geometry as Point).coordinates,
             (stop.geometry as Point).coordinates,
-            lineString.geometry as LineString
+            lineString.geometry as LineString,
         )
         slice.coordinates.forEachIndexed { i, position ->
             assertPositionEquals(position, result.coordinates[i])

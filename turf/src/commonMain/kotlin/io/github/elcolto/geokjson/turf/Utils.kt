@@ -46,13 +46,12 @@ public fun lengthToRadians(distance: Double, units: Units = Units.Kilometers): D
  * @exception IllegalArgumentException if the given units are invalid
  */
 @ExperimentalTurfApi
-public fun lengthToDegrees(distance: Double, units: Units = Units.Kilometers): Double =
-    degrees(
-        lengthToRadians(
-            distance,
-            units
-        )
-    )
+public fun lengthToDegrees(distance: Double, units: Units = Units.Kilometers): Double = degrees(
+    lengthToRadians(
+        distance,
+        units,
+    ),
+)
 
 /**
  * Converts a length to the requested unit
@@ -70,8 +69,9 @@ public fun convertLength(length: Double, from: Units = Units.Meters, to: Units =
     return radiansToLength(
         lengthToRadians(
             length,
-            from
-        ), to
+            from,
+        ),
+        to,
     )
 }
 

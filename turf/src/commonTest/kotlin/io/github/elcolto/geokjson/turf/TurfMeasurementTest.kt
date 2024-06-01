@@ -49,19 +49,19 @@ class TurfMeasurementTest {
         val point = Point.fromJson(readResource("measurement/bbox/point.json"))
         assertEquals(
             BoundingBox(point.coordinates, point.coordinates),
-            bbox(point)
+            bbox(point),
         )
 
         val lineString = LineString.fromJson(readResource("measurement/bbox/lineString.json"))
         assertEquals(
             BoundingBox(-79.376220703125, 43.65197548731187, -73.58642578125, 45.4986468234261),
-            bbox(lineString)
+            bbox(lineString),
         )
 
         val polygon = Polygon.fromJson(readResource("measurement/bbox/polygon.json"))
         assertEquals(
             BoundingBox(-64.44580078125, 45.9511496866914, -61.973876953125, 47.07012182383309),
-            bbox(polygon)
+            bbox(polygon),
         )
     }
 

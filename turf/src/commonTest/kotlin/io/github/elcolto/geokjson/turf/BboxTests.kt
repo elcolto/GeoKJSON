@@ -114,7 +114,7 @@ class BboxTests {
             Double.POSITIVE_INFINITY,
             Double.POSITIVE_INFINITY,
             Double.NEGATIVE_INFINITY,
-            Double.NEGATIVE_INFINITY
+            Double.NEGATIVE_INFINITY,
         )
 
         assertEquals(emptyBbox, bbox(feature()))

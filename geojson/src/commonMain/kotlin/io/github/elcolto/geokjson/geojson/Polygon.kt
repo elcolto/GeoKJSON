@@ -17,7 +17,7 @@ import kotlin.jvm.JvmStatic
 @Serializable(with = GeometrySerializer::class)
 public class Polygon @JvmOverloads constructor(
     public val coordinates: List<List<Position>>,
-    override val bbox: BoundingBox? = null
+    override val bbox: BoundingBox? = null,
 ) : Geometry() {
     @JvmOverloads
     public constructor(vararg coordinates: List<Position>, bbox: BoundingBox? = null) : this(coordinates.toList(), bbox)
@@ -25,7 +25,7 @@ public class Polygon @JvmOverloads constructor(
     @JvmOverloads
     public constructor(
         coordinates: Array<Array<DoubleArray>>,
-        bbox: BoundingBox? = null
+        bbox: BoundingBox? = null,
     ) : this(coordinates.map { it.map(::Position) }, bbox)
 
     override fun equals(other: Any?): Boolean {
@@ -46,10 +46,9 @@ public class Polygon @JvmOverloads constructor(
         return result
     }
 
-    override fun json(): String =
-        """{"type":"Polygon",${bbox.jsonProp()}"coordinates":${
-            coordinates.jsonJoin { it.jsonJoin(transform = Position::json) }
-        }}"""
+    override fun json(): String = """{"type":"Polygon",${bbox.jsonProp()}"coordinates":${
+        coordinates.jsonJoin { it.jsonJoin(transform = Position::json) }
+    }}"""
 
     public companion object {
         @JvmStatic

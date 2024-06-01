@@ -17,10 +17,11 @@ class FeatureCollectionSerializationTests {
     fun testSerializeFeatureCollection() {
         val geometry = Point(Position(12.3, 45.6))
         val feature = Feature(
-            geometry, mapOf(
+            geometry,
+            mapOf(
                 "size" to JsonPrimitive(45.1),
-                "name" to JsonPrimitive("Nowhere")
-            )
+                "name" to JsonPrimitive("Nowhere"),
+            ),
         )
         val collection = FeatureCollection(feature, feature)
 
@@ -39,10 +40,11 @@ class FeatureCollectionSerializationTests {
     fun testDeserializeFeatureCollection() {
         val geometry = Point(Position(12.3, 45.6))
         val feature = Feature(
-            geometry, properties = mapOf(
+            geometry,
+            properties = mapOf(
                 "size" to JsonPrimitive(45.1),
-                "name" to JsonPrimitive("Nowhere")
-            )
+                "name" to JsonPrimitive("Nowhere"),
+            ),
         )
         val collection = FeatureCollection(feature, feature)
 
@@ -53,8 +55,8 @@ class FeatureCollectionSerializationTests {
                 |[12.3,45.6]},"properties":{"size":45.1,"name":"Nowhere"}},{"type":"Feature","geometry":{"type":"Point",
                 |"coordinates":[12.3,45.6]},"properties":{"size":45.1,"name":"Nowhere"}}]}"""
                     .trimMargin()
-                    .replace("\n", "")
-            )
+                    .replace("\n", ""),
+            ),
         )
     }
 }

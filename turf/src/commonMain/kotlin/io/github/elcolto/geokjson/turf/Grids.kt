@@ -22,7 +22,7 @@ public fun squareGrid(
     bbox: BoundingBox,
     cellWidth: Double,
     cellHeight: Double,
-    units: Units = Units.Kilometers
+    units: Units = Units.Kilometers,
 ): FeatureCollection {
     val featureList = mutableListOf<Feature>()
     val west = bbox.southwest.longitude
@@ -43,9 +43,9 @@ public fun squareGrid(
     val deltaY = (bboxHeight - rows * cellHeightDeg) / 2
 
     var currentX = west + deltaX
-    repeat (columns.toInt()) {
+    repeat(columns.toInt()) {
         var currentY = south + deltaY
-        repeat (rows.toInt()) {
+        repeat(rows.toInt()) {
             val positions = mutableListOf<Position>().apply {
                 add(Position(currentX, currentY))
                 add(Position(currentX, currentY + cellHeightDeg))

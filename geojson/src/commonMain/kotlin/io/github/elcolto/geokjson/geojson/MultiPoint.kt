@@ -17,7 +17,7 @@ import kotlin.jvm.JvmStatic
 @Serializable(with = GeometrySerializer::class)
 public class MultiPoint @JvmOverloads constructor(
     public val coordinates: List<Position>,
-    override val bbox: BoundingBox? = null
+    override val bbox: BoundingBox? = null,
 ) : Geometry() {
     @JvmOverloads
     public constructor(vararg coordinates: Position, bbox: BoundingBox? = null) : this(coordinates.toList(), bbox)
@@ -25,7 +25,7 @@ public class MultiPoint @JvmOverloads constructor(
     @JvmOverloads
     public constructor(
         coordinates: Array<DoubleArray>,
-        bbox: BoundingBox? = null
+        bbox: BoundingBox? = null,
     ) : this(coordinates.map(::Position), bbox)
 
     override fun equals(other: Any?): Boolean {

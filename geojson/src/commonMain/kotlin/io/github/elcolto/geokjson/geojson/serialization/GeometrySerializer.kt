@@ -56,7 +56,7 @@ public object GeometrySerializer : KSerializer<Geometry> {
                     "coordinates",
                     buildJsonArray {
                         coordinates.forEach { position -> add(position.toJsonArray()) }
-                    }
+                    },
                 )
             }
             is LineString -> {
@@ -65,7 +65,7 @@ public object GeometrySerializer : KSerializer<Geometry> {
                     "coordinates",
                     buildJsonArray {
                         coordinates.forEach { position -> add(position.toJsonArray()) }
-                    }
+                    },
                 )
             }
             is MultiLineString -> {
@@ -74,11 +74,13 @@ public object GeometrySerializer : KSerializer<Geometry> {
                     "coordinates",
                     buildJsonArray {
                         coordinates.forEach { line ->
-                            add(buildJsonArray {
-                                line.forEach { position -> add(position.toJsonArray()) }
-                            })
+                            add(
+                                buildJsonArray {
+                                    line.forEach { position -> add(position.toJsonArray()) }
+                                },
+                            )
                         }
-                    }
+                    },
                 )
             }
             is Polygon -> {
@@ -87,11 +89,13 @@ public object GeometrySerializer : KSerializer<Geometry> {
                     "coordinates",
                     buildJsonArray {
                         coordinates.forEach { ring ->
-                            add(buildJsonArray {
-                                ring.forEach { position -> add(position.toJsonArray()) }
-                            })
+                            add(
+                                buildJsonArray {
+                                    ring.forEach { position -> add(position.toJsonArray()) }
+                                },
+                            )
                         }
-                    }
+                    },
                 )
             }
             is MultiPolygon -> {
@@ -100,15 +104,19 @@ public object GeometrySerializer : KSerializer<Geometry> {
                     "coordinates",
                     buildJsonArray {
                         coordinates.forEach { polygon ->
-                            add(buildJsonArray {
-                                polygon.forEach { ring ->
-                                    add(buildJsonArray {
-                                        ring.forEach { position -> add(position.toJsonArray()) }
-                                    })
-                                }
-                            })
+                            add(
+                                buildJsonArray {
+                                    polygon.forEach { ring ->
+                                        add(
+                                            buildJsonArray {
+                                                ring.forEach { position -> add(position.toJsonArray()) }
+                                            },
+                                        )
+                                    }
+                                },
+                            )
                         }
-                    }
+                    },
                 )
             }
             is GeometryCollection -> {
@@ -119,14 +127,13 @@ public object GeometrySerializer : KSerializer<Geometry> {
                         geometries.forEach {
                             add(it.toJsonObject())
                         }
-                    }
+                    },
                 )
             }
         }
 
         bbox?.let { put("bbox", it.toJsonArray()) }
     }
-
 
     private fun Position.toJsonArray(): JsonArray = buildJsonArray {
         add(JsonPrimitive(longitude))

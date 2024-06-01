@@ -11,120 +11,132 @@ class UtilsTests {
 
     @Test
     fun testRadiansToLength() {
-        assertEquals(1.0,
+        assertEquals(
+            1.0,
             radiansToLength(
                 1.0,
-                Units.Radians
-            )
+                Units.Radians,
+            ),
         )
         assertEquals(
             EARTH_RADIUS / 1000,
             radiansToLength(
                 1.0,
-                Units.Kilometers
-            )
+                Units.Kilometers,
+            ),
         )
         assertEquals(
             EARTH_RADIUS / 1609.344,
             radiansToLength(
                 1.0,
-                Units.Miles
-            )
+                Units.Miles,
+            ),
         )
 
         assertFailsWith<IllegalArgumentException> {
             radiansToLength(
                 1.0,
-                Units.Acres
+                Units.Acres,
             )
         }
     }
 
     @Test
     fun testLengthToRadians() {
-        assertEquals(1.0,
+        assertEquals(
+            1.0,
             lengthToRadians(
                 1.0,
-                Units.Radians
-            )
+                Units.Radians,
+            ),
         )
-        assertEquals(1.0,
+        assertEquals(
+            1.0,
             lengthToRadians(
                 EARTH_RADIUS / 1000,
-                Units.Kilometers
-            )
+                Units.Kilometers,
+            ),
         )
-        assertEquals(1.0,
+        assertEquals(
+            1.0,
             lengthToRadians(
                 EARTH_RADIUS / 1609.344,
-                Units.Miles
-            )
+                Units.Miles,
+            ),
         )
 
         assertFailsWith<IllegalArgumentException> {
             lengthToRadians(
                 1.0,
-                Units.Acres
+                Units.Acres,
             )
         }
     }
 
     @Test
     fun testLengthToDegrees() {
-        assertEquals(57.29577951308232,
+        assertEquals(
+            57.29577951308232,
             lengthToDegrees(
                 1.0,
-                Units.Radians
-            )
+                Units.Radians,
+            ),
         )
-        assertEquals(0.899320363724538,
+        assertEquals(
+            0.899320363724538,
             lengthToDegrees(
                 100.0,
-                Units.Kilometers
-            )
+                Units.Kilometers,
+            ),
         )
-        assertEquals(0.1447315831437903,
+        assertEquals(
+            0.1447315831437903,
             lengthToDegrees(
                 10.0,
-                Units.Miles
-            )
+                Units.Miles,
+            ),
         )
     }
 
     @Test
     fun testConvertLength() {
-        assertEquals(1.0,
+        assertEquals(
+            1.0,
             convertLength(
                 1000.0,
-                from = Units.Meters
-            )
+                from = Units.Meters,
+            ),
         )
-        assertEquals(0.621371192237334,
+        assertEquals(
+            0.621371192237334,
             convertLength(
                 1.0,
                 from = Units.Kilometers,
-                to = Units.Miles
-            )
+                to = Units.Miles,
+            ),
         )
-        assertEquals(1.609344,
+        assertEquals(
+            1.609344,
             convertLength(
                 1.0,
                 from = Units.Miles,
-                to = Units.Kilometers
-            )
+                to = Units.Kilometers,
+            ),
         )
-        assertEquals(1.852,
+        assertEquals(
+            1.852,
             convertLength(
                 1.0,
-                from = Units.NauticalMiles
-            )
+                from = Units.NauticalMiles,
+            ),
         )
-        assertEquals(100.00000000000001,
+        assertEquals(
+            100.00000000000001,
             convertLength(
                 1.0,
                 from = Units.Meters,
-                to = Units.Centimeters
-            )
+                to = Units.Centimeters,
+            ),
         )
 
         assertFailsWith<IllegalArgumentException> {
@@ -136,65 +148,72 @@ class UtilsTests {
     @Suppress("LongMethod")
     fun testConvertArea() {
         assertEquals(0.001, convertArea(1000.0))
-        assertEquals(0.386,
+        assertEquals(
+            0.386,
             convertArea(
                 1.0,
                 from = Units.Kilometers,
-                to = Units.Miles
-            )
+                to = Units.Miles,
+            ),
         )
-        assertEquals(2.5906735751295336,
+        assertEquals(
+            2.5906735751295336,
             convertArea(
                 1.0,
                 from = Units.Miles,
-                to = Units.Kilometers
-            )
+                to = Units.Kilometers,
+            ),
         )
-        assertEquals(10000.0,
+        assertEquals(
+            10000.0,
             convertArea(
                 1.0,
                 from = Units.Meters,
-                to = Units.Centimeters
-            )
+                to = Units.Centimeters,
+            ),
         )
-        assertEquals(0.0247105,
+        assertEquals(
+            0.0247105,
             convertArea(
                 100.0,
                 Units.Meters,
-                Units.Acres
-            )
+                Units.Acres,
+            ),
         )
-        assertEquals(119.59900459999999,
+        assertEquals(
+            119.59900459999999,
             convertArea(
                 100.0,
-                to = Units.Yards
-            )
+                to = Units.Yards,
+            ),
         )
-        assertEquals(1076.3910417,
+        assertEquals(
+            1076.3910417,
             convertArea(
                 100.0,
                 Units.Meters,
-                Units.Feet
-            )
+                Units.Feet,
+            ),
         )
-        assertEquals(0.009290303999749462,
+        assertEquals(
+            0.009290303999749462,
             convertArea(
                 100000.0,
-                from = Units.Feet
-            )
+                from = Units.Feet,
+            ),
         )
 
         assertFailsWith<IllegalArgumentException> { convertArea(-1.0) }
         assertFailsWith<IllegalArgumentException> {
             convertArea(
                 1.0,
-                from = Units.Degrees
+                from = Units.Degrees,
             )
         }
         assertFailsWith<IllegalArgumentException> {
             convertArea(
                 1.0,
-                to = Units.Radians
+                to = Units.Radians,
             )
         }
     }

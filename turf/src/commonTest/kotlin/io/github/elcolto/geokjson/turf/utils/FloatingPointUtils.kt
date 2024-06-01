@@ -8,7 +8,7 @@ fun assertDoubleEquals(expected: Double, actual: Double?, epsilon: Double, messa
     asserter.assertNotNull(null, actual)
     asserter.assertTrue(
         { (message ?: "") + "Expected <$expected>, actual <$actual>, should differ no more than <$epsilon>." },
-        abs(expected - actual!!) <= epsilon
+        abs(expected - actual!!) <= epsilon,
     )
 }
 

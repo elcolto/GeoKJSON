@@ -42,15 +42,15 @@ public class Position(public val coordinates: DoubleArray) {
         doubleArrayOf(
             longitude,
             latitude,
-            altitude
-        )
+            altitude,
+        ),
     )
 
     public constructor(longitude: Double, latitude: Double, altitude: Double?) : this(
         when (altitude) {
             null -> doubleArrayOf(longitude, latitude)
             else -> doubleArrayOf(longitude, latitude, altitude)
-        }
+        },
     )
 
     public val longitude: Double
