@@ -1,8 +1,10 @@
 import com.android.build.api.dsl.LibraryExtension
+import io.github.elcolto.geokjson.convention.configureDetekt
 import io.github.elcolto.geokjson.convention.configureFormatting
 import io.github.elcolto.geokjson.convention.configureKotlinAndroid
 import io.github.elcolto.geokjson.convention.configureKotlinMultiplatform
 import io.github.elcolto.geokjson.convention.libs
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -18,10 +20,12 @@ class KotlinMultiplatformPlugin : Plugin<Project> {
             apply(libs.findPlugin("publish").get().get().pluginId)
             apply(libs.findPlugin("dokka").get().get().pluginId)
             apply(libs.findPlugin("ktlint").get().get().pluginId)
+            apply(libs.findPlugin("detekt").get().get().pluginId)
         }
 
         extensions.configure<KotlinMultiplatformExtension>(::configureKotlinMultiplatform)
         extensions.configure<LibraryExtension>(::configureKotlinAndroid)
         extensions.configure<KtlintExtension>(::configureFormatting)
+        extensions.configure<DetektExtension>(::configureDetekt)
     }
 }

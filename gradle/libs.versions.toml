@@ -4,6 +4,7 @@ resources = "0.4.0"
 benchmark = "0.4.10"
 agp = "8.3.0"
 ktlint = "12.1.1"
+detekt = "1.23.3"
 
 [libraries]
 resources = { module = "com.goncalossilva:resources", version.ref = "resources" }
@@ -12,6 +13,7 @@ kotlinx-benchmark = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-runtime"
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 ktlint-gradle-plugin = { module = "org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin", version.ref = "ktlint" }
+detekt-gradle-plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
@@ -22,3 +24,4 @@ dokka = { id = "org.jetbrains.dokka", version = "1.9.20" }
 resources = { id = "com.goncalossilva.resources", version.ref = "resources" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
