@@ -1,5 +1,5 @@
 plugins {
-    id("io.github.elcolto.geokjson.kotlinMultiplatform")
+    id("io.github.elcolto.geokjson.library")
     alias(libs.plugins.resources)
 }
 

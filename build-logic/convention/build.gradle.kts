@@ -13,9 +13,9 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        register("kotlinMultiplatform") {
-            id = "io.github.elcolto.geokjson.kotlinMultiplatform"
-            implementationClass = "KotlinMultiplatformPlugin"
+        register("commonLibraryPlugin") {
+            id = "io.github.elcolto.geokjson.library"
+            implementationClass = "CommonGeoKJSONLibraryPlugin"
         }
     }
 }

@@ -11,7 +11,7 @@ import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jlleitschuh.gradle.ktlint.KtlintExtension
 
-class KotlinMultiplatformPlugin : Plugin<Project> {
+class CommonGeoKJSONLibraryPlugin : Plugin<Project> {
 
     override fun apply(target: Project): Unit = with(target) {
         with(pluginManager) {
