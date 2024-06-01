@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("io.github.elcolto.geokjson.kotlinMultiplatform")
+    id("io.github.elcolto.geokjson.library")
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlinx.benchmark)
 }
@@ -68,8 +68,4 @@ benchmark {
 tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
     // custom output directory
     outputDirectory.set(buildDir.resolve("$rootDir/docs/api"))
-}
-
-tasks.withType(KotlinCompile::class.java).configureEach {
-    compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
 }

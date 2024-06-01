@@ -27,7 +27,7 @@ public object FeatureCollectionSerializer : JsonSerializer<FeatureCollection> {
                 "features",
                 buildJsonArray {
                     value.features.forEach { add(it.toJsonObject()) }
-                }
+                },
             )
         }
         output.encodeJsonElement(data)

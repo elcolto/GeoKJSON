@@ -1,5 +1,3 @@
-@file:Suppress("MagicNumber")
-
 package io.github.elcolto.geokjson.turf
 
 import io.github.elcolto.geokjson.geojson.BoundingBox
@@ -114,7 +112,7 @@ class BboxTests {
             Double.POSITIVE_INFINITY,
             Double.POSITIVE_INFINITY,
             Double.NEGATIVE_INFINITY,
-            Double.NEGATIVE_INFINITY
+            Double.NEGATIVE_INFINITY,
         )
 
         assertEquals(emptyBbox, bbox(feature()))

@@ -14,7 +14,10 @@ import kotlin.jvm.JvmStatic
 
 @Suppress("SERIALIZER_TYPE_INCOMPATIBLE")
 @Serializable(with = GeometrySerializer::class)
-public class Point @JvmOverloads constructor(public val coordinates: Position, override val bbox: BoundingBox? = null) : Geometry() {
+public class Point @JvmOverloads constructor(
+    public val coordinates: Position,
+    override val bbox: BoundingBox? = null,
+) : Geometry() {
     @JvmOverloads
     public constructor(coordinates: DoubleArray, bbox: BoundingBox? = null) : this(Position(coordinates), bbox)
 

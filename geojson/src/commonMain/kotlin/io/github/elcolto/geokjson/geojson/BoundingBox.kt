@@ -32,7 +32,7 @@ public class BoundingBox constructor(public val coordinates: DoubleArray) {
     }
 
     public constructor(west: Double, south: Double, east: Double, north: Double) : this(
-        doubleArrayOf(west, south, east, north)
+        doubleArrayOf(west, south, east, north),
     )
 
     public constructor(coordinates: List<Double>) : this(coordinates.toDoubleArray())
@@ -43,14 +43,14 @@ public class BoundingBox constructor(public val coordinates: DoubleArray) {
         minAltitude: Double,
         east: Double,
         north: Double,
-        maxAltitude: Double
+        maxAltitude: Double,
     ) : this(doubleArrayOf(west, south, minAltitude, east, north, maxAltitude))
 
     public constructor(southwest: Position, northeast: Position) : this(
         when (southwest.hasAltitude && northeast.hasAltitude) {
             true -> southwest.coordinates + northeast.coordinates
             false -> doubleArrayOf(southwest.longitude, southwest.latitude, northeast.longitude, northeast.latitude)
-        }
+        },
     )
 
     public val southwest: Position

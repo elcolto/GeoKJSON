@@ -24,7 +24,7 @@ import kotlin.jvm.JvmStatic
 @Serializable(with = FeatureCollectionSerializer::class)
 public class FeatureCollection(
     public val features: List<Feature> = emptyList(),
-    override val bbox: BoundingBox? = null
+    override val bbox: BoundingBox? = null,
 ) : Collection<Feature> by features, GeoJson {
 
     public constructor(vararg features: Feature, bbox: BoundingBox? = null) : this(features.toMutableList(), bbox)

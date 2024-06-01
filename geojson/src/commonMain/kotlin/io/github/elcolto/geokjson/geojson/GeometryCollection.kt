@@ -17,7 +17,7 @@ import kotlin.jvm.JvmStatic
 @Serializable(with = GeometrySerializer::class)
 public class GeometryCollection @JvmOverloads constructor(
     public val geometries: List<Geometry>,
-    override val bbox: BoundingBox? = null
+    override val bbox: BoundingBox? = null,
 ) : Geometry(), Collection<Geometry> by geometries {
     @JvmOverloads
     public constructor(vararg geometries: Geometry, bbox: BoundingBox? = null) : this(geometries.toList(), bbox)

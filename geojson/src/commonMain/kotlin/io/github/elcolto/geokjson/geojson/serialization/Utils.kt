@@ -20,5 +20,4 @@ internal fun Feature.idProp(): String = if (this.id == null) "" else """"id":"${
 internal fun JsonArray.toPosition(): Position =
     Position(this[0].jsonPrimitive.double, this[1].jsonPrimitive.double, this.getOrNull(2)?.jsonPrimitive?.double)
 
-internal fun JsonArray.toBbox(): BoundingBox =
-    BoundingBox(this.map { it.jsonPrimitive.double }.toDoubleArray())
+internal fun JsonArray.toBbox(): BoundingBox = BoundingBox(this.map { it.jsonPrimitive.double }.toDoubleArray())

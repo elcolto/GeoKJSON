@@ -36,7 +36,7 @@ public class Feature(
     public val geometry: Geometry?,
     properties: Map<String, JsonElement> = emptyMap(),
     public val id: String? = null,
-    override val bbox: BoundingBox? = null
+    override val bbox: BoundingBox? = null,
 ) : GeoJson {
     private val _properties: MutableMap<String, JsonElement> = properties.toMutableMap()
     public val properties: Map<String, JsonElement> get() = _properties
@@ -110,8 +110,9 @@ public class Feature(
             Json.encodeToString(
                 MapSerializer(
                     String.serializer(),
-                    JsonElement.serializer()
-                ), properties
+                    JsonElement.serializer(),
+                ),
+                properties,
             )
         }}"""
 
@@ -119,7 +120,7 @@ public class Feature(
         geometry: Geometry? = this.geometry,
         properties: Map<String, JsonElement> = this.properties,
         id: String? = this.id,
-        bbox: BoundingBox? = this.bbox
+        bbox: BoundingBox? = this.bbox,
     ): Feature = Feature(geometry, properties, id, bbox)
 
     public companion object {

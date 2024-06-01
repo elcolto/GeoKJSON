@@ -48,11 +48,11 @@ class BooleansTests {
 
         assertTrue(
             booleanPointInPolygon(ptConcaveIn, concavePoly),
-            "point inside concave polygon"
+            "point inside concave polygon",
         )
         assertFalse(
             booleanPointInPolygon(ptConcaveOut, concavePoly),
-            "point outside concave polygon"
+            "point outside concave polygon",
         )
     }
 
@@ -85,7 +85,6 @@ class BooleansTests {
     }
 
     @Test
-    @Suppress("LongMethod")
     fun testBoundaryTest() {
         val poly1 = polygon {
             ring {
@@ -149,7 +148,8 @@ class BooleansTests {
         fun runTest(ignoreBoundary: Boolean) {
             val isBoundaryIncluded = !ignoreBoundary
             val tests = arrayOf(
-                Triple(poly1, point(10.0, 10.0), isBoundaryIncluded), //0
+                // 0
+                Triple(poly1, point(10.0, 10.0), isBoundaryIncluded),
                 Triple(poly1, point(30.0, 20.0), isBoundaryIncluded),
                 Triple(poly1, point(50.0, 10.0), isBoundaryIncluded),
                 Triple(poly1, point(30.0, 10.0), true),
@@ -159,7 +159,8 @@ class BooleansTests {
                 Triple(poly1, point(30.0, 30.0), false),
                 Triple(poly2, point(30.0, 0.0), false),
                 Triple(poly2, point(0.0, 0.0), false),
-                Triple(poly2, point(60.0, 0.0), false), //10
+                // 10
+                Triple(poly2, point(60.0, 0.0), false),
                 Triple(poly3, point(30.0, 0.0), true),
                 Triple(poly3, point(0.0, 0.0), false),
                 Triple(poly3, point(60.0, 0.0), false),
@@ -169,7 +170,8 @@ class BooleansTests {
                 Triple(poly4, point(0.0, 10.0), isBoundaryIncluded),
                 Triple(poly4, point(5.0, 10.0), true),
                 Triple(poly4, point(25.0, 10.0), true),
-                Triple(poly4, point(35.0, 10.0), true), //20
+                // 20
+                Triple(poly4, point(35.0, 10.0), true),
                 Triple(poly4, point(0.0, 0.0), isBoundaryIncluded),
                 Triple(poly4, point(20.0, 0.0), false),
                 Triple(poly4, point(35.0, 0.0), false),
@@ -179,7 +181,8 @@ class BooleansTests {
                 Triple(poly4, point(10.0, 0.0), isBoundaryIncluded),
                 Triple(poly5, point(20.0, 30.0), isBoundaryIncluded),
                 Triple(poly5, point(25.0, 25.0), isBoundaryIncluded),
-                Triple(poly5, point(30.0, 20.0), isBoundaryIncluded), //30
+                // 30
+                Triple(poly5, point(30.0, 20.0), isBoundaryIncluded),
                 Triple(poly5, point(25.0, 15.0), isBoundaryIncluded),
                 Triple(poly5, point(20.0, 10.0), isBoundaryIncluded),
                 Triple(poly5, point(15.0, 15.0), isBoundaryIncluded),
@@ -194,7 +197,7 @@ class BooleansTests {
                 assertEquals(
                     booleanPointInPolygon(item.second, item.first, ignoreBoundary),
                     item.third,
-                    testTitle + i
+                    testTitle + i,
                 )
             }
         }
@@ -213,9 +216,9 @@ class BooleansTests {
                     doubleArrayOf(0.35070899909145403, 69.32470003971179),
                     doubleArrayOf(-24.453622256504122, 41.146696777884564),
                     doubleArrayOf(-21.6445524714804, 40.43225902006474),
-                    doubleArrayOf(5.080336744095521, 67.89398938540765)
-                )
-            )
+                    doubleArrayOf(5.080336744095521, 67.89398938540765),
+                ),
+            ),
         )
 
         assertTrue(booleanPointInPolygon(pt1, poly))

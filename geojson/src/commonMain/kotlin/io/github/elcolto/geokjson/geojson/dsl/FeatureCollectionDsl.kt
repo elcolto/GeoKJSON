@@ -11,20 +11,19 @@ import kotlin.jvm.JvmName
 @GeoJsonDsl
 public class FeatureCollectionDsl(
     private val features: MutableList<Feature> = mutableListOf(),
-    public var bbox: BoundingBox? = null
+    public var bbox: BoundingBox? = null,
 ) {
     public operator fun Feature.unaryPlus() {
         features.add(this)
     }
 
-    public fun create(): FeatureCollection =
-        FeatureCollection(features, bbox)
+    public fun create(): FeatureCollection = FeatureCollection(features, bbox)
 
     public fun feature(
         geometry: Geometry? = null,
         id: String? = null,
         bbox: BoundingBox? = null,
-        properties: PropertiesBuilder.() -> Unit = {}
+        properties: PropertiesBuilder.() -> Unit = {},
     ) {
         +Feature(geometry, PropertiesBuilder().apply(properties).build(), id, bbox)
     }

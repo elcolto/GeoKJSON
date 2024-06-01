@@ -35,21 +35,25 @@ open class GeoJsonBenchmark {
             }
 
             repeat(5000) {
-                feature(geometry = lineString {
-                    repeat(10) {
-                        +Position(random.nextDouble(360.0) - 180, random.nextDouble(360.0) - 180)
-                    }
-                })
-            }
-
-            repeat(5000) {
-                feature(geometry = polygon {
-                    ring {
+                feature(
+                    geometry = lineString {
                         repeat(10) {
                             +Position(random.nextDouble(360.0) - 180, random.nextDouble(360.0) - 180)
                         }
-                    }
-                })
+                    },
+                )
+            }
+
+            repeat(5000) {
+                feature(
+                    geometry = polygon {
+                        ring {
+                            repeat(10) {
+                                +Position(random.nextDouble(360.0) - 180, random.nextDouble(360.0) - 180)
+                            }
+                        }
+                    },
+                )
             }
         }
     }
@@ -84,7 +88,6 @@ open class GeoJsonBenchmark {
     fun baselineSerialization() {
         Json.encodeToString(jsonObject)
     }
-
 
     @Benchmark
     fun deserialization() {

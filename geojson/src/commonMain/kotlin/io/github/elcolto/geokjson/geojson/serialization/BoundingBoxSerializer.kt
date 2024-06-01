@@ -32,8 +32,10 @@ public object BoundingBoxSerializer : KSerializer<BoundingBox> {
         return when (array.size) {
             ARRAY_SIZE_2D -> {
                 BoundingBox(
-                    array[0].jsonPrimitive.double, array[1].jsonPrimitive.double,
-                    array[2].jsonPrimitive.double, array[3].jsonPrimitive.double
+                    array[0].jsonPrimitive.double,
+                    array[1].jsonPrimitive.double,
+                    array[2].jsonPrimitive.double,
+                    array[3].jsonPrimitive.double,
                 )
             }
             ARRAY_SIZE_3D -> {
@@ -43,7 +45,7 @@ public object BoundingBoxSerializer : KSerializer<BoundingBox> {
                     array[2].jsonPrimitive.double,
                     array[3].jsonPrimitive.double,
                     array[4].jsonPrimitive.double,
-                    array[5].jsonPrimitive.double
+                    array[5].jsonPrimitive.double,
                 )
             }
             else -> {
