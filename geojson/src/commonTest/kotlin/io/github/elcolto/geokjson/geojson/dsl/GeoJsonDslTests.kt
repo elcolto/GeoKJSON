@@ -9,7 +9,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
 
-@Suppress("MagicNumber")
 class GeoJsonDslTests {
 
     private val collectionDsl = featureCollection {

@@ -9,7 +9,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
 
-@Suppress("MagicNumber", "TooManyFunctions")
 class SerializationTests {
 
     @Test
@@ -151,17 +150,23 @@ class SerializationTests {
             listOf(Position(12.3, 45.6), Position(78.9, 12.3)),
             listOf(Position(87.6, 54.3), Position(21.9, 56.4)),
         )
+        //language=JSON
         val json = """{"type":"MultiLineString","coordinates":[[[12.3,45.6],[78.9,12.3]],[[87.6,54.3],[21.9,56.4]]]}"""
         assertEquals(json, multiLineString.json(), "MultiLineString (fast)")
         assertEquals(json, Json.encodeToString(multiLineString), "MultiLineString (kotlinx)")
     }
 
     @Test
-    @Suppress("MaxLineLength")
     fun testDeserializeMultiLineString() {
+        //language=JSON
         val multiLineString =
             MultiLineString.fromJson(
-                """{"type":"MultiLineString","coordinates":[[[12.3,45.6],[78.9,12.3]],[[87.6,54.3],[21.9,56.4]]]}""",
+                """
+                    {
+                      "type":"MultiLineString",
+                      "coordinates":[[[12.3,45.6],[78.9,12.3]],[[87.6,54.3],[21.9,56.4]]]
+                    }
+                """.trimIndent(),
             )
         assertEquals(
             MultiLineString(

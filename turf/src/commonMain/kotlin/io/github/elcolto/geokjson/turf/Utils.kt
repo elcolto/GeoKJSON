@@ -87,7 +87,6 @@ public fun convertLength(length: Double, from: Units = Units.Meters, to: Units =
  *
  * @exception IllegalArgumentException if the given units are invalid, or if the area is negative
  */
-@Suppress("ThrowsCount")
 @ExperimentalTurfApi
 public fun convertArea(area: Double, from: Units = Units.Meters, to: Units = Units.Kilometers): Double {
     require(area >= 0) { "area must be a positive number" }
@@ -104,7 +103,6 @@ public fun convertArea(area: Double, from: Units = Units.Meters, to: Units = Uni
  * @param bearing angle, between -180 and +180 degrees
  * @return angle between 0 and 360 degrees
  */
-@Suppress("MagicNumber")
 @ExperimentalTurfApi
 public fun bearingToAzimuth(bearing: Double): Double {
     var angle = bearing % 360

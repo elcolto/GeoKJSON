@@ -12,7 +12,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @ExperimentalTurfApi
-@Suppress("MagicNumber")
 class TurfMiscTest {
 
     @Test

@@ -35,7 +35,6 @@ import kotlin.math.sqrt
  * @return A position [distance] [units] along the line
  */
 @JvmOverloads
-@Suppress("MagicNumber")
 @ExperimentalTurfApi
 public fun along(line: LineString, distance: Double, units: Units = Units.Kilometers): Position {
     var travelled = 0.0
@@ -323,7 +322,6 @@ public fun bearing(start: Position, end: Position, final: Boolean = false): Doub
     return degrees(atan2(a, b))
 }
 
-@Suppress("MagicNumber")
 @ExperimentalTurfApi
 internal fun finalBearing(start: Position, end: Position): Double = (
     bearing(
@@ -515,7 +513,6 @@ public fun greatCircle(
     val deltaLatitude = start.latitude - end.latitude
 
     // check antipodal positions
-    @Suppress("MagicNumber")
     require(abs(deltaLatitude) != 0.0 && abs(deltaLongitude % 360) - ANTIMERIDIAN_POS != 0.0) {
         "Input $start and $end are diametrically opposite, thus there is no single route but rather infinite"
     }
@@ -551,7 +548,6 @@ public fun greatCircle(
         val borderEast = ANTIMERIDIAN_POS - antimeridianOffset
         val borderWest = ANTIMERIDIAN_NEG + antimeridianOffset
 
-        @Suppress("MagicNumber")
         val diffSpace = 360.0 - antimeridianOffset
 
         val passesAntimeridian = plainArc.zipWithNext { a, b ->
@@ -608,7 +604,6 @@ public fun greatCircle(
                         lat2 = tmpY
                     }
                     if (lon1 > borderEast && lon2 < borderWest) {
-                        @Suppress("MagicNumber")
                         lon2 += 360.0
                     }
 

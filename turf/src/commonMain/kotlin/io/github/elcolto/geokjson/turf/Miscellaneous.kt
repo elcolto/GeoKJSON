@@ -142,7 +142,6 @@ public fun nearestPointOnLine(
     return nearestPointOnLine(lines.coordinates, point, units)
 }
 
-@Suppress("MagicNumber")
 @ExperimentalTurfApi
 internal fun nearestPointOnLine(
     lines: List<List<Position>>,

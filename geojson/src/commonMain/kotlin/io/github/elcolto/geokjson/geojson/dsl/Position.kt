@@ -2,10 +2,8 @@ package io.github.elcolto.geokjson.geojson.dsl
 
 import io.github.elcolto.geokjson.geojson.Position
 
-@Suppress("MagicNumber")
 private val LONGITUDE_RANGE = -180.0..180.0
 
-@Suppress("MagicNumber")
 private val LATITUDE_RANGE = -90.0..90.0
 
 @GeoJsonDsl

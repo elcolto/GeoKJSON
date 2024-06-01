@@ -1,5 +1,3 @@
-@file:Suppress("MagicNumber")
-
 package io.github.elcolto.geokjson.turf
 
 import io.github.elcolto.geokjson.geojson.BoundingBox

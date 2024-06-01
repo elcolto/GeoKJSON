@@ -1,5 +1,3 @@
-@file:Suppress("MagicNumber")
-
 package io.github.elcolto.geokjson.turf
 
 import kotlin.test.Test
@@ -145,7 +143,6 @@ class UtilsTests {
     }
 
     @Test
-    @Suppress("LongMethod")
     fun testConvertArea() {
         assertEquals(0.001, convertArea(1000.0))
         assertEquals(

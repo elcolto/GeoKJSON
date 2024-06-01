@@ -10,7 +10,6 @@ import kotlinx.serialization.json.JsonPrimitive
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-@Suppress("EXPERIMENTAL_API_USAGE", "MagicNumber")
 class FeatureCollectionSerializationTests {
 
     @Test
