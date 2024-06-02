@@ -1,6 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     id("io.github.elcolto.geokjson.library")
     alias(libs.plugins.kotlin.serialization)
@@ -62,6 +59,17 @@ benchmark {
 
     targets {
         register("jvmBench")
+    }
+}
+
+kover {
+    reports {
+        filters {
+            excludes {
+                // exclusion rules - classes to exclude from report
+                classes("io.github.elcolto.geokjson.geojson.GeoJsonBenchmark")
+            }
+        }
     }
 }
 
