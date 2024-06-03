@@ -3,4 +3,23 @@ plugins {
     alias(libs.plugins.publish) apply false
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.dokka)
+    alias(libs.plugins.kover)
+}
+
+dependencies {
+    // integrate each module for merged kover report
+    subprojects.forEach { project ->
+        kover(project(":${project.name}"))
+    }
+}
+
+kover {
+    reports {
+        filters {
+            excludes {
+                // exclusion rules - classes to exclude from report
+                classes("io.github.elcolto.geokjson.geojson.GeoJsonBenchmark")
+            }
+        }
+    }
 }

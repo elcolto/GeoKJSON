@@ -1,5 +1,4 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 
 plugins {
     id("io.github.elcolto.geokjson.library")
@@ -62,6 +61,23 @@ benchmark {
 
     targets {
         register("jvmBench")
+    }
+}
+
+kover {
+    reports {
+        filters {
+            excludes {
+                // exclusion rules - classes to exclude from report
+                classes("io.github.elcolto.geokjson.geojson.GeoJsonBenchmark")
+            }
+        }
+
+        verify {
+            rule {
+                minBound(72, CoverageUnit.INSTRUCTION) // 72% instruction coverage on applying plugin
+            }
+        }
     }
 }
 
