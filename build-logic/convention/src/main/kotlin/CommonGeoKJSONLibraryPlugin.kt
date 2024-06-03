@@ -21,6 +21,7 @@ class CommonGeoKJSONLibraryPlugin : Plugin<Project> {
             apply(libs.findPlugin("dokka").get().get().pluginId)
             apply(libs.findPlugin("ktlint").get().get().pluginId)
             apply(libs.findPlugin("detekt").get().get().pluginId)
+            apply(libs.findPlugin("binary-validator").get().get().pluginId)
         }
 
         extensions.configure<KotlinMultiplatformExtension>(::configureKotlinMultiplatform)
