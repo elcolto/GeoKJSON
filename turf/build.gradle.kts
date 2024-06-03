@@ -1,3 +1,5 @@
+import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
+
 plugins {
     id("io.github.elcolto.geokjson.library")
     alias(libs.plugins.resources)
@@ -18,6 +20,16 @@ kotlin {
             }
         }
 
+    }
+}
+
+kover {
+    reports {
+        verify {
+            rule {
+                minBound(92, CoverageUnit.INSTRUCTION) // 92% instruction coverage on applying plugin
+            }
+        }
     }
 }
 

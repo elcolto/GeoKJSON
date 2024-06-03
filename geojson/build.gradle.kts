@@ -1,3 +1,5 @@
+import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
+
 plugins {
     id("io.github.elcolto.geokjson.library")
     alias(libs.plugins.kotlin.serialization)
@@ -68,6 +70,12 @@ kover {
             excludes {
                 // exclusion rules - classes to exclude from report
                 classes("io.github.elcolto.geokjson.geojson.GeoJsonBenchmark")
+            }
+        }
+
+        verify {
+            rule {
+                minBound(72, CoverageUnit.INSTRUCTION) // 72% instruction coverage on applying plugin
             }
         }
     }

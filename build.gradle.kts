@@ -21,14 +21,5 @@ kover {
                 classes("io.github.elcolto.geokjson.geojson.GeoJsonBenchmark")
             }
         }
-
-        total {
-            xml {
-                onCheck = true
-            }
-            html {
-                onCheck = true
-            }
-        }
     }
 }

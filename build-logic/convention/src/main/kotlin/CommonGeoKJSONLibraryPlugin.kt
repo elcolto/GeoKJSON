@@ -3,8 +3,10 @@ import io.github.elcolto.geokjson.convention.configureDetekt
 import io.github.elcolto.geokjson.convention.configureFormatting
 import io.github.elcolto.geokjson.convention.configureKotlinAndroid
 import io.github.elcolto.geokjson.convention.configureKotlinMultiplatform
+import io.github.elcolto.geokjson.convention.configureKover
 import io.github.elcolto.geokjson.convention.libs
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
+import kotlinx.kover.gradle.plugin.dsl.KoverProjectExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -29,5 +31,6 @@ class CommonGeoKJSONLibraryPlugin : Plugin<Project> {
         extensions.configure<LibraryExtension>(::configureKotlinAndroid)
         extensions.configure<KtlintExtension>(::configureFormatting)
         extensions.configure<DetektExtension>(::configureDetekt)
+        extensions.configure<KoverProjectExtension>(::configureKover)
     }
 }
