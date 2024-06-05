@@ -34,11 +34,10 @@ internal fun Project.configureKotlinMultiplatform(
     val iosSimulatorArm64 = iosSimulatorArm64()
     val watchosArm32 = watchosArm32()
     val watchosArm64 = watchosArm64()
-    val watchosX64 = watchosX64()
     val watchosSimulatorArm64 = watchosSimulatorArm64()
     val appleTargets = listOf(
         iosArm64, iosX64, iosSimulatorArm64,
-        watchosArm32, watchosArm64, watchosX64,
+        watchosArm32, watchosArm64,
         watchosSimulatorArm64,
     )
 
@@ -69,7 +68,6 @@ internal fun Project.configureKotlinMultiplatform(
             sourceSets["iosSimulatorArm64Main"].dependsOn(this)
             sourceSets["watchosArm32Main"].dependsOn(this)
             sourceSets["watchosArm64Main"].dependsOn(this)
-            sourceSets["watchosX64Main"].dependsOn(this)
             sourceSets["watchosSimulatorArm64Main"].dependsOn(this)
         }
 
