@@ -2,7 +2,6 @@ import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 
 plugins {
     id("io.github.elcolto.geokjson.library")
-    alias(libs.plugins.resources)
 }
 
 kotlin {
@@ -16,10 +15,19 @@ kotlin {
 
         val commonTest by getting {
             dependencies {
-                implementation(libs.resources)
+                implementation(libs.okio)
             }
         }
-
+        val jsTest by getting {
+            dependencies {
+                implementation(libs.okio.nodefilesystem)
+            }
+        }
+        val wasmJsTest by getting {
+            dependencies {
+                implementation(libs.okio.fakefilesystem)
+            }
+        }
     }
 }
 

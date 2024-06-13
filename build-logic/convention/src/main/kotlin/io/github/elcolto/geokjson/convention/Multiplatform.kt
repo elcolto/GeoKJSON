@@ -7,6 +7,7 @@ import org.gradle.kotlin.dsl.getValue
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 @OptIn(ExperimentalKotlinGradlePluginApi::class)
 internal fun Project.configureKotlinMultiplatform(
@@ -27,6 +28,18 @@ internal fun Project.configureKotlinMultiplatform(
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
+
+    js(IR) {
+        browser()
+        nodejs()
+    }
+
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+        nodejs()
+    }
+
 
 
     val iosArm64 = iosArm64()

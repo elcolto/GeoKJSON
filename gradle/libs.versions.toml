@@ -1,15 +1,14 @@
 [versions]
 kotlin = "2.0.0"
-resources = "0.4.1"
 benchmark = "0.4.11"
 agp = "8.4.1"
 ktlint = "12.1.1"
 detekt = "1.23.6"
 binary-validator = "0.15.0-Beta.2"
 kover = "0.8.0"
+okio = "3.9.0"
 
 [libraries]
-resources = { module = "com.goncalossilva:resources", version.ref = "resources" }
 kotlinx-serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0"
 kotlinx-benchmark = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-runtime", version.ref = "benchmark" }
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
@@ -18,6 +17,9 @@ ktlint-gradle-plugin = { module = "org.jlleitschuh.gradle.ktlint:org.jlleitschuh
 detekt-gradle-plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 binary-validator-plugin = { module = "org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin", version.ref = "binary-validator" }
 kover-gradle-plugin = { module = "org.jetbrains.kotlinx:kover-gradle-plugin", version.ref = "kover" }
+okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
+okio-nodefilesystem = { module = "com.squareup.okio:okio-nodefilesystem", version.ref = "okio" }
+okio-fakefilesystem = { module = "com.squareup.okio:okio-fakefilesystem", version.ref = "okio" }
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
@@ -25,7 +27,6 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 kotlinx-benchmark = { id = "org.jetbrains.kotlinx.benchmark", version.ref = "benchmark" }
 publish = { id = "com.vanniktech.maven.publish", version = "0.28.0" }
 dokka = { id = "org.jetbrains.dokka", version = "1.9.20" }
-resources = { id = "com.goncalossilva.resources", version.ref = "resources" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
