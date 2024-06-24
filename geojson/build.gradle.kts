@@ -1,10 +1,13 @@
 import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
+import io.github.elcolto.geokjson.convention.Version
 
 plugins {
     id("io.github.elcolto.geokjson.library")
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlinx.benchmark)
 }
+
+version = Version
 
 kotlin {
     explicitApi()

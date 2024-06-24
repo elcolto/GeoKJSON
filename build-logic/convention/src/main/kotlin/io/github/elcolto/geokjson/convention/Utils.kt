@@ -7,3 +7,8 @@ import org.gradle.kotlin.dsl.getByType
 
 val Project.libs
     get(): VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
+
+fun Project.moduleName() = path.split(":").last()
+
+internal const val GroupId = "io.github.elcolto.geokjson"
+const val Version = "0.1.0"

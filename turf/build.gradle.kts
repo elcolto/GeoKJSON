@@ -1,9 +1,12 @@
+import io.github.elcolto.geokjson.convention.Version
 import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 
 plugins {
     id("io.github.elcolto.geokjson.library")
     alias(libs.plugins.resources)
 }
+
+version = Version
 
 kotlin {
     explicitApi()
