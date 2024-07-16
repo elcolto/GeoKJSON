@@ -30,6 +30,11 @@ internal fun Project.configureKotlinMultiplatform(
         }
     }
 
+    js(IR) {
+        browser()
+        nodejs()
+    }
+
     val iosArm64 = iosArm64()
     val iosX64 = iosX64()
     val iosSimulatorArm64 = iosSimulatorArm64()
