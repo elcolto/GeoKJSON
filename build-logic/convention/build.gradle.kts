@@ -11,6 +11,7 @@ dependencies {
     compileOnly(libs.kover.gradle.plugin)
     implementation(libs.detekt.gradle.plugin)
     implementation(libs.ktlint.gradle.plugin)
+    compileOnly(libs.publish.plugin)
 }
 
 gradlePlugin {

@@ -8,9 +8,8 @@ internal fun Project.configureKotlinAndroid(
     extension: LibraryExtension
 ) = extension.apply {
 
-    //get module name from module path
-    val moduleName = path.split(":").last()
-    namespace = if (moduleName.isNotEmpty()) "io.github.elcolto.geokjson.$moduleName" else error("module name is empty")
+    val moduleName = moduleName()
+    namespace = if (moduleName.isNotEmpty()) "$GroupId.$moduleName" else error("module name is empty")
 
     compileSdk = 34
     defaultConfig {

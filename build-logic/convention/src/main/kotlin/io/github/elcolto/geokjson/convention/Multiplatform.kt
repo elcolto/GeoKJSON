@@ -12,6 +12,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 internal fun Project.configureKotlinMultiplatform(
     extension: KotlinMultiplatformExtension
 ) = extension.apply {
+
+    group = GroupId
     jvmToolchain(17)
 
     // targets
@@ -27,7 +29,6 @@ internal fun Project.configureKotlinMultiplatform(
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-
 
     val iosArm64 = iosArm64()
     val iosX64 = iosX64()
