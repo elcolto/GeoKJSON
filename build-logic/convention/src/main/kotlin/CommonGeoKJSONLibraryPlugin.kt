@@ -21,8 +21,6 @@ class CommonGeoKJSONLibraryPlugin : Plugin<Project> {
         with(pluginManager) {
             apply(libs.findPlugin("kotlin-multiplatform").get().get().pluginId)
             apply(libs.findPlugin("android-library").get().get().pluginId)
-            apply(libs.findPlugin("publish").get().get().pluginId)
-            apply(libs.findPlugin("dokka").get().get().pluginId)
             apply(libs.findPlugin("ktlint").get().get().pluginId)
             apply(libs.findPlugin("detekt").get().get().pluginId)
             apply(libs.findPlugin("binary-validator").get().get().pluginId)

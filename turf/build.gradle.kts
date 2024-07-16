@@ -35,15 +35,3 @@ kover {
         }
     }
 }
-
-tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
-    // custom output directory
-    outputDirectory.set(layout.buildDirectory.asFile.get().resolve("$rootDir/docs/api"))
-}
-
-// Working around dokka problems
-afterEvaluate {
-    tasks.named("dokkaJavadocJar").configure {
-        dependsOn(":geojson:dokkaHtml")
-    }
-}
