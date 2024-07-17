@@ -17,6 +17,7 @@ jobs:
         runs-on: ubuntu-latest
         permissions:
             contents: read
+            pull-requests: write
 
         steps:
             - uses: actions/checkout@v4
@@ -36,7 +37,7 @@ jobs:
 
             - name: Coverage Report
               id: kover
-              uses: mi-kas/kover-report@v1
+              uses: mi-kas/kover-report@v1.9
               with:
                   path: |
                       ${{ github.workspace }}/turf/build/reports/kover/report.xml
