@@ -8,46 +8,53 @@
 name: Java CI with Gradle
 
 on:
-    pull_request:
-        branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-    check:
-        runs-on: ubuntu-latest
-        permissions:
-            checks: write
-            contents: read
-            pull-requests: write
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: write
 
-        steps:
-            - uses: actions/checkout@v4
-            - name: Set up JDK 17
-              uses: actions/setup-java@v4
-              with:
-                  java-version: '17'
-                  distribution: 'temurin'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
 
-            # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
-            # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
-            - name: Setup Gradle
-              uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+      # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
+      # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
 
-            - name: Gradle task check
-              run: ./gradlew check
+      - name: Gradle task check
+        run: ./gradlew check --continue
 
-            - name: Coverage Report
-              id: kover
-              uses: mi-kas/kover-report@v1.9
-              with:
-                  path: |
-                      ${{ github.workspace }}/turf/build/reports/kover/report.xml
-                      ${{ github.workspace }}/geojson/build/reports/kover/report.xml
-                  title: Code Coverage
-                  update-comment: true
-                  min-coverage-changed-files: 80
-                  coverage-counter-type: LINE
+      - name: Coverage Report
+        id: kover
+        uses: mi-kas/kover-report@v1.9
+        with:
+          path: |
+            ${{ github.workspace }}/turf/build/reports/kover/report.xml
+            ${{ github.workspace }}/geojson/build/reports/kover/report.xml
+          title: Code Coverage
+          update-comment: true
+          min-coverage-changed-files: 80
+          coverage-counter-type: LINE
 
-            - name: Detekt report
-              uses: jwgmeligmeyling/checkstyle-github-action@master
-              with:
-                path: '**/build/reports/detekt/detekt.xml'
+      - name: detekt report
+        uses: jwgmeligmeyling/checkstyle-github-action@master
+        with:
+          path: '**/build/reports/detekt/detekt.xml'
+          title: "detekt Report"
+
+      - name: ktlint report
+        uses: jwgmeligmeyling/checkstyle-github-action@master
+        with:
+          path: '**/build/reports/ktlint/ktlint*/ktlint*.xml'
+          title: "ktlint Report"

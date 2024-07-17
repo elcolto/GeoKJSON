@@ -9,3 +9,6 @@ tab_width = 4
 
 [{*.kt,*.kts}]
 ktlint_code_style = intellij_idea
+
+[*.{yaml,yml}]
+indent_size = 2
