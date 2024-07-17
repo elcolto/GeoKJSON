@@ -81,13 +81,6 @@ public final class io/github/elcolto/geokjson/turf/TurfMeta {
 	public static final fun coordAll (Lio/github/elcolto/geokjson/geojson/Feature;)Ljava/util/List;
 	public static final fun coordAll (Lio/github/elcolto/geokjson/geojson/FeatureCollection;)Ljava/util/List;
 	public static final fun coordAll (Lio/github/elcolto/geokjson/geojson/Geometry;)Ljava/util/List;
-	public static final fun coordAll (Lio/github/elcolto/geokjson/geojson/GeometryCollection;)Ljava/util/List;
-	public static final fun coordAll (Lio/github/elcolto/geokjson/geojson/LineString;)Ljava/util/List;
-	public static final fun coordAll (Lio/github/elcolto/geokjson/geojson/MultiLineString;)Ljava/util/List;
-	public static final fun coordAll (Lio/github/elcolto/geokjson/geojson/MultiPoint;)Ljava/util/List;
-	public static final fun coordAll (Lio/github/elcolto/geokjson/geojson/MultiPolygon;)Ljava/util/List;
-	public static final fun coordAll (Lio/github/elcolto/geokjson/geojson/Point;)Ljava/util/List;
-	public static final fun coordAll (Lio/github/elcolto/geokjson/geojson/Polygon;)Ljava/util/List;
 }
 
 public final class io/github/elcolto/geokjson/turf/TurfMisc {
