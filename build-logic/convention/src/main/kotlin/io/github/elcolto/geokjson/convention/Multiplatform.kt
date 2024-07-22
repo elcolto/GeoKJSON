@@ -1,9 +1,9 @@
 package io.github.elcolto.geokjson.convention
 
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.creating
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getValue
+import org.gradle.kotlin.dsl.getting
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -30,6 +30,11 @@ internal fun Project.configureKotlinMultiplatform(
         }
     }
 
+    js(IR) {
+        browser()
+        nodejs()
+    }
+
     val iosArm64 = iosArm64()
     val iosX64 = iosX64()
     val iosSimulatorArm64 = iosSimulatorArm64()
@@ -37,8 +42,11 @@ internal fun Project.configureKotlinMultiplatform(
     val watchosArm64 = watchosArm64()
     val watchosSimulatorArm64 = watchosSimulatorArm64()
     val appleTargets = listOf(
-        iosArm64, iosX64, iosSimulatorArm64,
-        watchosArm32, watchosArm64,
+        iosArm64,
+        iosX64,
+        iosSimulatorArm64,
+        watchosArm32,
+        watchosArm64,
         watchosSimulatorArm64,
     )
 
@@ -54,19 +62,14 @@ internal fun Project.configureKotlinMultiplatform(
 
     applyDefaultHierarchyTemplate()
 
-    //common dependencies
+    // common dependencies
     sourceSets.apply {
-
         commonTest.dependencies {
             implementation(kotlin("test"))
             implementation(kotlin("test-annotations-common"))
         }
 
-        val ioMain by creating {
-            dependsOn(commonMain.get())
-            sourceSets["iosArm64Main"].dependsOn(this)
-            sourceSets["iosX64Main"].dependsOn(this)
-            sourceSets["iosSimulatorArm64Main"].dependsOn(this)
+        val iosMain by getting {
             sourceSets["watchosArm32Main"].dependsOn(this)
             sourceSets["watchosArm64Main"].dependsOn(this)
             sourceSets["watchosSimulatorArm64Main"].dependsOn(this)

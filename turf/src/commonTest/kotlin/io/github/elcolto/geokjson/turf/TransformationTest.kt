@@ -32,8 +32,8 @@ class TransformationTest {
      */
     @Test
     fun testBezierSplineAcrossPacific() {
-        val feature = Feature.fromJson(readResource("transformation/bezierspline/in/issue-#1063.json"))
-        val expectedOut = Feature.fromJson(readResource("transformation/bezierspline/out/issue-#1063.json"))
+        val feature = Feature.fromJson(readResource("transformation/bezierspline/in/issue1063.json"))
+        val expectedOut = Feature.fromJson(readResource("transformation/bezierspline/out/issue1063.json"))
 
         assertEquals(expectedOut.geometry, bezierSpline(feature.geometry as LineString))
     }
