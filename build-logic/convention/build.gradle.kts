@@ -12,6 +12,7 @@ dependencies {
     implementation(libs.detekt.gradle.plugin)
     implementation(libs.ktlint.gradle.plugin)
     compileOnly(libs.publish.plugin)
+    compileOnly(libs.dokka.gradle.plugin)
 }
 
 gradlePlugin {

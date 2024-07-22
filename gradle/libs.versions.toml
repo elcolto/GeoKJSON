@@ -8,6 +8,7 @@ detekt = "1.23.6"
 binary-validator = "0.15.0-Beta.2"
 kover = "0.8.0"
 publish = "0.29.0"
+dokka = "1.9.20"
 
 [libraries]
 resources = { module = "com.goncalossilva:resources", version.ref = "resources" }
@@ -20,13 +21,14 @@ detekt-gradle-plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plu
 binary-validator-plugin = { module = "org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin", version.ref = "binary-validator" }
 kover-gradle-plugin = { module = "org.jetbrains.kotlinx:kover-gradle-plugin", version.ref = "kover" }
 publish-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "publish" }
+dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinx-benchmark = { id = "org.jetbrains.kotlinx.benchmark", version.ref = "benchmark" }
 publish = { id = "com.vanniktech.maven.publish", version.ref = "publish" }
-dokka = { id = "org.jetbrains.dokka", version = "1.9.20" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 resources = { id = "com.goncalossilva.resources", version.ref = "resources" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }

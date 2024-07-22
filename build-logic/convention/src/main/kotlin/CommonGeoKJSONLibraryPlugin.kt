@@ -1,6 +1,7 @@
 import com.android.build.api.dsl.LibraryExtension
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import io.github.elcolto.geokjson.convention.configureDetekt
+import io.github.elcolto.geokjson.convention.configureDokka
 import io.github.elcolto.geokjson.convention.configureFormatting
 import io.github.elcolto.geokjson.convention.configureKotlinAndroid
 import io.github.elcolto.geokjson.convention.configureKotlinMultiplatform
@@ -20,6 +21,7 @@ class CommonGeoKJSONLibraryPlugin : Plugin<Project> {
     override fun apply(target: Project): Unit = with(target) {
         with(pluginManager) {
             apply(libs.findPlugin("kotlin-multiplatform").get().get().pluginId)
+            apply(libs.findPlugin("dokka").get().get().pluginId)
             apply(libs.findPlugin("android-library").get().get().pluginId)
             apply(libs.findPlugin("ktlint").get().get().pluginId)
             apply(libs.findPlugin("detekt").get().get().pluginId)
@@ -34,5 +36,6 @@ class CommonGeoKJSONLibraryPlugin : Plugin<Project> {
         extensions.configure<DetektExtension>(::configureDetekt)
         extensions.configure<KoverProjectExtension>(::configureKover)
         extensions.configure<MavenPublishBaseExtension>(::configurePublishing)
+        configureDokka()
     }
 }
