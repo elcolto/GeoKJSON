@@ -2,17 +2,17 @@
 kotlin = "2.0.0"
 resources = "0.9.0"
 benchmark = "0.4.11"
-agp = "8.4.1"
+agp = "8.5.1"
 ktlint = "12.1.1"
 detekt = "1.23.6"
 binary-validator = "0.16.2"
-kover = "0.8.0"
+kover = "0.8.3"
 publish = "0.29.0"
 dokka = "1.9.20"
 
 [libraries]
 resources = { module = "com.goncalossilva:resources", version.ref = "resources" }
-kotlinx-serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0"
+kotlinx-serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1"
 kotlinx-benchmark = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-runtime", version.ref = "benchmark" }
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
