@@ -27,7 +27,7 @@ jobs:
           mkdocs build
 
       - name: Build documentation
-        run: ./gradlew dokkaHtmlMultiModule
+        run: ./gradlew dokkaHtmlMultiModule --no-daemon --no-parallel
 
       - name: Publish documentation
         uses: JamesIves/github-pages-deploy-action@releases/v3

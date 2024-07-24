@@ -8,19 +8,19 @@ See below for constructing GeoJson objects using the DSL.
 
 === "Kotlin"
 
-```kotlin
-dependencies {
-  implementation("io.github.elcolto.geokjson:geojson:<version>")
-}
-```
+  ```kotlin
+  dependencies {
+    implementation("io.github.elcolto.geokjson:geojson:<version>")
+  }
+  ```
 
 === "Groovy"
 
-```groovy
-dependencies {
-  implementation "io.github.elcolto.geokjson:geojson:<version>"
-}
-```
+  ```groovy
+  dependencies {
+    implementation "io.github.elcolto.geokjson:geojson:<version>"
+  }
+  ```
 
 ## GeoJson Objects
 
@@ -34,19 +34,19 @@ type checks in Kotlin using a `when` block.
 
 === "Kotlin"
 
-``` kotlin
-val geometry: Geometry = getSomeGeometry()
-
-    val type = when (geometry) {
-        is Point -> "Point"
-        is MultiPoint -> "MultiPoint"
-        is LineString -> "LineString"
-        is MultiLineString -> "MultiLineString"
-        is Polygon -> "Polygon"
-        is MultiPolygon -> "MultiPolygon"
-        is GeometryCollection -> "GeometryCollection"
-    }
-```
+  ```kotlin
+  val geometry: Geometry = getSomeGeometry()
+  
+      val type = when (geometry) {
+          is Point -> "Point"
+          is MultiPoint -> "MultiPoint"
+          is LineString -> "LineString"
+          is MultiLineString -> "MultiLineString"
+          is Polygon -> "Polygon"
+          is MultiPolygon -> "MultiPolygon"
+          is GeometryCollection -> "GeometryCollection"
+      }
+  ```
 
 All seven types of GeoJSON geometries are implemented and summarized below. Full documentation can be found in
 the [API pages](../api/geojson/).
@@ -62,20 +62,21 @@ properties. The basic implementation of the `Position` interface is the `LngLat`
 
 === "Kotlin"
 
-``` kotlin
-val position: Position = Position(-75.0, 45.0)
-val (longitude, latitude, altitude) = position
-
-    // Access values
-    position.longitude
-    position.latitude
-    position.altitude // null if unspecified
-    ```
+  ```kotlin
+  val position: Position = Position(-75.0, 45.0)
+  val (longitude, latitude, altitude) = position
+  
+      // Access values
+      position.longitude
+      position.latitude
+      position.altitude // null if unspecified
+  ```
 
 === "JSON"
-```json
-[-75, 45]
-```
+
+  ```json
+  [-75, 45]
+  ```
 
 #### Point
 
@@ -83,22 +84,19 @@ A Point is a single Position.
 
 === "Kotlin"
 
-```kotlin
-val point = Point(Position(-75.0, 45.0))
-
-println(point.longitude)
-// Prints: -75.0
-```
+  ```kotlin
+  val point = Point(Position(-75.0, 45.0))
+  
+  println(point.longitude)
+  // Prints: -75.0
+  ```
 
 === "JSON"
 
 ```json
 {
   "type": "Point",
-  "coordinates": [
-    -75,
-    45
-  ]
+  "coordinates": [-75, 45]
 }
 ```
 
@@ -108,9 +106,9 @@ A `MultiPoint` is an array of Positions.
 
 === "Kotlin"
 
-```kotlin
-val multiPoint = MultiPoint(Position(-75.0, 45.0), Position(-79.0, 44.0))
-```
+  ```kotlin
+  val multiPoint = MultiPoint(Position(-75.0, 45.0), Position(-79.0, 44.0))
+  ```
 
 === "JSON"
 
@@ -118,14 +116,8 @@ val multiPoint = MultiPoint(Position(-75.0, 45.0), Position(-79.0, 44.0))
 {
   "type": "MultiPoint",
   "coordinates": [
-    [
-      -75,
-      45
-    ],
-    [
-      -79,
-      44
-    ]
+    [-75, 45],
+    [-79, 44]
   ]
 }
 ```
@@ -136,9 +128,9 @@ A `LineString` is a sequence of two or more Positions.
 
 === "Kotlin"
 
-```kotlin
-val lineString = LineString(Position(-75.0, 45.0), Position(-79.0, 44.0))
-```
+  ```kotlin
+  val lineString = LineString(Position(-75.0, 45.0), Position(-79.0, 44.0))
+  ```
 
 === "JSON"
 
@@ -164,12 +156,12 @@ A `MultiLineString` is an array of LineStrings.
 
 === "Kotlin"
 
-```kotlin
-val multiLineString = MultiLineString(
-  listOf(Position(12.3, 45.6), Position(78.9, 12.3)),
-  listOf(Position(87.6, 54.3), Position(21.9, 56.4))
-)
-```
+  ```kotlin
+  val multiLineString = MultiLineString(
+    listOf(Position(12.3, 45.6), Position(78.9, 12.3)),
+    listOf(Position(87.6, 54.3), Position(21.9, 56.4))
+  )
+  ```
 
 === "JSON"
 
@@ -178,24 +170,12 @@ val multiLineString = MultiLineString(
   "type": "MultiLineString",
   "coordinates": [
     [
-      [
-        12.3,
-        45.6
-      ],
-      [
-        78.9,
-        12.3
-      ]
+      [12.3, 45.6],
+      [78.9, 12.3]
     ],
     [
-      [
-        87.6,
-        54.3
-      ],
-      [
-        21.9,
-        56.4
-      ]
+      [87.6, 54.3],
+      [21.9, 56.4]
     ]
   ]
 }
@@ -209,23 +189,23 @@ The first ring defines the outer shape of the polygon, while all the following r
 
 === "Kotlin"
 
-```kotlin
-val polygon = Polygon(
-  listOf(
-    Position(-79.87, 43.42),
-    Position(-78.89, 43.49),
-    Position(-79.07, 44.02),
-    Position(-79.95, 43.87),
-    Position(-79.87, 43.42)
-  ),
-  listOf(
-    Position(-79.75, 43.81),
-    Position(-79.56, 43.85),
-    Position(-79.7, 43.88),
-    Position(-79.75, 43.81)
+  ```kotlin
+  val polygon = Polygon(
+    listOf(
+      Position(-79.87, 43.42),
+      Position(-78.89, 43.49),
+      Position(-79.07, 44.02),
+      Position(-79.95, 43.87),
+      Position(-79.87, 43.42)
+    ),
+    listOf(
+      Position(-79.75, 43.81),
+      Position(-79.56, 43.85),
+      Position(-79.7, 43.88),
+      Position(-79.75, 43.81)
+    )
   )
-)
-```
+  ```
 
 === "JSON"
 
@@ -238,40 +218,16 @@ val polygon = Polygon(
         -79.87,
         43.42
       ],
-      [
-        -78.89,
-        43.49
-      ],
-      [
-        -79.07,
-        44.02
-      ],
-      [
-        -79.95,
-        43.87
-      ],
-      [
-        -79.87,
-        43.42
-      ]
+      [-78.89, 43.49],
+      [-79.07, 44.02],
+      [-79.95, 43.87],
+      [-79.87, 43.42]
     ],
     [
-      [
-        -79.75,
-        43.81
-      ],
-      [
-        -79.56,
-        43.85
-      ],
-      [
-        -79.7,
-        43.88
-      ],
-      [
-        -79.75,
-        43.81
-      ]
+      [-79.75, 43.81],
+      [-79.56, 43.85],
+      [-79.7, 43.88],
+      [-79.75, 43.81]
     ]
   ]
 }
@@ -283,22 +239,22 @@ A `MultiPolygon` is an array of Polygons.
 
 === "Kotlin"
 
-```kotlin
-val polygon = listOf(
-  Position(-79.87, 43.42),
-  Position(-78.89, 43.49),
-  Position(-79.07, 44.02),
-  Position(-79.95, 43.87),
-  Position(-79.87, 43.42)
-),
-listOf(
-  Position(-79.75, 43.81),
-  Position(-79.56, 43.85),
-  Position(-79.7, 43.88),
-  Position(-79.75, 43.81)
-)
-val multiPolygon = MultiPolygon(polygon, polygon)
-```
+  ```kotlin
+  val polygon = listOf(
+    Position(-79.87, 43.42),
+    Position(-78.89, 43.49),
+    Position(-79.07, 44.02),
+    Position(-79.95, 43.87),
+    Position(-79.87, 43.42)
+  ),
+  listOf(
+    Position(-79.75, 43.81),
+    Position(-79.56, 43.85),
+    Position(-79.7, 43.88),
+    Position(-79.75, 43.81)
+  )
+  val multiPolygon = MultiPolygon(polygon, polygon)
+  ```
 
 === "JSON"
 
@@ -308,86 +264,32 @@ val multiPolygon = MultiPolygon(polygon, polygon)
   "coordinates": [
     [
       [
-        [
-          -79.87,
-          43.42
-        ],
-        [
-          -78.89,
-          43.49
-        ],
-        [
-          -79.07,
-          44.02
-        ],
-        [
-          -79.95,
-          43.87
-        ],
-        [
-          -79.87,
-          43.42
-        ]
+        [-79.87, 43.42],
+        [-78.89, 43.49],
+        [-79.07, 44.02],
+        [-79.95, 43.87],
+        [-79.87, 43.42]
       ],
       [
-        [
-          -79.75,
-          43.81
-        ],
-        [
-          -79.56,
-          43.85
-        ],
-        [
-          -79.7,
-          43.88
-        ],
-        [
-          -79.75,
-          43.81
-        ]
+        [-79.75, 43.81],
+        [-79.56, 43.85],
+        [-79.7, 43.88],
+        [-79.75, 43.81]
       ]
     ],
     [
       [
-        [
-          -79.87,
-          43.42
-        ],
-        [
-          -78.89,
-          43.49
-        ],
-        [
-          -79.07,
-          44.02
-        ],
-        [
-          -79.95,
-          43.87
-        ],
-        [
-          -79.87,
-          43.42
-        ]
+        [-79.87, 43.42],
+        [-78.89, 43.49],
+        [-79.07, 44.02],
+        [-79.95, 43.87],
+        [-79.87, 43.42]
       ],
       [
-        [
-          -79.75,
-          43.81
-        ],
-        [
-          -79.56,
-          43.85
-        ],
-        [
-          -79.7,
-          43.88
-        ],
-        [
-          -79.75,
-          43.81
-        ]
+        [-79.75, 43.81],
+        [-79.56, 43.85],
+        [-79.7, 43.88],
+        [-79.75, 43.81]
       ]
     ]
   ]
@@ -401,14 +303,14 @@ be used in any place that a collection can be used.
 
 === "Kotlin"
 
-```kotlin
-val geometryCollection = GeometryCollection(point, lineString)
-
-// Can be iterated over, and used in any way a Collection<T> can be
-geometryCollection.forEach { geometry ->
-  // ...
-}
-```
+  ```kotlin
+  val geometryCollection = GeometryCollection(point, lineString)
+  
+  // Can be iterated over, and used in any way a Collection<T> can be
+  geometryCollection.forEach { geometry ->
+    // ...
+  }
+  ```
 
 === "JSON"
 
@@ -418,22 +320,13 @@ geometryCollection.forEach { geometry ->
   "coordinates": [
     {
       "type": "Point",
-      "coordinates": [
-        -75,
-        45
-      ]
+      "coordinates": [-75, 45]
     },
     {
       "type": "LineString",
       "coordinates": [
-        [
-          -75,
-          45
-        ],
-        [
-          -79,
-          44
-        ]
+        [-75, 45],
+        [-79, 44]
       ]
     }
   ]
@@ -450,13 +343,13 @@ A set of helper methods to get and set properties with the appropriate types dir
 
 === "Kotlin"
 
-```kotlin
-val feature = Feature(point)
-feature.setNumberProperty("size", 9999)
-
-val size: Number? = feature.getNumberProperty("size") // 9999
-val geometry: Geometry? = feature.geometry // point
-```
+  ```kotlin
+  val feature = Feature(point)
+  feature.setNumberProperty("size", 9999)
+  
+  val size: Number? = feature.getNumberProperty("size") // 9999
+  val geometry: Geometry? = feature.geometry // point
+  ```
 
 === "JSON"
 
@@ -483,13 +376,13 @@ and can be used in any place that a collection can be used.
 
 === "Kotlin"
 
-```kotlin
-val featureCollection = FeatureCollection(pointFeature)
-
-featureCollection.forEach { feature ->
-  // ...
-}
-```
+  ```kotlin
+  val featureCollection = FeatureCollection(pointFeature)
+  
+  featureCollection.forEach { feature ->
+    // ...
+  }
+  ```
 
 === "JSON"
 
@@ -523,10 +416,10 @@ Bounding boxes also support destructuring.
 
 === "Kotlin"
 
-```kotlin
-val bbox = BoundingBox(west = 11.6, south = 45.1, east = 12.7, north = 45.7)
-val (southwest, northeast) = bbox // Two Positions
-```
+  ```kotlin
+  val bbox = BoundingBox(west = 11.6, south = 45.1, east = 12.7, north = 45.7)
+  val (southwest, northeast) = bbox // Two Positions
+  ```
 
 === "JSON"
 
@@ -566,28 +459,28 @@ type of object from a JSON string.
 
 === "Kotlin"
 
-```kotlin
-// Throws exception if the JSON cannot be deserialized to a Point
-val myPoint = Point.fromJson("{...geojson...}")
-
-// Returns null if an error occurs
-val nullable = Point.fromJsonOrNull("{...not a point...}")
-```
+  ```kotlin
+  // Throws exception if the JSON cannot be deserialized to a Point
+  val myPoint = Point.fromJson("{...geojson...}")
+  
+  // Returns null if an error occurs
+  val nullable = Point.fromJsonOrNull("{...not a point...}")
+  ```
 
 === "Java"
 
-```java
-// Throws exception if the JSON cannot be deserialized to a Point
-var myPoint = Point.fromJson("{...geojson...}");
-
-// Returns null if an error occurs
-var nullable = Point.fromJsonOrNull("{...not a point...}");
-```
+  ```java
+  // Throws exception if the JSON cannot be deserialized to a Point
+  var myPoint = Point.fromJson("{...geojson...}");
+  
+  // Returns null if an error occurs
+  var nullable = Point.fromJsonOrNull("{...not a point...}");
+  ```
 
 Like with encoding, Spatial-K objects can also be decoded using `kotlinx.serialization`.
 
 === "Kotlin"
 
-```kotlin
-val feature: Feature = Json.decodeFromString(Feature.serializer(), "{...feature...}")
-```
+  ```kotlin
+  val feature: Feature = Json.decodeFromString(Feature.serializer(), "{...feature...}")
+  ```
