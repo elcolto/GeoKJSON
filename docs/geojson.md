@@ -49,7 +49,7 @@ type checks in Kotlin using a `when` block.
     ```
 
 All seven types of GeoJSON geometries are implemented and summarized below. Full documentation can be found in
-the [API pages](../api/geojson/).
+the [API pages](./api/geojson).
 
 #### Position
 

@@ -6,18 +6,18 @@ You can view porting progress for the next release [here](https://github.com/del
 
 ## Measurement
 
-- [x] [`along`](../api/turf/io.github.elcolto.geokjson.turf/along.html)
-- [x] [`area`](../api/turf/io.github.elcolto.geokjson.turf/area.html)
-- [x] [`bbox`](../api/turf/io.github.elcolto.geokjson.turf/bbox.html)
-- [x] [`bboxPolygon`](../api/turf/io.github.elcolto.geokjson.turf/bbox-polygon.html)
-- [x] [`bearing`](../api/turf/io.github.elcolto.geokjson.turf/bearing.html)
-- [x] [`center`](../api/turf/io.github.elcolto.geokjson.turf/center.html)
+- [x] [`along`](./api/turf/io.github.elcolto.geokjson.turf/along.html)
+- [x] [`area`](./api/turf/io.github.elcolto.geokjson.turf/area.html)
+- [x] [`bbox`](./api/turf/io.github.elcolto.geokjson.turf/bbox.html)
+- [x] [`bboxPolygon`](./api/turf/io.github.elcolto.geokjson.turf/bbox-polygon.html)
+- [x] [`bearing`](./api/turf/io.github.elcolto.geokjson.turf/bearing.html)
+- [x] [`center`](./api/turf/io.github.elcolto.geokjson.turf/center.html)
 - [ ] `centerOfMass`
-- [x] [`destination`](../api/turf/io.github.elcolto.geokjson.turf/destination.html)
-- [x] [`distance`](../api/turf/io.github.elcolto.geokjson.turf/distance.html)
+- [x] [`destination`](./api/turf/io.github.elcolto.geokjson.turf/destination.html)
+- [x] [`distance`](./api/turf/io.github.elcolto.geokjson.turf/distance.html)
 - [ ] `envelope`
-- [x] [`length`](../api/turf/io.github.elcolto.geokjson.turf/length.html)
-- [x] [`midpoint`](../api/turf/io.github.elcolto.geokjson.turf/midpoint.html)
+- [x] [`length`](./api/turf/io.github.elcolto.geokjson.turf/length.html)
+- [x] [`midpoint`](./api/turf/io.github.elcolto.geokjson.turf/midpoint.html)
 - [ ] `pointOnFeature`
 - [ ] `polygonTangents`
 - [ ] `pointToLineDistance`
@@ -71,22 +71,22 @@ Use `round` or `Math.round` from the standard library instead.
 - [ ] `kinks`
 - [ ] `lineArc`
 - [ ] `lineChunk`
-- [x] [`lineIntersect`](../api/turf/io.github.elcolto.geokjson.turf/line-intersect.html)
+- [x] [`lineIntersect`](./api/turf/io.github.elcolto.geokjson.turf/line-intersect.html)
   Partially implemented.
 - [ ] `lineOverlap`
 - [ ] `lineSegment`
-- [x] [`lineSlice`](../api/turf/io.github.elcolto.geokjson.turf/line-slice.html)
+- [x] [`lineSlice`](./api/turf/io.github.elcolto.geokjson.turf/line-slice.html)
 - [ ] `lineSliceAlong`
 - [ ] `lineSplit`
 - [ ] `mask`
-- [x] [`nearestPointOnLine`](../api/turf/io.github.elcolto.geokjson.turf/nearest-point-on-line.html)
+- [x] [`nearestPointOnLine`](./api/turf/io.github.elcolto.geokjson.turf/nearest-point-on-line.html)
 - [ ] `sector`
 - [ ] `shortestPath`
 - [ ] `unkinkPolygon`
 
 ## Helper
 
-Use the [GeoJson DSL](../geojson/#geojson-dsl) instead.
+Use the [GeoJson DSL](./geojson-dsl) instead.
 
 ## Random
 
@@ -116,7 +116,7 @@ Use the [GeoJson DSL](../geojson/#geojson-dsl) instead.
 
 - [ ] `hexGrid`
 - [ ] `pointGrid`
-- [x] [`squareGrid`](../api/turf/io.github.elcolto.geokjson.turf/squareGrid.html)
+- [x] [`squareGrid`](./api/turf/io.github.elcolto.geokjson.turf/square-grid.html)
 - [ ] `triangleGrid`
 
 ## Classification
@@ -167,19 +167,19 @@ Use the [GeoJson DSL](../geojson/#geojson-dsl) instead.
 - [ ] `booleanEqual`
 - [ ] `booleanOverlap`
 - [ ] `booleanParallel`
-- [x] [`booleanPointInPolygon`](../api/turf/io.github.elcolto.geokjson.turf/boolean-point-in-polygon.html)
+- [x] [`booleanPointInPolygon`](./api/turf/io.github.elcolto.geokjson.turf/boolean-point-in-polygon.html)
 - [ ] `booleanPointOnLine`
 - [ ] `booleanWithin`
 
 ## Unit Conversion
 
-- [x] [`bearingToAzimuth`](../api/turf/io.github.elcolto.geokjson.turf/bearing-to-azimuth.html)
-- [x] [`convertArea`](../api/turf/io.github.elcolto.geokjson.turf/convert-area.html)
-- [x] [`convertLength`](../api/turf/io.github.elcolto.geokjson.turf/convert-length.html)
+- [x] [`bearingToAzimuth`](./api/turf/io.github.elcolto.geokjson.turf/bearing-to-azimuth.html)
+- [x] [`convertArea`](./api/turf/io.github.elcolto.geokjson.turf/convert-area.html)
+- [x] [`convertLength`](./api/turf/io.github.elcolto.geokjson.turf/convert-length.html)
 - [ ] `degreesToRadians`
-- [x] [`lengthToRadians`](../api/turf/io.github.elcolto.geokjson.turf/length-to-radians.html)
-- [x] [`lengthToDegrees`](../api/turf/io.github.elcolto.geokjson.turf/length-to-degrees.html)
-- [x] [`radiansToLength`](../api/turf/io.github.elcolto.geokjson.turf/radians-to-length.html)
+- [x] [`lengthToRadians`](./api/turf/io.github.elcolto.geokjson.turf/length-to-radians.html)
+- [x] [`lengthToDegrees`](./api/turf/io.github.elcolto.geokjson.turf/length-to-degrees.html)
+- [x] [`radiansToLength`](./api/turf/io.github.elcolto.geokjson.turf/radians-to-length.html)
 - [ ] `radiansToDegrees`
 - [ ] `toMercator`
 - [ ] `toWgs84`

@@ -3,7 +3,7 @@
 [Turfjs](https://turfjs.org) is a spatial analysis library for JavaScript applications and the `turf` module contains a
 Kotlin port of it with support for Kotlin Multiplatform projects.
 
-This module makes use of the classes defined in the [`geojson`](geojson/) module as the GeoJson inputs to many of the
+This module makes use of the classes defined in the [`geojson`](../geojson/) module as the GeoJson inputs to many of the
 turf functions.
 
 The documentation for the ported functions can be found in the [API docs](api/turf/), while more details on each
