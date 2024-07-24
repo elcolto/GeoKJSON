@@ -1,7 +1,12 @@
 name: Docs
 on:
-  push:
-    branches: [ feature/publish-documentation ]
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+
 jobs:
   publish:
     runs-on: ubuntu-latest
