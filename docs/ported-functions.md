@@ -25,7 +25,7 @@ You can view porting progress for the next release [here](https://github.com/del
 - [ ] `rhumbDestination`
 - [ ] `rhumbDistance`
 - [ ] `square`
-- [ ] `greatCircle`
+- [x] [`greatCircle`](./api/turf/io.github.elcolto.geokjson.turf/great-circle.html)
 
 ## Coordinate Mutation
 
@@ -39,7 +39,7 @@ Use `round` or `Math.round` from the standard library instead.
 ## Transformation
 
 - [ ] `bboxClip`
-- [ ] `bezierSpline`
+- [x] [`bezierSpline`](./api/turf/io.github.elcolto.geokjson.turf/bezier-spline.html)
 - [ ] `buffer`
 - [ ] `circle`
 - [ ] `clone`
