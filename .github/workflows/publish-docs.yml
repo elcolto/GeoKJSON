@@ -16,6 +16,16 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
 
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.8
+
+      - name: Build mkdocs
+        run: |
+          pip3 install mkdocs-material
+          mkdocs build
+
       - name: Build documentation
         run: ./gradlew dokkaHtmlMultiModule
 
@@ -24,4 +34,5 @@ jobs:
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: build/dokka
+          FOLDER: site
+          SINGLE_COMMIT: true
