@@ -1,0 +1,9 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+module:geojson
+io.github.elcolto.geokjson.geojson
+io.github.elcolto.geokjson.geojson.dsl
+io.github.elcolto.geokjson.geojson.serialization
+module:turf
+io.github.elcolto.geokjson.turf
