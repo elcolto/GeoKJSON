@@ -12,3 +12,9 @@ ktlint_code_style = intellij_idea
 
 [*.{yaml,yml}]
 indent_size = 2
+
+[*.json]
+indent_size = 2
+
+[*.md]
+indent_size = 2

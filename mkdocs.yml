@@ -1,0 +1,69 @@
+# $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+
+site_name: "GeoKJSON"
+site_url: https://elcolto.github.io/GeoKJSON
+repo_name: "GeoKJSON"
+repo_url: https://github.com/elcolto/GeoKJSON
+site_description: "Kotlin Multiplatform GeoJson library and Turfjs port"
+site_author: Sebastian Heeschen
+copyright: 'Copyright &copy; 2024 Sebastian Heeschen'
+remote_branch: gh-pages
+
+nav:
+  - 'GeoKJSON': index.md
+  - 'GeoJson':
+      - 'Overview': geojson.md
+      - 'DSL': geojson-dsl.md
+  - 'Turf':
+      - 'Overview': turf.md
+      - 'Ported Functions': ported-functions.md
+  - 'API':
+      - 'Overview': ./api/index.html
+      - 'geojson': ./api/geojson/index.html
+      - 'turf': ./api/turf/index.html
+
+theme:
+  icon:
+    repo: fontawesome/brands/github
+  name: 'material'
+  features:
+    - navigation.indexes
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/theme-light-dark
+        name: Switch to dark mode
+      primary: 'deep purple'
+      accent: 'indigo'
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/theme-light-dark
+        name: Switch to light mode
+      primary: 'deep purple'
+      accent: 'purple'
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.snippets
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tilde

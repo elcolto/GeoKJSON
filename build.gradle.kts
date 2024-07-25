@@ -24,8 +24,11 @@ kover {
     }
 }
 
+
+val apiDocsPath = rootDir.absoluteFile.resolve("docs/api")
+
 tasks.dokkaHtmlMultiModule.configure {
-    outputDirectory.set(layout.buildDirectory.get().asFile.absoluteFile.resolve("dokka"))
+    outputDirectory.set(apiDocsPath)
     moduleName.set("GeoKJSON")
     pluginsMapConfiguration.set(
         mapOf(
