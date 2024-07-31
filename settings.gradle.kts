@@ -16,4 +16,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "GeoKJSON"
 
-include("geojson", "turf")
+include(
+    "geojson",
+    "turf",
+    "turfjs-test-input-migration"
+)

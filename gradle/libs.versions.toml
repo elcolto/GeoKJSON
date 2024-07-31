@@ -9,6 +9,7 @@ binary-validator = "0.16.2"
 kover = "0.8.3"
 publish = "0.29.0"
 dokka = "1.9.20"
+ktor = "2.3.4"
 
 [libraries]
 resources = { module = "com.goncalossilva:resources", version.ref = "resources" }
@@ -22,6 +23,17 @@ binary-validator-plugin = { module = "org.jetbrains.kotlinx.binary-compatibility
 kover-gradle-plugin = { module = "org.jetbrains.kotlinx:kover-gradle-plugin", version.ref = "kover" }
 publish-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "publish" }
 dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+
+# turf test migration
+kotlinpoet = { module = "com.squareup:kotlinpoet", version = "1.18.1" }
+ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
+ktor-client-encoding = { module = "io.ktor:ktor-client-encoding", version.ref = "ktor" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+logback = { module = "ch.qos.logback:logback-classic", version = "1.2.3" }
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
