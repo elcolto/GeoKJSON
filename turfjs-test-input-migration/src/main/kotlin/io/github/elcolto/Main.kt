@@ -1,21 +1,5 @@
 package io.github.elcolto
 
-import com.squareup.kotlinpoet.CodeBlock
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.PropertySpec
-import io.github.elcolto.geokjson.geojson.Feature
-import io.github.elcolto.geokjson.geojson.FeatureCollection
-import io.github.elcolto.geokjson.geojson.GeoJson
-import io.github.elcolto.geokjson.geojson.Geometry
-import io.github.elcolto.geokjson.geojson.GeometryCollection
-import io.github.elcolto.geokjson.geojson.LineString
-import io.github.elcolto.geokjson.geojson.MultiLineString
-import io.github.elcolto.geokjson.geojson.MultiPoint
-import io.github.elcolto.geokjson.geojson.MultiPolygon
-import io.github.elcolto.geokjson.geojson.Point
-import io.github.elcolto.geokjson.geojson.Polygon
-import io.github.elcolto.geokjson.geojson.Position
 import io.github.elcolto.github.models.GitHubTree
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -28,19 +12,26 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
+import io.ktor.util.cio.*
+import io.ktor.utils.io.*
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
 import okio.Path.Companion.toPath
+import java.io.File
+import java.io.IOException
 import java.util.*
+import java.util.zip.ZipEntry
+
 
 private lateinit var httpClient: HttpClient
 
-internal suspend fun main() {
+internal suspend fun main(args: Array<String>) {
+
+    args.forEach { println(it) }
+    val downloadPath = args.first()
 
     httpClient = HttpClient(CIO) {
         expectSuccess = true
-
+        followRedirects = true
         install(Logging) {
             logger = Logger.DEFAULT
             level = LogLevel.HEADERS
@@ -101,193 +92,17 @@ internal suspend fun main() {
         accept(ContentType.parse("application/vnd.github.raw+json"))
     }.bodyAsText()
 
+    val file = GeoJsonDslBuilder.buildFileSpec(
+        testContent,
+        firstIndicator.capitalize(),
+        path
 
-    val geoJson: GeoJson = when (Json.parseToJsonElement(testContent)
-        .jsonObject["type"]?.jsonPrimitive?.content) {
-        "Feature" -> Feature.fromJson(testContent)
-        "FeatureCollection" -> FeatureCollection.fromJson(testContent)
-        else -> error("not applicable")
-    }
-
-    val file = FileSpec.builder("io.github.elcolto.turf.test", firstIndicator.capitalize())
-        .addImport(
-            "io.github.elcolto.geokjson.geojson.dsl",
-            listOf(
-                "featureCollection",
-                "geometryCollection",
-                "lineString",
-                "lngLat",
-                "multiLineString",
-                "multiPoint",
-                "multiPolygon",
-                "point",
-                "polygon",
-            )
-        )
-        .addProperty(
-            PropertySpec.builder(
-                path.toPath().name.removeSuffix(".json").removeSuffix(".geojson"),
-                geoJson.javaClass
-            )
-                .getter(
-                    geoJsonToFunSpec(geoJson).build()
-                )
-                .build()
-        )
-        .build()
-
+    )
     file.writeTo(System.out)
 
     httpClient.close()
 }
 
-
-fun geoJsonToFunSpec(geoJson: GeoJson): FunSpec.Builder {
-
-    val featureBlocks = when (geoJson) {
-        is FeatureCollection -> CodeBlock.builder()
-            .beginControlFlow("featureCollection {")
-            .indent()
-            .apply {
-                geoJson.features.forEach { feature ->
-                    featureToFunSpec(feature)
-                }
-            }
-            .unindent()
-            .endControlFlow()
-
-
-        is Feature -> (featureToFunSpec(geoJson))
-        is Geometry -> (geometryBlock(geoJson)) // TODO add feature id
-        else -> error("not applicable")
-    }
-
-    return FunSpec.getterBuilder()
-        .addCode(
-            featureBlocks.build()
-        )
-
-}
-
-private fun featureToFunSpec(feature: Feature): CodeBlock.Builder {
-    val geometryBlock = feature.geometry?.let { geometryBlock(it, feature.id) }
-
-    val propertyBlock = feature.properties.takeIf { it.isNotEmpty() }?.let { map ->
-        CodeBlock.builder().apply {
-            map.map { (key, value) ->
-                add("put(%S, %S)", key, value)
-            }
-        }
-            .build()
-    }
-
-    return CodeBlock.builder()
-        .beginControlFlow("feature(geometry = ${geometryBlock?.build()}) {")
-        .indent()
-        //properties
-        .apply {
-            propertyBlock?.let {
-                add(it)
-            }
-        }
-        .unindent()
-        .endControlFlow()
-}
-
-private fun geometryBlock(geometry: Geometry, id: String? = null): CodeBlock.Builder {
-    return CodeBlock.builder().apply {
-        when (geometry) {
-            is GeometryCollection -> {
-                beginControlFlow("geometryCollection {")
-                indent()
-                geometry.geometries.forEach { innerGeometry ->
-                    add(geometryBlock(innerGeometry).build())
-                }
-                unindent()
-                endControlFlow()
-            }
-
-            is LineString -> {
-                beginControlFlow("lineString {")
-                indent()
-                geometry.coordinates.forEach { position ->
-                    add(position)
-                }
-                unindent()
-                endControlFlow()
-            }
-
-            is MultiLineString -> {
-                beginControlFlow("multiLineString {")
-                indent()
-                geometry.coordinates.map { lineString ->
-                    LineString(lineString)
-                }.forEach { lineString ->
-                    add(geometryBlock(lineString).build())
-                }
-                unindent()
-                endControlFlow()
-            }
-
-            is MultiPoint -> {
-                beginControlFlow("multiPoint {")
-                indent()
-                geometry.coordinates.forEach { position ->
-                    add(position)
-                }
-                unindent()
-                endControlFlow()
-            }
-
-            is MultiPolygon -> {
-                beginControlFlow("multiPolygon {")
-                indent()
-                geometry.coordinates
-                    .map { polygon -> Polygon(polygon) }
-                    .forEach {
-                        add(geometryBlock(it).build())
-                    }
-                unindent()
-                endControlFlow()
-            }
-
-            is Point -> {
-                val coordinates = geometry.coordinates
-                add(
-                    "point(%L, %L, %L, %L)",
-                    coordinates.latitude,
-                    coordinates.longitude,
-                    coordinates.altitude,
-                    id
-                )
-            }
-
-            is Polygon -> {
-                beginControlFlow("polygon {")
-                indent()
-                beginControlFlow("ring {")
-                geometry.coordinates.forEach { linestring ->
-                    add(geometryBlock(LineString(linestring)).build())
-                }
-                add("complete()")
-                unindent()
-                endControlFlow()
-                unindent()
-                endControlFlow()
-            }
-        }
-    }
-
-}
-
-private fun CodeBlock.Builder.add(position: Position) {
-    add(
-        "point(%L, %L, %L)\n",
-        position.latitude,
-        position.longitude,
-        position.altitude,
-    )
-}
 
 private fun String.capitalize(): String =
     replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
@@ -297,3 +112,17 @@ private fun List<String>.camelCase(onFirstElement: (String) -> String = { it }) 
     if (i == 0) onFirstElement(text) else text.capitalize()
 }.joinToString("")
 
+
+@Throws(IOException::class)
+fun newFile(destinationDir: File, zipEntry: ZipEntry): File {
+    val destFile = File(destinationDir, zipEntry.name)
+
+    val destDirPath = destinationDir.canonicalPath
+    val destFilePath = destFile.canonicalPath
+
+    if (!destFilePath.startsWith(destDirPath + File.separator)) {
+        throw IOException("Entry is outside of the target dir: " + zipEntry.name)
+    }
+
+    return destFile
+}
