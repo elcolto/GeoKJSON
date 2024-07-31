@@ -22,6 +22,9 @@ dependencies {
     implementation(libs.ktor.client.serialization.kotlinx.json)
     implementation(libs.logback)
     implementation(libs.kotlinx.serialization)
+    implementation(libs.okio)
+
+    implementation(project(":geojson"))
 
     testImplementation(kotlin("test"))
 }
