@@ -1,9 +1,7 @@
 package io.github.elcolto
 
 import com.squareup.kotlinpoet.CodeBlock
-import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.PropertySpec
 import io.github.elcolto.geokjson.geojson.Feature
 import io.github.elcolto.geokjson.geojson.FeatureCollection
 import io.github.elcolto.geokjson.geojson.GeoJson
@@ -19,52 +17,23 @@ import io.github.elcolto.geokjson.geojson.Position
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
-import okio.Path.Companion.toPath
 
 internal object GeoJsonDslBuilder {
 
-    fun buildFileSpec(
-        testContent: String,
-        name: String,
-        path: String
-    ): FileSpec {
-        val geoJson: GeoJson = when (Json.parseToJsonElement(testContent)
-            .jsonObject["type"]?.jsonPrimitive?.content) {
+    @Throws(IllegalStateException::class)
+    internal fun geoJsonFromFile(testContent: String): GeoJson {
+        val content = Json.parseToJsonElement(testContent)
+            .jsonObject["type"]
+            ?.jsonPrimitive?.content
+        val geoJson: GeoJson = when (content) {
             "Feature" -> Feature.fromJson(testContent)
             "FeatureCollection" -> FeatureCollection.fromJson(testContent)
             else -> error("not applicable")
         }
-
-        val file = FileSpec.builder("io.github.elcolto.turf.test", name)
-            .addImport(
-                "io.github.elcolto.geokjson.geojson.dsl",
-                listOf(
-                    "featureCollection",
-                    "geometryCollection",
-                    "lineString",
-                    "lngLat",
-                    "multiLineString",
-                    "multiPoint",
-                    "multiPolygon",
-                    "point",
-                    "polygon",
-                )
-            )
-            .addProperty(
-                PropertySpec.builder(
-                    path.toPath().name.removeSuffix(".json").removeSuffix(".geojson"),
-                    geoJson.javaClass
-                )
-                    .getter(
-                        geoJsonToFunSpec(geoJson).build()
-                    )
-                    .build()
-            )
-            .build()
-        return file
+        return geoJson
     }
 
-   private fun geoJsonToFunSpec(geoJson: GeoJson): FunSpec.Builder {
+    internal fun geoJsonToFunSpec(geoJson: GeoJson): FunSpec.Builder {
 
         val featureBlocks = when (geoJson) {
             is FeatureCollection -> CodeBlock.builder()
@@ -72,7 +41,7 @@ internal object GeoJsonDslBuilder {
                 .indent()
                 .apply {
                     geoJson.features.forEach { feature ->
-                        featureToFunSpec(feature)
+                        add(featureToFunSpec(feature).build())
                     }
                 }
                 .unindent()
@@ -80,19 +49,20 @@ internal object GeoJsonDslBuilder {
 
 
             is Feature -> (featureToFunSpec(geoJson))
-            is Geometry -> (geometryBlock(geoJson)) // TODO add feature id
+            is Geometry -> (geometryBlock(geoJson))
             else -> error("not applicable")
         }
 
         return FunSpec.getterBuilder()
-            .addCode(
+            .addStatement(
+                "return %L",
                 featureBlocks.build()
             )
 
     }
 
     private fun featureToFunSpec(feature: Feature): CodeBlock.Builder {
-        val geometryBlock = feature.geometry?.let { geometryBlock(it, feature.id) }
+        val geometryBlock = feature.geometry?.let { geometryBlock(it) }
 
         val propertyBlock = feature.properties.takeIf { it.isNotEmpty() }?.let { map ->
             CodeBlock.builder().apply {
@@ -116,7 +86,7 @@ internal object GeoJsonDslBuilder {
             .endControlFlow()
     }
 
-    private fun geometryBlock(geometry: Geometry, id: String? = null): CodeBlock.Builder {
+    private fun geometryBlock(geometry: Geometry): CodeBlock.Builder {
         return CodeBlock.builder().apply {
             when (geometry) {
                 is GeometryCollection -> {
@@ -176,11 +146,10 @@ internal object GeoJsonDslBuilder {
                 is Point -> {
                     val coordinates = geometry.coordinates
                     add(
-                        "point(%L, %L, %L, %L)",
+                        "point(%L, %L, %L)",
                         coordinates.latitude,
                         coordinates.longitude,
                         coordinates.altitude,
-                        id
                     )
                 }
 
@@ -188,6 +157,7 @@ internal object GeoJsonDslBuilder {
                     beginControlFlow("polygon {")
                     indent()
                     beginControlFlow("ring {")
+                    indent()
                     geometry.coordinates.forEach { linestring ->
                         add(geometryBlock(LineString(linestring)).build())
                     }
