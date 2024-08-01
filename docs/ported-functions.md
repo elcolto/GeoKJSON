@@ -15,7 +15,7 @@ You can view porting progress for the next release [here](https://github.com/del
 - [ ] `centerOfMass`
 - [x] [`destination`](./api/turf/io.github.elcolto.geokjson.turf.measurement/destination.html)
 - [x] [`distance`](./api/turf/io.github.elcolto.geokjson.turf.measurement/distance.html)
-- [ ] `envelope`
+- [x] [`envelope`](./api/turf/io.github.elcolto.geokjson.turf.measurement/envelope.html)
 - [x] [`length`](./api/turf/io.github.elcolto.geokjson.turf.measurement/length.html)
 - [x] [`midpoint`](./api/turf/io.github.elcolto.geokjson.turf.measurement/midpoint.html)
 - [ ] `pointOnFeature`

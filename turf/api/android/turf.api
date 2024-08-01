@@ -106,6 +106,10 @@ public final class io/github/elcolto/geokjson/turf/measurement/DistanceKt {
 	public static synthetic fun distance$default (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;ILjava/lang/Object;)D
 }
 
+public final class io/github/elcolto/geokjson/turf/measurement/EnvelopeKt {
+	public static final fun envelope (Lio/github/elcolto/geokjson/geojson/GeoJson;)Lio/github/elcolto/geokjson/geojson/Polygon;
+}
+
 public final class io/github/elcolto/geokjson/turf/measurement/GreatCircleKt {
 	public static final fun greatCircle (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;ID)Lio/github/elcolto/geokjson/geojson/Geometry;
 	public static synthetic fun greatCircle$default (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;IDILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/Geometry;

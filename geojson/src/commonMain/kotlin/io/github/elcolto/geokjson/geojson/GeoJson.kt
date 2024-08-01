@@ -8,7 +8,7 @@ package io.github.elcolto.geokjson.geojson
  * document. **NOTE:** Every custom type, which is added as a value will be represented also as a `Map<String, Any>`.
  * If deserialization of custom types are desired, this hast to be done by consumer.
  */
-public interface GeoJson {
+public sealed interface GeoJson {
     public val bbox: BoundingBox?
     public val foreignMembers: Map<String, Any>
 
