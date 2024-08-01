@@ -6,6 +6,8 @@ See below for constructing GeoJson objects using the DSL.
 
 ## Installation
 
+![Maven Central](https://img.shields.io/maven-central/v/io.github.elcolto.geokjson/geojson)
+
 === "Kotlin"
 
     ``` kotlin

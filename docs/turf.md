@@ -9,6 +9,8 @@ turf functions.
 The documentation for the ported functions can be found in the [API docs](api/turf/), while more details on each
 function can be found on the [Turfjs](https://turfjs.org) site.
 
+# Installation
+![Maven Central](https://img.shields.io/maven-central/v/io.github.elcolto.geokjson/turf )
 
 === "Kotlin"
 
