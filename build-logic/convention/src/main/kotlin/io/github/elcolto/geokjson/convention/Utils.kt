@@ -11,4 +11,4 @@ val Project.libs
 fun Project.moduleName() = path.split(":").last()
 
 internal const val GroupId = "io.github.elcolto.geokjson"
-const val Version = "0.1.0"
+const val Version = "0.2.0"
