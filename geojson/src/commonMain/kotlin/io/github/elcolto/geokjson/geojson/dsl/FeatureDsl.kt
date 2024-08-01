@@ -7,6 +7,7 @@ import io.github.elcolto.geokjson.geojson.BoundingBox
 import io.github.elcolto.geokjson.geojson.Feature
 import io.github.elcolto.geokjson.geojson.Geometry
 import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.JsonPrimitive
 import kotlin.jvm.JvmName
 
@@ -28,6 +29,10 @@ public class PropertiesBuilder {
 
     public fun put(key: String, value: JsonElement) {
         properties[key] = value
+    }
+
+    public fun putKey(key: String) {
+        properties[key] = JsonNull
     }
 
     public fun build(): Map<String, JsonElement> = properties

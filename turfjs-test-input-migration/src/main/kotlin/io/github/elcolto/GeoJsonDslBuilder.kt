@@ -15,8 +15,23 @@ import io.github.elcolto.geokjson.geojson.Point
 import io.github.elcolto.geokjson.geojson.Polygon
 import io.github.elcolto.geokjson.geojson.Position
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.boolean
+import kotlinx.serialization.json.booleanOrNull
+import kotlinx.serialization.json.double
+import kotlinx.serialization.json.doubleOrNull
+import kotlinx.serialization.json.float
+import kotlinx.serialization.json.floatOrNull
+import kotlinx.serialization.json.int
+import kotlinx.serialization.json.intOrNull
+import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.long
+import kotlinx.serialization.json.longOrNull
 
 internal object GeoJsonDslBuilder {
 
@@ -67,7 +82,30 @@ internal object GeoJsonDslBuilder {
         val propertyBlock = feature.properties.takeIf { it.isNotEmpty() }?.let { map ->
             CodeBlock.builder().apply {
                 map.map { (key, value) ->
-                    add("put(%S, %S)", key, value)
+                    val valueToPut = when (value) {
+                        is JsonArray -> value.jsonArray.toString()
+                        is JsonObject -> value.jsonObject.toString()
+                        is JsonPrimitive -> {
+                            val primitive = value.jsonPrimitive
+                            when {
+                                primitive.isString -> primitive.content
+                                primitive.booleanOrNull != null -> primitive.boolean
+                                primitive.intOrNull != null -> primitive.int
+                                primitive.longOrNull != null -> primitive.long
+                                primitive.floatOrNull != null -> primitive.float
+                                primitive.doubleOrNull != null -> primitive.double
+                                else -> null
+                            }
+                        }
+
+                        JsonNull -> null
+                        else -> error("${value.javaClass.simpleName} is not handled")
+                    }
+                    when (valueToPut) {
+                        is String -> addStatement("put(%S, %S)", key, valueToPut)
+                        null -> addStatement("putKey(%S)", key)
+                        else -> addStatement("put(%S, %L)", key, valueToPut)
+                    }
                 }
             }
                 .build()
@@ -145,7 +183,7 @@ internal object GeoJsonDslBuilder {
 
                 is Point -> {
                     val coordinates = geometry.coordinates
-                    add(
+                    addStatement(
                         "point(%L, %L, %L)",
                         coordinates.latitude,
                         coordinates.longitude,
@@ -173,8 +211,8 @@ internal object GeoJsonDslBuilder {
     }
 
     private fun CodeBlock.Builder.add(position: Position) {
-        add(
-            "point(%L, %L, %L)\n",
+        addStatement(
+            "point(%L, %L, %L)",
             position.latitude,
             position.longitude,
             position.altitude,
