@@ -18,7 +18,7 @@ internal fun Project.configurePublishing(
         )
     )
 
-    publishToMavenCentral(SonatypeHost.DEFAULT)
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
     signAllPublications()
 
     coordinates(GroupId, moduleName(), Version)
