@@ -41,7 +41,7 @@ Use `round` or `Math.round` from the standard library instead.
 - [ ] `bboxClip`
 - [x] [`bezierSpline`](./api/turf/io.github.elcolto.geokjson.turf.transformation/bezier-spline.html)
 - [ ] `buffer`
-- [ ] `circle`
+- [x] [`circle`](./api/turf/io.github.elcolto.geokjson.turf.transformation/circle.html)
 - [ ] `clone`
 - [ ] `concave`
 - [ ] `convex`
