@@ -104,11 +104,13 @@ internal suspend fun main(args: Array<String>) {
                 .getOrNull()
                 ?.let { geoJson ->
                     val inOrOut = path.parent?.segments?.last()?.takeIf { it == "in" || it == "out" }
-                    val fileName = path.name.removeSuffix(".json").removeSuffix(".geojson")
+                    var fileName = path.name.removeSuffix(".json").removeSuffix(".geojson")
                         .plus(inOrOut?.capitalize().orEmpty())
                         .replace(".", "")
 
-
+                    if (fileName == objectName) {
+                        fileName += "Ext"
+                    }
 
                     FileSpec.builder(packageName, fileName)
                         .addImport(

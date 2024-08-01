@@ -199,7 +199,7 @@ internal object GeoJsonDslBuilder {
                     geometry.coordinates.forEach { linestring ->
                         add(geometryBlock(LineString(linestring)).build())
                     }
-                    add("complete()")
+                    addStatement("complete()")
                     unindent()
                     endControlFlow()
                     unindent()
