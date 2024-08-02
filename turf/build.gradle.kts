@@ -18,6 +18,8 @@ kotlin {
         }
 
         val commonTest by getting {
+            kotlin.srcDir("build/generated/classes/turf/main/kotlin")
+
             dependencies {
                 implementation(libs.resources)
             }

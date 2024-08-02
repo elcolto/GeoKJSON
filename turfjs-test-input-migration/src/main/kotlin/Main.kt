@@ -81,7 +81,7 @@ internal suspend fun main(args: Array<String>) {
 
         val objectName = segments.joinToString("")
         val subPackage = segments.joinToString(".") { it.lowercase() }
-        val packageName = "io.github.elcolto.turf.test.$subPackage"
+        val packageName = "io.github.elcolto.geokjson.turf.test.$subPackage"
         val objectSpec = FileSpec.builder(
             packageName = packageName,
             fileName = objectName
@@ -106,7 +106,7 @@ internal suspend fun main(args: Array<String>) {
                     val inOrOut = path.parent?.segments?.last()?.takeIf { it == "in" || it == "out" }
                     var fileName = path.name.removeSuffix(".json").removeSuffix(".geojson")
                         .plus(inOrOut?.capitalize().orEmpty())
-                        .replace(".", "")
+                        .replace(regex = "[-|#|\\.]".toRegex(), "")
 
                     if (fileName == objectName) {
                         fileName += "Ext"
@@ -161,6 +161,7 @@ internal suspend fun main(args: Array<String>) {
 private fun downloadZipAndUnzip(downloadPath: String, filename: String?, out: ByteReadChannel): String {
     val zipPath = "$downloadPath/${filename ?: "turf-repo.zip"}".toPath()
 
+    FileSystem.SYSTEM.createDirectories(downloadPath.toPath())
     FileSystem.SYSTEM.sink(zipPath).buffer().use {
         it.writeAll(out.toInputStream().source())
     }

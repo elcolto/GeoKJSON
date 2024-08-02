@@ -14,12 +14,6 @@ application {
     }
 }
 
-sourceSets {
-    main {
-        java.srcDir("build/generated/classes/turf/main/kotlin")
-    }
-}
-
 dependencies {
     implementation(libs.kotlinpoet)
     implementation(libs.ktor.client.cio)
