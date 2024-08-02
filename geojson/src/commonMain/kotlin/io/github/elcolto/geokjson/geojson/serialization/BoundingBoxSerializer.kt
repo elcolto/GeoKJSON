@@ -17,7 +17,7 @@ import kotlinx.serialization.json.double
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonPrimitive
 
-public object BoundingBoxSerializer : KSerializer<BoundingBox> {
+internal object BoundingBoxSerializer : KSerializer<BoundingBox> {
     private const val ARRAY_SIZE_2D = 4
     private const val ARRAY_SIZE_3D = 6
 
@@ -38,6 +38,7 @@ public object BoundingBoxSerializer : KSerializer<BoundingBox> {
                     array[3].jsonPrimitive.double,
                 )
             }
+
             ARRAY_SIZE_3D -> {
                 BoundingBox(
                     array[0].jsonPrimitive.double,
@@ -48,6 +49,7 @@ public object BoundingBoxSerializer : KSerializer<BoundingBox> {
                     array[5].jsonPrimitive.double,
                 )
             }
+
             else -> {
                 throw SerializationException("Expected array of size 4 or 6. Got array of size ${array.size}")
             }
