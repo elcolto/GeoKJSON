@@ -29,7 +29,7 @@ public data class FeatureCollection(
 
     public constructor(vararg features: Feature<Geometry>, bbox: BoundingBox? = null) : this(
         features.toMutableList(),
-        bbox
+        bbox,
     )
 
     override fun toString(): String = json()

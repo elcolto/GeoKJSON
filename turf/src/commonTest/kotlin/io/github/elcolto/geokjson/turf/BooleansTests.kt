@@ -75,7 +75,7 @@ class BooleansTests {
         val ptInPoly2 = point(-86.75079345703125, 36.18527313913089)
         val ptOutsidePoly = point(-86.75302505493164, 36.23015046460186)
         val multiPolyHole = Feature.fromJson<MultiPolygon>(
-            readResource("booleans/in/multipoly-with-hole.geojson")
+            readResource("booleans/in/multipoly-with-hole.geojson"),
         ).geometry as MultiPolygon
 
         assertFalse(booleanPointInPolygon(ptInHole, multiPolyHole))

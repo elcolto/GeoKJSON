@@ -41,10 +41,11 @@ class FeatureCollectionSerializationTests {
         val position = Position(12.3, 45.6)
         val point = Point(position)
         val featurePoint = Feature(
-            point, mapOf(
+            point,
+            mapOf(
                 "size" to JsonPrimitive(45.1),
-                "name" to JsonPrimitive("Nowhere")
-            )
+                "name" to JsonPrimitive("Nowhere"),
+            ),
         )
         val line = LineString(coordinates = listOf(position, Position(position.component2(), position.component1())))
         val featureLine = Feature(line)
@@ -88,10 +89,11 @@ class FeatureCollectionSerializationTests {
         val position = Position(12.3, 45.6)
         val point = Point(position)
         val featurePoint = Feature(
-            point, mapOf(
+            point,
+            mapOf(
                 "size" to JsonPrimitive(45.1),
-                "name" to JsonPrimitive("Nowhere")
-            )
+                "name" to JsonPrimitive("Nowhere"),
+            ),
         )
         val line = LineString(coordinates = listOf(position, Position(position.component2(), position.component1())))
         val featureLine = Feature(line)
@@ -103,8 +105,8 @@ class FeatureCollectionSerializationTests {
                 |[12.3,45.6]},"properties":{"size":45.1,"name":"Nowhere"}},{"type":"Feature","geometry":{"type":
                 |"LineString","coordinates":[[12.3,45.6],[45.6,12.3]]},"properties":{}}]}"""
                     .trimMargin()
-                    .replace("\n", "")
-            )
+                    .replace("\n", ""),
+            ),
         )
     }
 }
