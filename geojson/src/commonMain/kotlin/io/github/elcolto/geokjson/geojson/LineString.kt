@@ -15,7 +15,7 @@ import kotlin.jvm.JvmStatic
 
 @Suppress("SERIALIZER_TYPE_INCOMPATIBLE")
 @Serializable(with = GeometrySerializer::class)
-public class LineString @JvmOverloads constructor(
+public data class LineString @JvmOverloads constructor(
     public val coordinates: List<Position>,
     override val bbox: BoundingBox? = null,
 ) : Geometry() {
@@ -30,24 +30,6 @@ public class LineString @JvmOverloads constructor(
 
     init {
         require(coordinates.size >= 2) { "LineString must have at least two positions" }
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other == null || this::class != other::class) return false
-
-        other as LineString
-
-        if (coordinates != other.coordinates) return false
-        if (bbox != other.bbox) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = coordinates.hashCode()
-        result = 31 * result + (bbox?.hashCode() ?: 0)
-        return result
     }
 
     override fun json(): String =
