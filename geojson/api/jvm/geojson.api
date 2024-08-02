@@ -63,7 +63,7 @@ public final class io/github/elcolto/geokjson/geojson/Feature$Companion {
 	public final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Feature;
 	public final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/Feature;
 	public final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Feature;
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public final fun serializer (Lkotlinx/serialization/KSerializer;)Lkotlinx/serialization/KSerializer;
 }
 
 public final class io/github/elcolto/geokjson/geojson/FeatureCollection : io/github/elcolto/geokjson/geojson/GeoJson, java/util/Collection, kotlin/jvm/internal/markers/KMappedMarker {
@@ -406,11 +406,6 @@ public final class io/github/elcolto/geokjson/geojson/dsl/-FeatureCollectionDslK
 	public static final fun featureCollection (Lkotlin/jvm/functions/Function1;)Lio/github/elcolto/geokjson/geojson/FeatureCollection;
 }
 
-public final class io/github/elcolto/geokjson/geojson/dsl/-FeatureDslKt {
-	public static final fun feature (Lio/github/elcolto/geokjson/geojson/Geometry;Ljava/lang/String;Lio/github/elcolto/geokjson/geojson/BoundingBox;Lkotlin/jvm/functions/Function1;)Lio/github/elcolto/geokjson/geojson/Feature;
-	public static synthetic fun feature$default (Lio/github/elcolto/geokjson/geojson/Geometry;Ljava/lang/String;Lio/github/elcolto/geokjson/geojson/BoundingBox;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/Feature;
-}
-
 public final class io/github/elcolto/geokjson/geojson/dsl/-GeometryDslKt {
 	public static final fun geometryCollection (Lkotlin/jvm/functions/Function1;)Lio/github/elcolto/geokjson/geojson/GeometryCollection;
 	public static final fun lineString (Lkotlin/jvm/functions/Function1;)Lio/github/elcolto/geokjson/geojson/LineString;
@@ -561,7 +556,7 @@ public final class io/github/elcolto/geokjson/geojson/serialization/FeatureColle
 }
 
 public final class io/github/elcolto/geokjson/geojson/serialization/FeatureSerializer : io/github/elcolto/geokjson/geojson/serialization/JsonSerializer {
-	public static final field INSTANCE Lio/github/elcolto/geokjson/geojson/serialization/FeatureSerializer;
+	public fun <init> ()V
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/github/elcolto/geokjson/geojson/Feature;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/json/JsonDecoder;)Lio/github/elcolto/geokjson/geojson/Feature;

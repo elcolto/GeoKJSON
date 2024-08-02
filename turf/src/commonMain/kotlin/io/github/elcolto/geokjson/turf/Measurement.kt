@@ -237,7 +237,7 @@ public fun bbox(geometry: MultiPolygon): BoundingBox = computeBbox(geometry.coor
  * @return A [BoundingBox] that covers the geometry.
  */
 @ExperimentalTurfApi
-public fun bbox(feature: Feature): BoundingBox = computeBbox(feature.coordAll() ?: emptyList())
+public fun bbox(feature: Feature<Geometry>): BoundingBox = computeBbox(feature.coordAll() ?: emptyList())
 
 /**
  * Takes a feature collection and calculates a bbox that covers all features in the collection.
@@ -479,7 +479,7 @@ public fun midpoint(point1: Position, point2: Position): Position {
  * @return A [Point] holding the center coordinates
  */
 @ExperimentalTurfApi
-public fun center(feature: Feature): Point {
+public fun center(feature: Feature<*>): Point {
     val ext = bbox(feature)
     val x = (ext.southwest.longitude + ext.northeast.longitude) / 2
     val y = (ext.southwest.latitude + ext.northeast.latitude) / 2

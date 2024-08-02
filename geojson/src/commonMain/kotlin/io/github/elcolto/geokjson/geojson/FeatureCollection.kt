@@ -23,11 +23,14 @@ import kotlin.jvm.JvmStatic
  */
 @Serializable(with = FeatureCollectionSerializer::class)
 public data class FeatureCollection(
-    public val features: List<Feature> = emptyList(),
+    public val features: List<Feature<Geometry>> = emptyList(),
     override val bbox: BoundingBox? = null,
-) : Collection<Feature> by features, GeoJson {
+) : Collection<Feature<Geometry>> by features, GeoJson {
 
-    public constructor(vararg features: Feature, bbox: BoundingBox? = null) : this(features.toMutableList(), bbox)
+    public constructor(vararg features: Feature<Geometry>, bbox: BoundingBox? = null) : this(
+        features.toMutableList(),
+        bbox
+    )
 
     override fun toString(): String = json()
 
@@ -53,7 +56,8 @@ public data class FeatureCollection(
             }
 
             val bbox = json["bbox"]?.jsonArray?.toBbox()
-            val features = json.getValue("features").jsonArray.map { Feature.fromJson(it.jsonObject) }
+            val features = json.getValue("features").jsonArray
+                .map { Feature.fromJson<Geometry>(it.jsonObject) }
 
             return FeatureCollection(features, bbox)
         }
