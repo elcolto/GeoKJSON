@@ -38,5 +38,12 @@ public inline fun <reified T : Geometry> feature(
     geometry: T? = null,
     id: String? = null,
     bbox: BoundingBox? = null,
+    foreignMembers: ForeignMembersBuilder.() -> Unit = {},
     properties: PropertiesBuilder.() -> Unit = {},
-): Feature<T> = Feature(geometry, PropertiesBuilder().apply(properties).build(), id, bbox)
+): Feature<T> = Feature(
+    geometry,
+    PropertiesBuilder().apply(properties).build(),
+    id,
+    bbox,
+    ForeignMembersBuilder().apply(foreignMembers).build(),
+)

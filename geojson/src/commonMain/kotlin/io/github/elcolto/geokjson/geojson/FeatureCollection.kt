@@ -1,8 +1,10 @@
 package io.github.elcolto.geokjson.geojson
 
 import io.github.elcolto.geokjson.geojson.serialization.FeatureCollectionSerializer
+import io.github.elcolto.geokjson.geojson.serialization.foreignMembers
 import io.github.elcolto.geokjson.geojson.serialization.jsonJoin
 import io.github.elcolto.geokjson.geojson.serialization.jsonProp
+import io.github.elcolto.geokjson.geojson.serialization.serializeForeignMembers
 import io.github.elcolto.geokjson.geojson.serialization.toBbox
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -25,17 +27,22 @@ import kotlin.jvm.JvmStatic
 public data class FeatureCollection(
     public val features: List<Feature<Geometry>> = emptyList(),
     override val bbox: BoundingBox? = null,
+    override val foreignMembers: Map<String, Any> = emptyMap()
 ) : Collection<Feature<Geometry>> by features, GeoJson {
 
-    public constructor(vararg features: Feature<Geometry>, bbox: BoundingBox? = null) : this(
+    public constructor(
+        vararg features: Feature<Geometry>,
+        bbox: BoundingBox? = null,
+foreignMembers: Map<String, Any> = emptyMap()
+    ) : this(
         features.toMutableList(),
         bbox,
+        foreignMembers,
     )
 
     override fun toString(): String = json()
 
-    override fun json(): String =
-        """{"type":"FeatureCollection",${bbox.jsonProp()}"features":${features.jsonJoin { it.json() }}}"""
+    override fun json(): String = """{"type":"FeatureCollection",${bbox.jsonProp()}"features":${features.jsonJoin { it.json() }}${serializeForeignMembers()}}"""
 
     public companion object {
         @JvmStatic
@@ -58,8 +65,9 @@ public data class FeatureCollection(
             val bbox = json["bbox"]?.jsonArray?.toBbox()
             val features = json.getValue("features").jsonArray
                 .map { Feature.fromJson<Geometry>(it.jsonObject) }
+            val foreignMembers = json.foreignMembers()
 
-            return FeatureCollection(features, bbox)
+            return FeatureCollection(features, bbox, foreignMembers)
         }
     }
 }

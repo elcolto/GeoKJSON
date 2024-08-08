@@ -10,6 +10,7 @@ import kotlin.jvm.JvmStatic
 @Serializable(with = GeometrySerializer::class)
 public sealed class Geometry protected constructor() : GeoJson {
     abstract override val bbox: BoundingBox?
+    abstract override val foreignMembers: Map<String, Any>
 
     override fun toString(): String = json()
 

@@ -1,0 +1,93 @@
+package io.github.elcolto.geokjson.geojson.serialization
+
+import io.github.elcolto.geokjson.geojson.Point
+import io.github.elcolto.geokjson.geojson.dsl.ForeignMembersBuilder
+import io.github.elcolto.geokjson.geojson.dsl.point
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
+import kotlin.test.Test
+import kotlin.test.assertContains
+import kotlin.test.assertEquals
+import kotlin.test.assertIs
+import kotlin.test.assertTrue
+
+class ForeignMembersSerializationTest {
+
+    @Test
+    fun serializePrimitiveForeignMember() {
+        val point = testPoint {
+            put("key0", "value0")
+            put("key1", true)
+            put("key2", 3.2)
+        }
+
+        val foreignMembers = point.foreignMembers
+        assertTrue(foreignMembers.isNotEmpty())
+        assertEquals("value0", foreignMembers["key0"])
+        assertEquals(true, foreignMembers["key1"])
+        assertEquals(3.2, foreignMembers["key2"])
+
+        val serializedForeignMembers = point.serializeForeignMembers()
+        assertContains(serializedForeignMembers, """"key0":"value0"""")
+        assertContains(serializedForeignMembers, """"key1":true""")
+        assertContains(serializedForeignMembers, """"key2":3.2""")
+    }
+
+    @Test
+    fun deserializePrimitiveForeignMember() {
+        val json = testPoint {
+            put("key0", "value0")
+            put("key1", true)
+            put("key2", 3.2)
+        }.json()
+
+        val point = Point.fromJson(json)
+
+        val foreignMembers = point.foreignMembers
+        assertTrue(foreignMembers.isNotEmpty())
+        assertEquals("value0", foreignMembers["key0"])
+        assertEquals(true, foreignMembers["key1"])
+        assertEquals(3.2f, foreignMembers["key2"])
+
+        val foreignMembersJson = point.serializeForeignMembers()
+        assertContains(foreignMembersJson, foreignMembers["key0"].toString())
+        assertContains(foreignMembersJson, foreignMembers["key1"].toString())
+        assertContains(foreignMembersJson, foreignMembers["key2"].toString())
+        assertContains(foreignMembersJson, "key0")
+        assertContains(foreignMembersJson, "key1")
+        assertContains(foreignMembersJson, "key2")
+    }
+
+    @Test
+    fun serializeMapsForeignMember() {
+        val value = mapOf<String, Any>(
+            "key1" to 1,
+            "key2" to true,
+            "key3" to "value0"
+        )
+        val point = testPoint {
+            put("customType", value)
+        }
+
+        val foreignMembers = point.foreignMembers
+        assertTrue(foreignMembers.isNotEmpty())
+        assertEquals(value, foreignMembers["customType"])
+
+        val json = Json.encodeToString(AdditionalFieldsSerializer, point.foreignMembers)
+        assertTrue(json.isNotEmpty())
+
+        val plainJson = """{"customType":{"key1":1,"key2":true,"key3":"value0"}}"""
+
+        val jsonObject = Json.parseToJsonElement(json)
+        assertIs<JsonObject>(jsonObject)
+        assertEquals(Json.parseToJsonElement(plainJson), jsonObject)
+    }
+
+    private companion object {
+        fun testPoint(foreignMembers: ForeignMembersBuilder.() -> Unit) =
+            point(longitude = 54.3, latitude = 10.0, altitude = null) {
+                foreignMembers(foreignMembers)
+            }
+    }
+
+}
