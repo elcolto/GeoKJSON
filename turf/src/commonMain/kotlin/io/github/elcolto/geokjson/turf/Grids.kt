@@ -3,6 +3,7 @@ package io.github.elcolto.geokjson.turf
 import io.github.elcolto.geokjson.geojson.BoundingBox
 import io.github.elcolto.geokjson.geojson.Feature
 import io.github.elcolto.geokjson.geojson.FeatureCollection
+import io.github.elcolto.geokjson.geojson.Geometry
 import io.github.elcolto.geokjson.geojson.Polygon
 import io.github.elcolto.geokjson.geojson.Position
 import kotlin.math.abs
@@ -24,7 +25,7 @@ public fun squareGrid(
     cellHeight: Double,
     units: Units = Units.Kilometers,
 ): FeatureCollection {
-    val featureList = mutableListOf<Feature>()
+    val featureList = mutableListOf<Feature<Geometry>>()
     val west = bbox.southwest.longitude
     val south = bbox.southwest.latitude
     val east = bbox.northeast.longitude

@@ -2,7 +2,6 @@ package io.github.elcolto.geokjson.geojson.serialization
 
 import io.github.elcolto.geokjson.geojson.FeatureCollection
 import io.github.elcolto.geokjson.geojson.serialization.BoundingBoxSerializer.toJsonArray
-import io.github.elcolto.geokjson.geojson.serialization.FeatureSerializer.toJsonObject
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.json.JsonDecoder
@@ -12,11 +11,11 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.put
 
-public object FeatureCollectionSerializer : JsonSerializer<FeatureCollection> {
+internal object FeatureCollectionSerializer : JsonSerializer<FeatureCollection> {
     override val descriptor: SerialDescriptor = buildClassSerialDescriptor("FeatureCollection")
 
     override fun deserialize(input: JsonDecoder): FeatureCollection {
-        return FeatureCollection.Companion.fromJson(input.decodeJsonElement().jsonObject)
+        return FeatureCollection.fromJson(input.decodeJsonElement().jsonObject)
     }
 
     override fun serialize(output: JsonEncoder, value: FeatureCollection) {
@@ -26,7 +25,7 @@ public object FeatureCollectionSerializer : JsonSerializer<FeatureCollection> {
             put(
                 "features",
                 buildJsonArray {
-                    value.features.forEach { add(it.toJsonObject()) }
+                    value.features.forEach { feature -> add(feature.toJsonObject()) }
                 },
             )
         }

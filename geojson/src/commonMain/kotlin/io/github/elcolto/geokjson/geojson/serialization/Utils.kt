@@ -15,7 +15,7 @@ internal fun <T> Iterable<T>.jsonJoin(transform: ((T) -> CharSequence)? = null) 
 
 internal fun BoundingBox?.jsonProp(): String = if (this == null) "" else """"bbox":${this.json()},"""
 
-internal fun Feature.idProp(): String = if (this.id == null) "" else """"id":"${this.id}","""
+internal fun Feature<*>.idProp(): String = if (this.id == null) "" else """"id":"${this.id}","""
 
 internal fun JsonArray.toPosition(): Position =
     Position(this[0].jsonPrimitive.double, this[1].jsonPrimitive.double, this.getOrNull(2)?.jsonPrimitive?.double)
