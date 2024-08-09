@@ -17,6 +17,7 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.buildSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonDecoder
 import kotlinx.serialization.json.JsonEncoder
@@ -24,6 +25,7 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonArray
 import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.encodeToJsonElement
 import kotlinx.serialization.json.jsonObject
 
 @Suppress("LongMethod")
@@ -50,6 +52,7 @@ internal object GeometrySerializer : KSerializer<Geometry> {
                 put("type", JsonPrimitive("Point"))
                 put("coordinates", coordinates.toJsonArray())
             }
+
             is MultiPoint -> {
                 put("type", JsonPrimitive("MultiPoint"))
                 put(
@@ -59,6 +62,7 @@ internal object GeometrySerializer : KSerializer<Geometry> {
                     },
                 )
             }
+
             is LineString -> {
                 put("type", JsonPrimitive("LineString"))
                 put(
@@ -68,6 +72,7 @@ internal object GeometrySerializer : KSerializer<Geometry> {
                     },
                 )
             }
+
             is MultiLineString -> {
                 put("type", JsonPrimitive("MultiLineString"))
                 put(
@@ -83,6 +88,7 @@ internal object GeometrySerializer : KSerializer<Geometry> {
                     },
                 )
             }
+
             is Polygon -> {
                 put("type", JsonPrimitive("Polygon"))
                 put(
@@ -98,6 +104,7 @@ internal object GeometrySerializer : KSerializer<Geometry> {
                     },
                 )
             }
+
             is MultiPolygon -> {
                 put("type", JsonPrimitive("MultiPolygon"))
                 put(
@@ -119,6 +126,7 @@ internal object GeometrySerializer : KSerializer<Geometry> {
                     },
                 )
             }
+
             is GeometryCollection -> {
                 put("type", JsonPrimitive("GeometryCollection"))
                 put(
@@ -133,6 +141,7 @@ internal object GeometrySerializer : KSerializer<Geometry> {
         }
 
         bbox?.let { put("bbox", it.toJsonArray()) }
+        foreignMembers.forEach { (key, value) -> put(key, Json.encodeToJsonElement(value)) }
     }
 
     private fun Position.toJsonArray(): JsonArray = buildJsonArray {

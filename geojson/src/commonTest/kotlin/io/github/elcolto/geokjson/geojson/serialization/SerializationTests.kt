@@ -1,5 +1,14 @@
-package io.github.elcolto.geokjson.geojson
+package io.github.elcolto.geokjson.geojson.serialization
 
+import io.github.elcolto.geokjson.geojson.BoundingBox
+import io.github.elcolto.geokjson.geojson.GeometryCollection
+import io.github.elcolto.geokjson.geojson.LineString
+import io.github.elcolto.geokjson.geojson.MultiLineString
+import io.github.elcolto.geokjson.geojson.MultiPoint
+import io.github.elcolto.geokjson.geojson.MultiPolygon
+import io.github.elcolto.geokjson.geojson.Point
+import io.github.elcolto.geokjson.geojson.Polygon
+import io.github.elcolto.geokjson.geojson.Position
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.encodeToString

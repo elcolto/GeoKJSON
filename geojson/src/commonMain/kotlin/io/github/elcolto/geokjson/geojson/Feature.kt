@@ -1,8 +1,10 @@
 package io.github.elcolto.geokjson.geojson
 
 import io.github.elcolto.geokjson.geojson.serialization.FeatureSerializer
+import io.github.elcolto.geokjson.geojson.serialization.foreignMembers
 import io.github.elcolto.geokjson.geojson.serialization.idProp
 import io.github.elcolto.geokjson.geojson.serialization.jsonProp
+import io.github.elcolto.geokjson.geojson.serialization.serializeForeignMembers
 import io.github.elcolto.geokjson.geojson.serialization.toBbox
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.MapSerializer
@@ -37,6 +39,7 @@ public class Feature<out T : Geometry>(
     properties: Map<String, JsonElement> = emptyMap(),
     public val id: String? = null,
     override val bbox: BoundingBox? = null,
+    override val foreignMembers: Map<String, Any> = emptyMap()
 ) : GeoJson {
     private val _properties: MutableMap<String, JsonElement> = properties.toMutableMap()
     public val properties: Map<String, JsonElement> get() = _properties
@@ -86,6 +89,7 @@ public class Feature<out T : Geometry>(
         if (id != other.id) return false
         if (bbox != other.bbox) return false
         if (_properties != other._properties) return false
+        if (foreignMembers != other.foreignMembers) return false
 
         return true
     }
@@ -95,6 +99,7 @@ public class Feature<out T : Geometry>(
         result = 31 * result + (id?.hashCode() ?: 0)
         result = 31 * result + (bbox?.hashCode() ?: 0)
         result = 31 * result + _properties.hashCode()
+        result = 31 * result + foreignMembers.hashCode()
         return result
     }
 
@@ -102,6 +107,7 @@ public class Feature<out T : Geometry>(
     public operator fun component2(): Map<String, JsonElement> = properties
     public operator fun component3(): String? = id
     public operator fun component4(): BoundingBox? = bbox
+    public operator fun component5(): Map<String, Any> = foreignMembers
 
     override fun toString(): String = json()
 
@@ -114,14 +120,15 @@ public class Feature<out T : Geometry>(
                 ),
                 properties,
             )
-        }}"""
+        }${serializeForeignMembers()}}"""
 
     public fun <T : Geometry> copy(
         geometry: T? = this.geometry as T,
         properties: Map<String, JsonElement> = this.properties,
         id: String? = this.id,
         bbox: BoundingBox? = this.bbox,
-    ): Feature<T> = Feature(geometry, properties, id, bbox)
+        foreignMembers: Map<String, Any> = this.foreignMembers,
+    ): Feature<T> = Feature(geometry, properties, id, bbox, foreignMembers)
 
     public companion object {
         @JvmStatic
@@ -147,7 +154,7 @@ public class Feature<out T : Geometry>(
             val geom = json["geometry"]?.jsonObject
             val geometry: T? = if (geom != null) Geometry.fromJson(geom) as T else null
 
-            return Feature(geometry, json["properties"]?.jsonObject ?: emptyMap(), id, bbox)
+            return Feature(geometry, json["properties"]?.jsonObject ?: emptyMap(), id, bbox, json.foreignMembers())
         }
     }
 }
