@@ -24,13 +24,53 @@ public class ForeignMembersBuilder {
         foreignMembers[key] = value
     }
 
+    @JvmName("putStringArray")
+    public fun put(key: String, value: Array<String>) {
+        foreignMembers[key] = value
+    }
+
     @JvmName("putBooleanCollection")
     public fun put(key: String, value: Collection<Boolean>) {
         foreignMembers[key] = value
     }
 
-    @JvmName("putNumberCollection")
-    public fun put(key: String, value: Collection<Number>) {
+    @JvmName("putBooleanArray")
+    public fun put(key: String, value: BooleanArray) {
+        foreignMembers[key] = value
+    }
+
+    @JvmName("putIntCollection")
+    public fun put(key: String, value: Collection<Int>) {
+        foreignMembers[key] = value
+    }
+
+    @JvmName("putIntArray")
+    public fun put(key: String, value: IntArray) {
+        foreignMembers[key] = value
+    }
+
+    @JvmName("putLongCollection")
+    public fun put(key: String, value: Collection<Long>) {
+        foreignMembers[key] = value
+    }
+
+    @JvmName("putLongArray")
+    public fun put(key: String, value: LongArray) {
+        foreignMembers[key] = value
+    }
+
+    @JvmName("putFloatCollection")
+    public fun put(key: String, value: Collection<Float>) {
+        foreignMembers[key] = value
+    }
+
+    @JvmName("putFloatArray")
+    public fun put(key: String, value: FloatArray) {
+        foreignMembers[key] = value
+    }
+
+    @JvmName("putDoubleArray")
+    public fun put(key: String, value: DoubleArray) {
         foreignMembers[key] = value
     }
 

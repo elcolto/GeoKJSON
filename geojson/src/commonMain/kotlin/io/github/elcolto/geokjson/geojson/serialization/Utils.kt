@@ -41,24 +41,43 @@ internal fun JsonArray.toPosition(): Position =
 internal fun JsonArray.toBbox(): BoundingBox = BoundingBox(this.map { it.jsonPrimitive.double }.toDoubleArray())
 
 internal fun GeoJson.serializeForeignMembers(): String {
-    if (this.foreignMembers.isEmpty()) return ""
+    if (foreignMembers.isEmpty()) return ""
+    return mapToJsonRepresentation(this.foreignMembers)
+}
 
+private fun mapToJsonRepresentation(
+    map: Map<String, Any>,
+    prefix: String = ",",
+    postfix: String = ""
+) = map.entries.joinToString(prefix = prefix, separator = ",", postfix = postfix) { (key, value) ->
+    val encodedValue = toJsonRepresentation(value)
+    """"$key":$encodedValue"""
+}
 
-    val joinToString = this.foreignMembers.entries.joinToString(prefix = ",", separator = ",") { (key, value) ->
-        val encodedValue = when (value) {
-            is String -> Json.encodeToString(String.serializer(), value)
-            is Boolean -> Json.encodeToString(Boolean.serializer(), value)
-            is Double -> Json.encodeToString(Double.serializer(), value)
-            is Int -> Json.encodeToString(Int.serializer(), value)
-            is Float -> Json.encodeToString(Float.serializer(), value)
-            is Long -> Json.encodeToString(Long.serializer(), value)
-            else -> {
-                error("serializing complex types are not supported at this time")
-            }
+private fun toJsonRepresentation(value: Any): String {
+    value.checkTypeForSerialization()
+    val encodedValue = when (value) {
+        is String -> Json.encodeToString(String.serializer(), value)
+        is Boolean -> Json.encodeToString(Boolean.serializer(), value)
+        is Double -> Json.encodeToString(Double.serializer(), value)
+        is Int -> Json.encodeToString(Int.serializer(), value)
+        is Float -> Json.encodeToString(Float.serializer(), value)
+        is Long -> Json.encodeToString(Long.serializer(), value)
+        is Enum<*> -> Json.encodeToString(String.serializer(), value.name)
+        is Map<*, *> -> {
+            value as Map<String, Any>
+            mapToJsonRepresentation(value, prefix = "{", postfix = "}")
         }
-        """"$key":$encodedValue"""
+
+        is Collection<*> -> value.filterNotNull().joinToString(
+            prefix = "[",
+            separator = ",",
+            postfix = "]"
+        ) { element -> toJsonRepresentation(element) }
+
+        else -> error("serializing complex types are not supported at this time")
     }
-    return joinToString
+    return encodedValue
 }
 
 private val featureMembers = listOf("type", "geometry", "properties", "id", "bbox")
@@ -119,6 +138,10 @@ internal fun Any.checkTypeForSerialization() {
     if (isPrimitive()) return
 
     when (this) {
+        is Array<*> -> filterNotNull().forEach {
+            it.checkTypeForSerialization()
+        }
+
         is Collection<*> -> filterNotNull().forEach {
             it.checkTypeForSerialization()
         }
