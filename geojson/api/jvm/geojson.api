@@ -43,21 +43,12 @@ public final class io/github/elcolto/geokjson/geojson/Feature : io/github/elcolt
 	public static final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/Feature;
 	public static final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Feature;
 	public fun getBbox ()Lio/github/elcolto/geokjson/geojson/BoundingBox;
-	public final fun getBooleanProperty (Ljava/lang/String;)Ljava/lang/Boolean;
 	public fun getForeignMembers ()Ljava/util/Map;
 	public final fun getGeometry ()Lio/github/elcolto/geokjson/geojson/Geometry;
 	public final fun getId ()Ljava/lang/String;
-	public final fun getJsonProperty (Ljava/lang/String;)Lkotlinx/serialization/json/JsonElement;
-	public final fun getNumberProperty (Ljava/lang/String;)Ljava/lang/Number;
 	public final fun getProperties ()Ljava/util/Map;
-	public final fun getStringProperty (Ljava/lang/String;)Ljava/lang/String;
 	public fun hashCode ()I
 	public fun json ()Ljava/lang/String;
-	public final fun removeProperty (Ljava/lang/String;)Ljava/lang/Object;
-	public final fun setBooleanProperty (Ljava/lang/String;Ljava/lang/Boolean;)V
-	public final fun setJsonProperty (Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)V
-	public final fun setNumberProperty (Ljava/lang/String;Ljava/lang/Number;)V
-	public final fun setStringProperty (Ljava/lang/String;Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -455,6 +446,27 @@ public final class io/github/elcolto/geokjson/geojson/dsl/-GeometryDslKt {
 	public static final fun polygon (Lkotlin/jvm/functions/Function1;)Lio/github/elcolto/geokjson/geojson/Polygon;
 }
 
+public final class io/github/elcolto/geokjson/geojson/dsl/AdditionalFieldsBuilder {
+	public fun <init> ()V
+	public final fun build ()Ljava/util/Map;
+	public final fun put (Ljava/lang/String;Ljava/lang/Number;)V
+	public final fun put (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun put (Ljava/lang/String;Ljava/util/Map;)V
+	public final fun put (Ljava/lang/String;Z)V
+	public final fun putBooleanArray (Ljava/lang/String;[Z)V
+	public final fun putBooleanCollection (Ljava/lang/String;Ljava/util/Collection;)V
+	public final fun putDoubleArray (Ljava/lang/String;[D)V
+	public final fun putFloatArray (Ljava/lang/String;[F)V
+	public final fun putFloatCollection (Ljava/lang/String;Ljava/util/Collection;)V
+	public final fun putIntArray (Ljava/lang/String;[I)V
+	public final fun putIntCollection (Ljava/lang/String;Ljava/util/Collection;)V
+	public final fun putLongArray (Ljava/lang/String;[J)V
+	public final fun putLongCollection (Ljava/lang/String;Ljava/util/Collection;)V
+	public final fun putMapCollection (Ljava/lang/String;Ljava/util/Collection;)V
+	public final fun putStringArray (Ljava/lang/String;[Ljava/lang/String;)V
+	public final fun putStringCollection (Ljava/lang/String;Ljava/util/Collection;)V
+}
+
 public final class io/github/elcolto/geokjson/geojson/dsl/FeatureCollectionDsl {
 	public fun <init> ()V
 	public fun <init> (Ljava/util/List;Lio/github/elcolto/geokjson/geojson/BoundingBox;Ljava/util/Map;)V
@@ -468,12 +480,6 @@ public final class io/github/elcolto/geokjson/geojson/dsl/FeatureCollectionDsl {
 	public final fun getForeignMembers ()Ljava/util/Map;
 	public final fun setBbox (Lio/github/elcolto/geokjson/geojson/BoundingBox;)V
 	public final fun unaryPlus (Lio/github/elcolto/geokjson/geojson/Feature;)V
-}
-
-public final class io/github/elcolto/geokjson/geojson/dsl/ForeignMembersBuilder {
-	public fun <init> ()V
-	public final fun build ()Ljava/util/Map;
-	public final fun put (Ljava/lang/String;Ljava/lang/Object;)V
 }
 
 public final class io/github/elcolto/geokjson/geojson/dsl/GeometryCollectionDsl : io/github/elcolto/geokjson/geojson/dsl/GeometryDsl {
@@ -572,14 +578,5 @@ public final class io/github/elcolto/geokjson/geojson/dsl/PositionKt {
 	public static final fun lngLat (DD)Lio/github/elcolto/geokjson/geojson/Position;
 	public static final fun lngLat (DDD)Lio/github/elcolto/geokjson/geojson/Position;
 	public static final fun lngLat (DDLjava/lang/Double;)Lio/github/elcolto/geokjson/geojson/Position;
-}
-
-public final class io/github/elcolto/geokjson/geojson/dsl/PropertiesBuilder {
-	public fun <init> ()V
-	public final fun build ()Ljava/util/Map;
-	public final fun put (Ljava/lang/String;Ljava/lang/Boolean;)V
-	public final fun put (Ljava/lang/String;Ljava/lang/Number;)V
-	public final fun put (Ljava/lang/String;Ljava/lang/String;)V
-	public final fun put (Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)V
 }
 
