@@ -42,18 +42,15 @@ internal fun GeoJson.serializeForeignMembers(standaloneParsing: Boolean = false)
     return propertyMapToJson(
         this.foreignMembers,
         prefix = if (standaloneParsing) "{" else ",",
-        postfix = if (standaloneParsing) "}" else ""
+        postfix = if (standaloneParsing) "}" else "",
     )
 }
 
-internal fun propertyMapToJson(
-    map: Map<String, Any>,
-    prefix: String = ",",
-    postfix: String = ""
-) = map.entries.joinToString(prefix = prefix, separator = ",", postfix = postfix) { (key, value) ->
-    val encodedValue = toJsonRepresentation(value)
-    """"$key":$encodedValue"""
-}
+internal fun propertyMapToJson(map: Map<String, Any>, prefix: String = ",", postfix: String = "") =
+    map.entries.joinToString(prefix = prefix, separator = ",", postfix = postfix) { (key, value) ->
+        val encodedValue = toJsonRepresentation(value)
+        """"$key":$encodedValue"""
+    }
 
 private fun toJsonRepresentation(value: Any): String {
     value.checkTypeForSerialization()
@@ -79,7 +76,7 @@ private fun toJsonRepresentation(value: Any): String {
         is Collection<*> -> value.filterNotNull().joinToString(
             prefix = "[",
             separator = ",",
-            postfix = "]"
+            postfix = "]",
         ) { element -> toJsonRepresentation(element) }
 
         else -> error("serializing complex types are not supported at this time")
@@ -113,7 +110,10 @@ internal fun JsonObject.foreignMembers(): Map<String, Any> {
  */
 internal fun parseJsonElement(jsonElement: JsonElement): Any? = when (jsonElement) {
     is JsonArray -> jsonElement.jsonArray.map { element -> parseJsonElement(element) }
-    is JsonObject -> jsonElement.jsonObject.entries.associate { (key, value) -> key to parseJsonElement(value) } //convert entry to Map<String, Any>
+    is JsonObject -> jsonElement.jsonObject.entries.associate { (key, value) ->
+        key to parseJsonElement(value) // convert entry to Map<String, Any>
+    }
+
     is JsonPrimitive -> {
         val primitive = jsonElement.jsonPrimitive
         when {
@@ -136,7 +136,8 @@ internal fun Any.isPrimitive(): Boolean = when (this) {
     is Double,
     is Int,
     is Float,
-    is Long -> true
+    is Long,
+    -> true
 
     else -> false
 }
@@ -156,8 +157,9 @@ internal fun Any.checkTypeForSerialization() {
         }
 
         is Map<*, *> -> {
-            if (keys.any { it !is String })
+            if (keys.any { it !is String }) {
                 error("Only type String as key in Map is supported")
+            }
 
             values.filterNotNull().forEach { it.checkTypeForSerialization() }
         }
@@ -165,4 +167,3 @@ internal fun Any.checkTypeForSerialization() {
         else -> error("Type ${this::class.simpleName} is not applicable for serialization")
     }
 }
-

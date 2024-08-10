@@ -19,13 +19,13 @@ import kotlin.jvm.JvmStatic
 public data class Point @JvmOverloads constructor(
     public val coordinates: Position,
     override val bbox: BoundingBox? = null,
-    override val foreignMembers: Map<String, Any> = emptyMap()
+    override val foreignMembers: Map<String, Any> = emptyMap(),
 ) : Geometry() {
     @JvmOverloads
     public constructor(
         coordinates: DoubleArray,
         bbox: BoundingBox? = null,
-        foreignMembers: Map<String, Any> = emptyMap()
+        foreignMembers: Map<String, Any> = emptyMap(),
     ) : this(Position(coordinates), bbox, foreignMembers)
 
     override fun json(): String =

@@ -20,20 +20,20 @@ import kotlin.jvm.JvmStatic
 public data class MultiLineString @JvmOverloads constructor(
     public val coordinates: List<List<Position>>,
     override val bbox: BoundingBox? = null,
-    override val foreignMembers: Map<String, Any> = emptyMap()
+    override val foreignMembers: Map<String, Any> = emptyMap(),
 ) : Geometry() {
     @JvmOverloads
     public constructor(
         vararg coordinates: List<Position>,
         bbox: BoundingBox? = null,
-        foreignMembers: Map<String, Any> = emptyMap()
+        foreignMembers: Map<String, Any> = emptyMap(),
     ) : this(coordinates.toList(), bbox, foreignMembers)
 
     @JvmOverloads
     public constructor(
         coordinates: Array<Array<DoubleArray>>,
         bbox: BoundingBox? = null,
-        foreignMembers: Map<String, Any> = emptyMap()
+        foreignMembers: Map<String, Any> = emptyMap(),
     ) : this(
         coordinates.map { it.map(::Position) },
         bbox,
@@ -46,8 +46,11 @@ public data class MultiLineString @JvmOverloads constructor(
         }
     }
 
-    override fun json(): String =
-        """{"type":"MultiLineString",${bbox.jsonProp()}"coordinates":${coordinates.jsonJoin { it.jsonJoin(transform = Position::json) }}${serializeForeignMembers()}}"""
+    override fun json(): String = """{"type":"MultiLineString",${bbox.jsonProp()}"coordinates":${coordinates.jsonJoin {
+        it.jsonJoin(
+            transform = Position::json,
+        )
+    }}${serializeForeignMembers()}}"""
 
     public companion object {
         @JvmStatic

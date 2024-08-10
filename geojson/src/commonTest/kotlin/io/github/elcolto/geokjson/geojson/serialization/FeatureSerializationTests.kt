@@ -57,7 +57,7 @@ class FeatureSerializationTests {
                     |"size":45.1,
                     |"name":"Nowhere"
                 |}}
-                """.trimMargin().replace("\n", ""),
+            """.trimMargin().replace("\n", ""),
         )
         assertEquals(
             feature,

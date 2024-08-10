@@ -104,7 +104,6 @@ class ForeignMembersSerializationTest {
         assertEquals(value.entries, map.entries)
     }
 
-
     @Test
     fun serializeArrayForeignMember() {
         val stringArray = arrayOf("a", "b", "c")
@@ -132,12 +131,10 @@ class ForeignMembersSerializationTest {
         assertEquals(Json.parseToJsonElement(plainJson), jsonObject)
     }
 
-
     private companion object {
         fun testPoint(foreignMembers: AdditionalFieldsBuilder.() -> Unit) =
             point(longitude = 54.3, latitude = 10.0, altitude = null) {
                 foreignMembers(foreignMembers)
             }
     }
-
 }

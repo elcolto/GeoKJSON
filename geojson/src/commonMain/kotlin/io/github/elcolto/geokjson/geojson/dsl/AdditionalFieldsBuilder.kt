@@ -80,12 +80,10 @@ public class AdditionalFieldsBuilder {
         additionalFields[key] = value
     }
 
-
     public fun put(key: String, value: Map<String, Any>) {
         value.checkTypeForSerialization()
         additionalFields[key] = value
     }
-
 
     public fun build(): Map<String, Any> = additionalFields
 }

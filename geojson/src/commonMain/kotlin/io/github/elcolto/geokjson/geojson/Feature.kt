@@ -33,7 +33,7 @@ public data class Feature<out T : Geometry>(
     public val properties: Map<String, Any> = emptyMap(),
     public val id: String? = null,
     override val bbox: BoundingBox? = null,
-    override val foreignMembers: Map<String, Any> = emptyMap()
+    override val foreignMembers: Map<String, Any> = emptyMap(),
 ) : GeoJson {
 
     /**
@@ -49,11 +49,9 @@ public data class Feature<out T : Geometry>(
 
     private fun idProp(): String = if (this.id == null) "" else ""","id":"${this.id}""""
 
-    override fun json(): String =
-        """{"type":"Feature",${bbox.jsonProp()}"geometry":${geometry?.json()}${idProp()}${
-            ",\"properties\":${propertyMapToJson(properties, prefix = "{", postfix = "}")}"
-        }${serializeForeignMembers()}}"""
-
+    override fun json(): String = """{"type":"Feature",${bbox.jsonProp()}"geometry":${geometry?.json()}${idProp()}${
+        ",\"properties\":${propertyMapToJson(properties, prefix = "{", postfix = "}")}"
+    }${serializeForeignMembers()}}"""
 
     public companion object {
         @JvmStatic
@@ -88,7 +86,7 @@ public data class Feature<out T : Geometry>(
                 properties as Map<String, Any>,
                 id,
                 bbox,
-                json.foreignMembers()
+                json.foreignMembers(),
             )
         }
     }

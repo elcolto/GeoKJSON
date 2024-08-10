@@ -27,13 +27,13 @@ import kotlin.jvm.JvmStatic
 public data class FeatureCollection(
     public val features: List<Feature<Geometry>> = emptyList(),
     override val bbox: BoundingBox? = null,
-    override val foreignMembers: Map<String, Any> = emptyMap()
+    override val foreignMembers: Map<String, Any> = emptyMap(),
 ) : Collection<Feature<Geometry>> by features, GeoJson {
 
     public constructor(
         vararg features: Feature<Geometry>,
         bbox: BoundingBox? = null,
-        foreignMembers: Map<String, Any> = emptyMap()
+        foreignMembers: Map<String, Any> = emptyMap(),
     ) : this(
         features.toMutableList(),
         bbox,
@@ -42,8 +42,12 @@ public data class FeatureCollection(
 
     override fun toString(): String = json()
 
-    override fun json(): String =
-        """{"type":"FeatureCollection",${bbox.jsonProp()}"features":${features.jsonJoin { it.json() }}${serializeForeignMembers()}}"""
+    override fun json(): String = """{"type":"FeatureCollection",""" +
+        bbox.jsonProp() +
+        """"features":""" +
+        features.jsonJoin { it.json() } +
+        serializeForeignMembers() +
+        """}"""
 
     public companion object {
         @JvmStatic
