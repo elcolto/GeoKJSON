@@ -1,7 +1,7 @@
 package io.github.elcolto.geokjson.geojson.serialization
 
 import io.github.elcolto.geokjson.geojson.Point
-import io.github.elcolto.geokjson.geojson.dsl.ForeignMembersBuilder
+import io.github.elcolto.geokjson.geojson.dsl.AdditionalFieldsBuilder
 import io.github.elcolto.geokjson.geojson.dsl.point
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
@@ -134,7 +134,7 @@ class ForeignMembersSerializationTest {
 
 
     private companion object {
-        fun testPoint(foreignMembers: ForeignMembersBuilder.() -> Unit) =
+        fun testPoint(foreignMembers: AdditionalFieldsBuilder.() -> Unit) =
             point(longitude = 54.3, latitude = 10.0, altitude = null) {
                 foreignMembers(foreignMembers)
             }
