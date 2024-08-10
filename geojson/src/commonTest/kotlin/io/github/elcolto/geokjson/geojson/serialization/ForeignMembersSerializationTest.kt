@@ -48,7 +48,7 @@ class ForeignMembersSerializationTest {
         assertTrue(foreignMembers.isNotEmpty())
         assertEquals("value0", foreignMembers["key0"])
         assertEquals(true, foreignMembers["key1"])
-        assertEquals(3.2f, foreignMembers["key2"])
+        assertEquals(3.2, foreignMembers["key2"])
 
         val foreignMembersJson = point.serializeForeignMembers()
         assertContains(foreignMembersJson, foreignMembers["key0"].toString())
@@ -74,7 +74,7 @@ class ForeignMembersSerializationTest {
         assertTrue(foreignMembers.isNotEmpty())
         assertEquals(value, foreignMembers["customType"])
 
-        val json = point.serializeForeignMembers()
+        val json = point.serializeForeignMembers(standaloneParsing = true)
         assertTrue(json.isNotEmpty())
 
         val plainJson = """{"customType":{"key1":1,"key2":true,"key3":"value0"}}"""
@@ -122,7 +122,7 @@ class ForeignMembersSerializationTest {
         assertContentEquals(intArray, foreignMembers["intArray"] as IntArray)
         assertEquals(booleanSet, foreignMembers["booleanSet"])
 
-        val json = point.serializeForeignMembers()
+        val json = point.serializeForeignMembers(standaloneParsing = true)
         assertTrue(json.isNotEmpty())
 
         val plainJson = """{"stringArray":["a","b","c"],"intArray":[1,2,3],"booleanSet":[true,false]}"""

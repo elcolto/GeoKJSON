@@ -33,7 +33,7 @@ public data class FeatureCollection(
     public constructor(
         vararg features: Feature<Geometry>,
         bbox: BoundingBox? = null,
-foreignMembers: Map<String, Any> = emptyMap()
+        foreignMembers: Map<String, Any> = emptyMap()
     ) : this(
         features.toMutableList(),
         bbox,
@@ -42,7 +42,8 @@ foreignMembers: Map<String, Any> = emptyMap()
 
     override fun toString(): String = json()
 
-    override fun json(): String = """{"type":"FeatureCollection",${bbox.jsonProp()}"features":${features.jsonJoin { it.json() }}${serializeForeignMembers()}}"""
+    override fun json(): String =
+        """{"type":"FeatureCollection",${bbox.jsonProp()}"features":${features.jsonJoin { it.json() }}${serializeForeignMembers()}}"""
 
     public companion object {
         @JvmStatic

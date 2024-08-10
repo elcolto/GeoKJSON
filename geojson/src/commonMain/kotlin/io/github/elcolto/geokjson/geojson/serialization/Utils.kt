@@ -1,7 +1,6 @@
 package io.github.elcolto.geokjson.geojson.serialization
 
 import io.github.elcolto.geokjson.geojson.BoundingBox
-import io.github.elcolto.geokjson.geojson.Feature
 import io.github.elcolto.geokjson.geojson.GeoJson
 import io.github.elcolto.geokjson.geojson.Position
 import kotlinx.serialization.builtins.serializer
@@ -33,19 +32,21 @@ internal fun <T> Iterable<T>.jsonJoin(transform: ((T) -> CharSequence)? = null) 
 
 internal fun BoundingBox?.jsonProp(): String = if (this == null) "" else """"bbox":${this.json()},"""
 
-internal fun Feature<*>.idProp(): String = if (this.id == null) "" else """"id":"${this.id}","""
-
 internal fun JsonArray.toPosition(): Position =
     Position(this[0].jsonPrimitive.double, this[1].jsonPrimitive.double, this.getOrNull(2)?.jsonPrimitive?.double)
 
 internal fun JsonArray.toBbox(): BoundingBox = BoundingBox(this.map { it.jsonPrimitive.double }.toDoubleArray())
 
-internal fun GeoJson.serializeForeignMembers(): String {
+internal fun GeoJson.serializeForeignMembers(standaloneParsing: Boolean = false): String {
     if (foreignMembers.isEmpty()) return ""
-    return mapToJsonRepresentation(this.foreignMembers)
+    return propertyMapToJson(
+        this.foreignMembers,
+        prefix = if (standaloneParsing) "{" else ",",
+        postfix = if (standaloneParsing) "}" else ""
+    )
 }
 
-private fun mapToJsonRepresentation(
+internal fun propertyMapToJson(
     map: Map<String, Any>,
     prefix: String = ",",
     postfix: String = ""
@@ -66,9 +67,15 @@ private fun toJsonRepresentation(value: Any): String {
         is Enum<*> -> Json.encodeToString(String.serializer(), value.name)
         is Map<*, *> -> {
             value as Map<String, Any>
-            mapToJsonRepresentation(value, prefix = "{", postfix = "}")
+            propertyMapToJson(value, prefix = "{", postfix = "}")
         }
 
+        is Array<*> -> toJsonRepresentation(value.toList())
+        is BooleanArray -> toJsonRepresentation(value.toList())
+        is IntArray -> toJsonRepresentation(value.toList())
+        is LongArray -> toJsonRepresentation(value.toList())
+        is FloatArray -> toJsonRepresentation(value.toList())
+        is DoubleArray -> toJsonRepresentation(value.toList())
         is Collection<*> -> value.filterNotNull().joinToString(
             prefix = "[",
             separator = ",",
@@ -104,7 +111,7 @@ internal fun JsonObject.foreignMembers(): Map<String, Any> {
  * Recursively parse [jsonElement]. Result will be a primitive, a (recursive) [Map] of [String] to [Any], complex types
  * or a [List] of primitives or [Map]s
  */
-private fun parseJsonElement(jsonElement: JsonElement): Any? = when (jsonElement) {
+internal fun parseJsonElement(jsonElement: JsonElement): Any? = when (jsonElement) {
     is JsonArray -> jsonElement.jsonArray.map { element -> parseJsonElement(element) }
     is JsonObject -> jsonElement.jsonObject.entries.associate { (key, value) -> key to parseJsonElement(value) } //convert entry to Map<String, Any>
     is JsonPrimitive -> {
@@ -114,8 +121,8 @@ private fun parseJsonElement(jsonElement: JsonElement): Any? = when (jsonElement
             primitive.booleanOrNull != null -> primitive.boolean
             primitive.intOrNull != null -> primitive.int
             primitive.longOrNull != null -> primitive.long
-            primitive.floatOrNull != null -> primitive.float
             primitive.doubleOrNull != null -> primitive.double
+            primitive.floatOrNull != null -> primitive.float
             else -> null
         }
     }
@@ -138,6 +145,8 @@ internal fun Any.checkTypeForSerialization() {
     if (isPrimitive()) return
 
     when (this) {
+        is IntArray, is LongArray, is FloatArray, is DoubleArray, is BooleanArray -> return
+
         is Array<*> -> filterNotNull().forEach {
             it.checkTypeForSerialization()
         }
