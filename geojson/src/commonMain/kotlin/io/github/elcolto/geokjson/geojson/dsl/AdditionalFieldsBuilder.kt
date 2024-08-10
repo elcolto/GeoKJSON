@@ -3,6 +3,7 @@ package io.github.elcolto.geokjson.geojson.dsl
 import io.github.elcolto.geokjson.geojson.serialization.checkTypeForSerialization
 import kotlin.jvm.JvmName
 
+@Suppress("TooManyFunctions")
 @GeoJsonDsl
 public class AdditionalFieldsBuilder {
     private val additionalFields = mutableMapOf<String, Any>()

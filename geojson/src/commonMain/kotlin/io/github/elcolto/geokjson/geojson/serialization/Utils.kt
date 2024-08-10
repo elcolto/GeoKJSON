@@ -1,3 +1,5 @@
+@file:Suppress("TooManyFunctions")
+
 package io.github.elcolto.geokjson.geojson.serialization
 
 import io.github.elcolto.geokjson.geojson.BoundingBox
