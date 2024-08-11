@@ -54,6 +54,7 @@ internal fun propertyMapToJson(map: Map<String, Any>, prefix: String = ",", post
         """"$key":$encodedValue"""
     }
 
+@Suppress("CyclomaticComplexMethod")
 private fun toJsonRepresentation(value: Any): String {
     value.checkTypeForSerialization()
     val encodedValue = when (value) {
@@ -103,7 +104,7 @@ internal fun JsonObject.foreignMembers(): Map<String, Any> {
             parseJsonElement(jsonElement)
         }
         .filterValues { it != null }
-        .mapValues { (key, value) -> requireNotNull(value) }
+        .mapValues { (_, value) -> requireNotNull(value) }
 }
 
 /**

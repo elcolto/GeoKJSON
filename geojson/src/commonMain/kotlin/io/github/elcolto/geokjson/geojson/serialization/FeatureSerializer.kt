@@ -39,6 +39,7 @@ internal fun <T : Geometry> Feature<T>.toJsonObject(): JsonObject = buildJsonObj
     foreignMembers.forEach { (key, value) -> put(key, Json.encodeToJsonElement(value)) }
 }
 
+@Suppress("CyclomaticComplexMethod")
 private fun anyToJsonElement(element: Any): JsonElement = when (element) {
     is String -> JsonPrimitive(element)
     is Boolean -> JsonPrimitive(element)
