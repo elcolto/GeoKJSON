@@ -24,20 +24,20 @@ public class FeatureCollectionDsl(
         geometry: Geometry? = null,
         id: String? = null,
         bbox: BoundingBox? = null,
-        foreignMembers: AdditionalFieldsBuilder.() -> Unit = {},
-        properties: AdditionalFieldsBuilder.() -> Unit = {},
+        foreignMembers: ForeignMembersBuilder.() -> Unit = {},
+        properties: PropertiesBuilder.() -> Unit = {},
     ) {
         +Feature(
             geometry = geometry,
-            properties = AdditionalFieldsBuilder().apply(properties).build(),
+            properties = PropertiesBuilder().apply(properties).build(),
             id = id,
             bbox = bbox,
-            foreignMembers = AdditionalFieldsBuilder().apply(foreignMembers).build(),
+            foreignMembers = ForeignMembersBuilder().apply(foreignMembers).build(),
         )
     }
 
-    public fun foreignMembers(foreignMembers: AdditionalFieldsBuilder.() -> Unit = {}) {
-        this.foreignMembers.putAll(AdditionalFieldsBuilder().apply(foreignMembers).build())
+    public fun foreignMembers(foreignMembers: ForeignMembersBuilder.() -> Unit = {}) {
+        this.foreignMembers.putAll(ForeignMembersBuilder().apply(foreignMembers).build())
     }
 }
 

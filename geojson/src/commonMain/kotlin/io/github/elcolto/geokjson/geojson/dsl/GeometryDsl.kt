@@ -21,8 +21,8 @@ public abstract class GeometryDsl<T : Geometry> protected constructor(
 ) {
     public abstract fun create(): T
 
-    public fun foreignMembers(foreignMembers: AdditionalFieldsBuilder.() -> Unit = {}) {
-        this.foreignMembers.putAll(AdditionalFieldsBuilder().apply(foreignMembers).build())
+    public fun foreignMembers(foreignMembers: ForeignMembersBuilder.() -> Unit = {}) {
+        this.foreignMembers.putAll(ForeignMembersBuilder().apply(foreignMembers).build())
     }
 }
 

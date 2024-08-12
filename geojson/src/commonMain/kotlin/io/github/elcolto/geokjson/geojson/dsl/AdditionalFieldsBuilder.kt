@@ -3,6 +3,10 @@ package io.github.elcolto.geokjson.geojson.dsl
 import io.github.elcolto.geokjson.geojson.serialization.checkTypeForSerialization
 import kotlin.jvm.JvmName
 
+public typealias ForeignMembersBuilder = AdditionalFieldsBuilder
+
+public typealias PropertiesBuilder = AdditionalFieldsBuilder
+
 @Suppress("TooManyFunctions")
 @GeoJsonDsl
 public class AdditionalFieldsBuilder {
