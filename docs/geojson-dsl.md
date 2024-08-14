@@ -29,6 +29,46 @@ Each geometry type has a corresponding DSL.
 
 A GeoJson object's `bbox` value can be assigned in any of the DSLs.
 
+=== "Kotlin"
+
+    ```kotlin
+    point(longitude = -75.0, latitude = 45.0) {
+      bbox = BoundingBox(...)
+    }
+    ```
+
+=== "JSON"
+
+    ```json
+    {
+      "type": "Point",
+      "coordinates": [-75.0, 45.0],
+      "bbox": [...]
+    }
+    ```
+
+`foreignMembers` property can be set via `AdditionalFieldsBuilder`
+
+=== "Kotlin"
+
+    ```kotlin
+    point(longitude = -75.0, latitude = 45.0) {
+      foreignMembers {
+        put("value", 13)
+      }
+    }
+    ```
+
+=== "JSON"
+
+    ```json
+       {
+      "type": "Point",
+      "coordinates": [-75.0, 45.0],
+      "value": 13
+    }
+    ```
+
 #### Point
 
 === "Kotlin"
@@ -331,6 +371,7 @@ in the `PropertiesBuilder` block by calling `put(key, value)` to add properties.
       put("name", "Hello World")
       put("value", 13)
       put("cool", true)
+      put("numbers", intArrayOf(1,2,3))
     }
     ```
 

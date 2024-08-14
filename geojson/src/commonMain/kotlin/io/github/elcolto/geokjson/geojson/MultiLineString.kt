@@ -1,8 +1,10 @@
 package io.github.elcolto.geokjson.geojson
 
 import io.github.elcolto.geokjson.geojson.serialization.GeometrySerializer
+import io.github.elcolto.geokjson.geojson.serialization.foreignMembers
 import io.github.elcolto.geokjson.geojson.serialization.jsonJoin
 import io.github.elcolto.geokjson.geojson.serialization.jsonProp
+import io.github.elcolto.geokjson.geojson.serialization.serializeForeignMembers
 import io.github.elcolto.geokjson.geojson.serialization.toBbox
 import io.github.elcolto.geokjson.geojson.serialization.toPosition
 import kotlinx.serialization.Serializable
@@ -18,15 +20,25 @@ import kotlin.jvm.JvmStatic
 public data class MultiLineString @JvmOverloads constructor(
     public val coordinates: List<List<Position>>,
     override val bbox: BoundingBox? = null,
+    override val foreignMembers: Map<String, Any> = emptyMap(),
 ) : Geometry() {
     @JvmOverloads
-    public constructor(vararg coordinates: List<Position>, bbox: BoundingBox? = null) : this(coordinates.toList(), bbox)
+    public constructor(
+        vararg coordinates: List<Position>,
+        bbox: BoundingBox? = null,
+        foreignMembers: Map<String, Any> = emptyMap(),
+    ) : this(coordinates.toList(), bbox, foreignMembers)
 
     @JvmOverloads
     public constructor(
         coordinates: Array<Array<DoubleArray>>,
         bbox: BoundingBox? = null,
-    ) : this(coordinates.map { it.map(::Position) }, bbox)
+        foreignMembers: Map<String, Any> = emptyMap(),
+    ) : this(
+        coordinates.map { it.map(::Position) },
+        bbox,
+        foreignMembers,
+    )
 
     init {
         coordinates.forEach { line ->
@@ -34,11 +46,11 @@ public data class MultiLineString @JvmOverloads constructor(
         }
     }
 
-    override fun json(): String = """{"type":"MultiLineString",${bbox.jsonProp()}"coordinates":${
-        coordinates.jsonJoin {
-            it.jsonJoin(transform = Position::json)
-        }
-    }}"""
+    override fun json(): String = """{"type":"MultiLineString",${bbox.jsonProp()}"coordinates":${coordinates.jsonJoin {
+        it.jsonJoin(
+            transform = Position::json,
+        )
+    }}${serializeForeignMembers()}}"""
 
     public companion object {
         @JvmStatic
@@ -61,8 +73,9 @@ public data class MultiLineString @JvmOverloads constructor(
             val coords =
                 json.getValue("coordinates").jsonArray.map { line -> line.jsonArray.map { it.jsonArray.toPosition() } }
             val bbox = json["bbox"]?.jsonArray?.toBbox()
+            val foreignMembers = json.foreignMembers()
 
-            return MultiLineString(coords, bbox)
+            return MultiLineString(coords, bbox, foreignMembers)
         }
     }
 }

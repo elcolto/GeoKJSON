@@ -1,8 +1,10 @@
 package io.github.elcolto.geokjson.geojson
 
 import io.github.elcolto.geokjson.geojson.serialization.GeometrySerializer
+import io.github.elcolto.geokjson.geojson.serialization.foreignMembers
 import io.github.elcolto.geokjson.geojson.serialization.jsonJoin
 import io.github.elcolto.geokjson.geojson.serialization.jsonProp
+import io.github.elcolto.geokjson.geojson.serialization.serializeForeignMembers
 import io.github.elcolto.geokjson.geojson.serialization.toBbox
 import io.github.elcolto.geokjson.geojson.serialization.toPosition
 import kotlinx.serialization.Serializable
@@ -18,26 +20,30 @@ import kotlin.jvm.JvmStatic
 public data class MultiPolygon @JvmOverloads constructor(
     public val coordinates: List<List<List<Position>>>,
     override val bbox: BoundingBox? = null,
+    override val foreignMembers: Map<String, Any> = emptyMap(),
 ) : Geometry() {
     @JvmOverloads
     public constructor(
         vararg coordinates: List<List<Position>>,
         bbox: BoundingBox? = null,
-    ) : this(coordinates.toList(), bbox)
+        foreignMembers: Map<String, Any> = emptyMap(),
+    ) : this(coordinates.toList(), bbox, foreignMembers)
 
     @JvmOverloads
     public constructor(
         coordinates: Array<Array<Array<DoubleArray>>>,
         bbox: BoundingBox? = null,
-    ) : this(coordinates.map { ring -> ring.map { it.map(::Position) } }, bbox)
+        foreignMembers: Map<String, Any> = emptyMap(),
+    ) : this(coordinates.map { ring -> ring.map { it.map(::Position) } }, bbox, foreignMembers)
 
-    override fun json(): String = """{"type":"MultiPolygon",${bbox.jsonProp()}"coordinates":${
-        coordinates.jsonJoin { polygon ->
+    override fun json(): String =
+        """{"type":"MultiPolygon",${bbox.jsonProp()}"coordinates":${coordinates.jsonJoin { polygon ->
             polygon.jsonJoin {
-                it.jsonJoin(transform = Position::json)
+                it.jsonJoin(
+                    transform = Position::json,
+                )
             }
-        }
-    }}"""
+        }}${serializeForeignMembers()}}"""
 
     public companion object {
         @JvmStatic
@@ -61,8 +67,9 @@ public data class MultiPolygon @JvmOverloads constructor(
                     polygon.jsonArray.map { ring -> ring.jsonArray.map { it.jsonArray.toPosition() } }
                 }
             val bbox = json["bbox"]?.jsonArray?.toBbox()
+            val foreignMembers = json.foreignMembers()
 
-            return MultiPolygon(coords, bbox)
+            return MultiPolygon(coords, bbox, foreignMembers)
         }
     }
 }

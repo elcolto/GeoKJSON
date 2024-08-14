@@ -7,7 +7,6 @@ import io.github.elcolto.geokjson.geojson.Point
 import io.github.elcolto.geokjson.geojson.Position
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonPrimitive
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -19,8 +18,8 @@ class FeatureCollectionSerializationTests {
         val feature = Feature(
             geometry,
             mapOf(
-                "size" to JsonPrimitive(45.1),
-                "name" to JsonPrimitive("Nowhere"),
+                "size" to 45.1,
+                "name" to "Nowhere",
             ),
         )
         val collection = FeatureCollection(feature, feature)
@@ -43,8 +42,8 @@ class FeatureCollectionSerializationTests {
         val featurePoint = Feature(
             point,
             mapOf(
-                "size" to JsonPrimitive(45.1),
-                "name" to JsonPrimitive("Nowhere"),
+                "size" to 45.1,
+                "name" to "Nowhere",
             ),
         )
         val line = LineString(coordinates = listOf(position, Position(position.component2(), position.component1())))
@@ -66,8 +65,8 @@ class FeatureCollectionSerializationTests {
         val feature = Feature(
             geometry,
             properties = mapOf(
-                "size" to JsonPrimitive(45.1),
-                "name" to JsonPrimitive("Nowhere"),
+                "size" to 45.1,
+                "name" to "Nowhere",
             ),
         )
         val collection = FeatureCollection(feature, feature)
@@ -89,10 +88,10 @@ class FeatureCollectionSerializationTests {
         val position = Position(12.3, 45.6)
         val point = Point(position)
         val featurePoint = Feature(
-            point,
-            mapOf(
-                "size" to JsonPrimitive(45.1),
-                "name" to JsonPrimitive("Nowhere"),
+            geometry = point,
+            properties = mapOf(
+                "size" to 45.1,
+                "name" to "Nowhere",
             ),
         )
         val line = LineString(coordinates = listOf(position, Position(position.component2(), position.component1())))

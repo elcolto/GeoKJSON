@@ -27,7 +27,11 @@ See below for constructing GeoJson objects using the DSL.
 ## GeoJson Objects
 
 The `GeoJson` interface represents all GeoJson objects. All GeoJson objects can have a `bbox` property specified on them
-which is a `BoundingBox` that represents the bounds of that object's geometry.
+which is a `BoundingBox` that represents the bounds of that object's geometry. According to
+section [6.1 of RFC 7946](https://datatracker.ietf.org/doc/html/rfc7946#section-6.1) each implementation of a GeoJson
+can contain additional properties which aren't described in the specification, so-called "foreign members". In GeoKJSON
+they are represented by an immutable `Map<String, Any>` structure, in which value can be a primitive, a `Collection<Any>` or a
+recursively structured `Map<String,Any>` of the same types. Custom Types are not supported.
 
 ### Geometry
 
@@ -340,16 +344,15 @@ be used in any place that a collection can be used.
 A `Feature` can contain a `Geometry` object, as well as a set of data properties, and optionally a commonly used
 identifier (`id`).
 
-A feature's properties are stored as a map of `JsonElement` objects from `kotlinx.serialization`.
+A feature's properties are stored as an immutable `Map<String, Any>` structure.
 A set of helper methods to get and set properties with the appropriate types directly.
 
 === "Kotlin"
 
     ``` kotlin
     val feature = Feature(point)
-    feature.setNumberProperty("size", 9999)
     
-    val size: Number? = feature.getNumberProperty("size") // 9999
+    val size: Number? = feature.properties["size"] // 9999
     val geometry: Geometry? = feature.geometry // point
     ```
 

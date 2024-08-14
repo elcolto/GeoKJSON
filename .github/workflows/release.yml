@@ -16,6 +16,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Changelog
+        uses: Bullrich/generate-release-changelog@master
+        id: Changelog
+        env:
+          REPO: ${{ github.repository }}
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
 
@@ -37,5 +43,7 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           release_name: GeoKJSON ${{ github.ref_name }}
+          body: |
+            ${{ steps.Changelog.outputs.changelog }}
           draft: true
           prerelease: false

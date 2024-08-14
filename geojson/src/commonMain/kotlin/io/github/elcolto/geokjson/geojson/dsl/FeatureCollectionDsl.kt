@@ -12,20 +12,32 @@ import kotlin.jvm.JvmName
 public class FeatureCollectionDsl(
     private val features: MutableList<Feature<Geometry>> = mutableListOf(),
     public var bbox: BoundingBox? = null,
+    public val foreignMembers: MutableMap<String, Any> = mutableMapOf(),
 ) {
     public operator fun Feature<Geometry>.unaryPlus() {
         features.add(this)
     }
 
-    public fun create(): FeatureCollection = FeatureCollection(features, bbox)
+    public fun create(): FeatureCollection = FeatureCollection(features, bbox, foreignMembers.toMap())
 
     public fun feature(
         geometry: Geometry? = null,
         id: String? = null,
         bbox: BoundingBox? = null,
+        foreignMembers: ForeignMembersBuilder.() -> Unit = {},
         properties: PropertiesBuilder.() -> Unit = {},
     ) {
-        +Feature(geometry, PropertiesBuilder().apply(properties).build(), id, bbox)
+        +Feature(
+            geometry = geometry,
+            properties = PropertiesBuilder().apply(properties).build(),
+            id = id,
+            bbox = bbox,
+            foreignMembers = ForeignMembersBuilder().apply(foreignMembers).build(),
+        )
+    }
+
+    public fun foreignMembers(foreignMembers: ForeignMembersBuilder.() -> Unit = {}) {
+        this.foreignMembers.putAll(ForeignMembersBuilder().apply(foreignMembers).build())
     }
 }
 
