@@ -1,11 +1,13 @@
-package io.github.elcolto.geokjson.turf
+package io.github.elcolto.geokjson.turf.grids
 
 import io.github.elcolto.geokjson.geojson.BoundingBox
 import io.github.elcolto.geokjson.geojson.Feature
 import io.github.elcolto.geokjson.geojson.FeatureCollection
-import io.github.elcolto.geokjson.geojson.Geometry
 import io.github.elcolto.geokjson.geojson.Polygon
 import io.github.elcolto.geokjson.geojson.Position
+import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
+import io.github.elcolto.geokjson.turf.Units
+import io.github.elcolto.geokjson.turf.convertLength
 import kotlin.math.abs
 import kotlin.math.floor
 
@@ -25,7 +27,6 @@ public fun squareGrid(
     cellHeight: Double,
     units: Units = Units.Kilometers,
 ): FeatureCollection {
-    val featureList = mutableListOf<Feature<Geometry>>()
     val west = bbox.southwest.longitude
     val south = bbox.southwest.latitude
     val east = bbox.northeast.longitude
@@ -37,31 +38,31 @@ public fun squareGrid(
     val bboxHeight = north - south
     val cellHeightDeg = convertLength(cellHeight, units, Units.Degrees)
 
-    val columns = floor(abs(bboxWidth) / cellWidthDeg)
-    val rows = floor(abs(bboxHeight) / cellHeightDeg)
+    val columns = floor(abs(bboxWidth) / cellWidthDeg).toInt()
+    val rows = floor(abs(bboxHeight) / cellHeightDeg).toInt()
 
     val deltaX = (bboxWidth - columns * cellWidthDeg) / 2
     val deltaY = (bboxHeight - rows * cellHeightDeg) / 2
 
-    var currentX = west + deltaX
-    repeat(columns.toInt()) {
-        var currentY = south + deltaY
-        repeat(rows.toInt()) {
-            val positions = mutableListOf<Position>().apply {
-                add(Position(currentX, currentY))
-                add(Position(currentX, currentY + cellHeightDeg))
-                add(Position(currentX + cellWidthDeg, currentY + cellHeightDeg))
-                add(Position(currentX + cellWidthDeg, currentY))
-                add(Position(currentX, currentY))
+    return FeatureCollection(
+        (0 until columns).flatMap { col ->
+            (0 until rows).map { row ->
+                val x = west + deltaX + col * cellWidthDeg
+                val y = south + deltaY + row * cellHeightDeg
+                Feature(
+                    Polygon(
+                        listOf(
+                            listOf(
+                                Position(x, y),
+                                Position(x, y + cellHeightDeg),
+                                Position(x + cellWidthDeg, y + cellHeightDeg),
+                                Position(x + cellWidthDeg, y),
+                                Position(x, y),
+                            ),
+                        ),
+                    ),
+                )
             }
-            mutableListOf<List<Position>>().apply {
-                add(positions)
-            }.also {
-                featureList.add(Feature(Polygon(it)))
-            }
-            currentY += cellHeightDeg
-        }
-        currentX += cellWidthDeg
-    }
-    return FeatureCollection(featureList)
+        },
+    )
 }

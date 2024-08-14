@@ -104,10 +104,6 @@ public fun convertArea(area: Double, from: Units = Units.Meters, to: Units = Uni
  * @return angle between 0 and 360 degrees
  */
 @ExperimentalTurfApi
-public fun bearingToAzimuth(bearing: Double): Double {
-    var angle = bearing % 360
-    if (angle < 0) {
-        angle += 360
-    }
-    return angle
-}
+public fun bearingToAzimuth(bearing: Double): Double = (bearing % 360 + 360) % 360
+
+public const val AREA_EARTH_RADIUS: Int = 6378137

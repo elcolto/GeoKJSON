@@ -1,7 +1,9 @@
-package io.github.elcolto.geokjson.turf
+package io.github.elcolto.geokjson.turf.transformation
 
 import io.github.elcolto.geokjson.geojson.LineString
 import io.github.elcolto.geokjson.geojson.Position
+import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
+import io.github.elcolto.geokjson.turf.coordAll
 
 /**
  * Takes a [LineString] and returns a curved version by applying a Bezier spline algorithm.
