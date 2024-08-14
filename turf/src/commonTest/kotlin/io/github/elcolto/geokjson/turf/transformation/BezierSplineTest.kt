@@ -1,14 +1,14 @@
-package io.github.elcolto.geokjson.turf
+package io.github.elcolto.geokjson.turf.transformation
 
 import io.github.elcolto.geokjson.geojson.Feature
 import io.github.elcolto.geokjson.geojson.LineString
-import io.github.elcolto.geokjson.turf.transformation.bezierSpline
+import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @ExperimentalTurfApi
-class TransformationTest {
+class BezierSplineTest {
 
     @Test
     fun testBezierSplineIn() {

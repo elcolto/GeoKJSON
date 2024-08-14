@@ -1,10 +1,11 @@
-package io.github.elcolto.geokjson.turf
+package io.github.elcolto.geokjson.turf.booleans
 
 import io.github.elcolto.geokjson.geojson.Feature
 import io.github.elcolto.geokjson.geojson.MultiPolygon
 import io.github.elcolto.geokjson.geojson.Polygon
 import io.github.elcolto.geokjson.geojson.dsl.point
 import io.github.elcolto.geokjson.geojson.dsl.polygon
+import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlin.test.Test
@@ -12,8 +13,9 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
+@ExperimentalTurfApi
 @ExperimentalSerializationApi
-class BooleansTests {
+class PointInPolygonTests {
 
     @Test
     fun testFeatureCollection() {
@@ -29,8 +31,8 @@ class BooleansTests {
         val ptIn = point(50.0, 50.0)
         val ptOut = point(140.0, 150.0)
 
-        assertTrue(booleanPointInPolygon(ptIn, poly), "point inside simple polygon")
-        assertFalse(booleanPointInPolygon(ptOut, poly), "point outside simple polygon")
+        assertTrue(pointInPolygon(ptIn, poly), "point inside simple polygon")
+        assertFalse(pointInPolygon(ptOut, poly), "point outside simple polygon")
 
         // test for a concave polygon
         val concavePoly = polygon {
@@ -47,11 +49,11 @@ class BooleansTests {
         val ptConcaveOut = point(25.0, 50.0)
 
         assertTrue(
-            booleanPointInPolygon(ptConcaveIn, concavePoly),
+            pointInPolygon(ptConcaveIn, concavePoly),
             "point inside concave polygon",
         )
         assertFalse(
-            booleanPointInPolygon(ptConcaveOut, concavePoly),
+            pointInPolygon(ptConcaveOut, concavePoly),
             "point outside concave polygon",
         )
     }
@@ -63,9 +65,9 @@ class BooleansTests {
         val ptOutsidePoly = point(-86.75079345703125, 36.18527313913089)
         val polyHole = Feature.fromJson<Polygon>(readResource("booleans/in/poly-with-hole.geojson")).geometry as Polygon
 
-        assertFalse(booleanPointInPolygon(ptInHole, polyHole))
-        assertTrue(booleanPointInPolygon(ptInPoly, polyHole))
-        assertFalse(booleanPointInPolygon(ptOutsidePoly, polyHole))
+        assertFalse(pointInPolygon(ptInHole, polyHole))
+        assertTrue(pointInPolygon(ptInPoly, polyHole))
+        assertFalse(pointInPolygon(ptOutsidePoly, polyHole))
     }
 
     @Test
@@ -78,11 +80,11 @@ class BooleansTests {
             readResource("booleans/in/multipoly-with-hole.geojson"),
         ).geometry as MultiPolygon
 
-        assertFalse(booleanPointInPolygon(ptInHole, multiPolyHole))
-        assertTrue(booleanPointInPolygon(ptInPoly, multiPolyHole))
-        assertTrue(booleanPointInPolygon(ptInPoly2, multiPolyHole))
-        assertTrue(booleanPointInPolygon(ptInPoly, multiPolyHole))
-        assertFalse(booleanPointInPolygon(ptOutsidePoly, multiPolyHole))
+        assertFalse(pointInPolygon(ptInHole, multiPolyHole))
+        assertTrue(pointInPolygon(ptInPoly, multiPolyHole))
+        assertTrue(pointInPolygon(ptInPoly2, multiPolyHole))
+        assertTrue(pointInPolygon(ptInPoly, multiPolyHole))
+        assertFalse(pointInPolygon(ptOutsidePoly, multiPolyHole))
     }
 
     @Test
@@ -196,7 +198,7 @@ class BooleansTests {
                 "Boundary " + (if (ignoreBoundary) "ignored " else "") + "test number "
             tests.forEachIndexed { i, item ->
                 assertEquals(
-                    booleanPointInPolygon(item.second, item.first, ignoreBoundary),
+                    pointInPolygon(item.second, item.first, ignoreBoundary),
                     item.third,
                     testTitle + i,
                 )
@@ -222,6 +224,6 @@ class BooleansTests {
             ),
         )
 
-        assertTrue(booleanPointInPolygon(pt1, poly))
+        assertTrue(pointInPolygon(pt1, poly))
     }
 }
