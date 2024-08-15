@@ -53,6 +53,11 @@ public final class io/github/elcolto/geokjson/turf/booleans/PointInPolygonKt {
 	public static synthetic fun pointInPolygon$default (Lio/github/elcolto/geokjson/geojson/Point;Lio/github/elcolto/geokjson/geojson/Polygon;ZILjava/lang/Object;)Z
 }
 
+public final class io/github/elcolto/geokjson/turf/booleans/PointOnLineKt {
+	public static final fun pointOnLine (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/LineString;ZLjava/lang/Double;)Z
+	public static synthetic fun pointOnLine$default (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/LineString;ZLjava/lang/Double;ILjava/lang/Object;)Z
+}
+
 public final class io/github/elcolto/geokjson/turf/grids/SquareGridKt {
 	public static final fun squareGrid (Lio/github/elcolto/geokjson/geojson/BoundingBox;DDLio/github/elcolto/geokjson/turf/Units;)Lio/github/elcolto/geokjson/geojson/FeatureCollection;
 	public static synthetic fun squareGrid$default (Lio/github/elcolto/geokjson/geojson/BoundingBox;DDLio/github/elcolto/geokjson/turf/Units;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/FeatureCollection;
@@ -156,6 +161,11 @@ public final class io/github/elcolto/geokjson/turf/misc/NearestPointOnLineKt {
 	public static final fun nearestPointOnLine (Lio/github/elcolto/geokjson/geojson/MultiLineString;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;)Lio/github/elcolto/geokjson/turf/misc/NearestPointOnLine;
 	public static synthetic fun nearestPointOnLine$default (Lio/github/elcolto/geokjson/geojson/LineString;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;ILjava/lang/Object;)Lio/github/elcolto/geokjson/turf/misc/NearestPointOnLine;
 	public static synthetic fun nearestPointOnLine$default (Lio/github/elcolto/geokjson/geojson/MultiLineString;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;ILjava/lang/Object;)Lio/github/elcolto/geokjson/turf/misc/NearestPointOnLine;
+}
+
+public final class io/github/elcolto/geokjson/turf/misc/ShortestPathKt {
+	public static final fun shortestPath (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Polygon;Lio/github/elcolto/geokjson/turf/Units;I)Lio/github/elcolto/geokjson/geojson/LineString;
+	public static synthetic fun shortestPath$default (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Polygon;Lio/github/elcolto/geokjson/turf/Units;IILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/LineString;
 }
 
 public final class io/github/elcolto/geokjson/turf/transformation/BezierSplineKt {
