@@ -1,13 +1,15 @@
 @file:OptIn(ExperimentalTurfApi::class)
 @file:Suppress("LongMethod", "MagicNumber", "NestedBlockDepth")
 
-package io.github.elcolto.geokjson.turf
+package io.github.elcolto.geokjson.turf.booleans
 
 import io.github.elcolto.geokjson.geojson.BoundingBox
 import io.github.elcolto.geokjson.geojson.MultiPolygon
 import io.github.elcolto.geokjson.geojson.Point
 import io.github.elcolto.geokjson.geojson.Polygon
 import io.github.elcolto.geokjson.geojson.Position
+import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
+import io.github.elcolto.geokjson.turf.measurement.bbox
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -20,12 +22,13 @@ import kotlin.jvm.JvmOverloads
  * the point is inside the polygon otherwise false.
  * @return `true` if the Position is inside the Polygon; `false` if the Position is not inside the Polygon
  */
+@ExperimentalTurfApi
 @JvmOverloads
-public fun booleanPointInPolygon(point: Point, polygon: Polygon, ignoreBoundary: Boolean = false): Boolean {
+public fun pointInPolygon(point: Point, polygon: Polygon, ignoreBoundary: Boolean = false): Boolean {
     val bbox = bbox(polygon)
     // normalize to multipolygon
     val polys = listOf(polygon.coordinates)
-    return booleanPointInPolygon(point.coordinates, bbox, polys, ignoreBoundary)
+    return pointInPolygon(point.coordinates, bbox, polys, ignoreBoundary)
 }
 
 /**
@@ -38,50 +41,32 @@ public fun booleanPointInPolygon(point: Point, polygon: Polygon, ignoreBoundary:
  * the point is inside the polygon otherwise false.
  * @return `true` if the Position is inside the Polygon; `false` if the Position is not inside the Polygon
  */
+@ExperimentalTurfApi
 @JvmOverloads
-public fun booleanPointInPolygon(point: Point, polygon: MultiPolygon, ignoreBoundary: Boolean = false): Boolean {
+public fun pointInPolygon(point: Point, polygon: MultiPolygon, ignoreBoundary: Boolean = false): Boolean {
     val bbox = bbox(polygon)
     val polys = polygon.coordinates
-    return booleanPointInPolygon(point.coordinates, bbox, polys, ignoreBoundary)
+    return pointInPolygon(point.coordinates, bbox, polys, ignoreBoundary)
 }
 
-@Suppress("ReturnCount")
-private fun booleanPointInPolygon(
+private fun pointInPolygon(
     point: Position,
     bbox: BoundingBox,
     polys: List<List<List<Position>>>,
     ignoreBoundary: Boolean,
 ): Boolean {
-    // Quick elimination if point is not inside bbox
-    if (!inBBox(point, bbox)) {
-        return false
+    return inBBox(point, bbox) && polys.any { poly ->
+        val pointIsInRing = inRing(point, poly[0], ignoreBoundary)
+        val isInHole = !poly.drop(1).any { hole -> inRing(point, hole, !ignoreBoundary) }
+        pointIsInRing && isInHole
     }
-    for (i in polys.indices) {
-        // check if it is in the outer ring first
-        if (inRing(point, polys[i][0], ignoreBoundary)) {
-            var inHole = false
-            var k = 1
-            // check for the point in any of the holes
-            while (k < polys[i].size && !inHole) {
-                if (inRing(point, polys[i][k], !ignoreBoundary)) {
-                    inHole = true
-                }
-                k++
-            }
-            if (!inHole) {
-                return true
-            }
-        }
-    }
-    return false
 }
 
 private fun inRing(point: Position, ring: List<Position>, ignoreBoundary: Boolean): Boolean {
     val pt = point.coordinates
     var isInside = false
 
-    @Suppress("NAME_SHADOWING")
-    val ring = if (
+    val slicedRing = if (
         ring[0].coordinates[0] == ring.last().coordinates[0] &&
         ring[0].coordinates[1] == ring.last().coordinates[1]
     ) {
@@ -90,12 +75,12 @@ private fun inRing(point: Position, ring: List<Position>, ignoreBoundary: Boolea
         ring
     }
     var i = 0
-    var j = ring.size - 1
-    while (i < ring.size) {
-        val xi = ring[i].coordinates[0]
-        val yi = ring[i].coordinates[1]
-        val xj = ring[j].coordinates[0]
-        val yj = ring[j].coordinates[1]
+    var j = slicedRing.size - 1
+    while (i < slicedRing.size) {
+        val xi = slicedRing[i].coordinates[0]
+        val yi = slicedRing[i].coordinates[1]
+        val xj = slicedRing[j].coordinates[0]
+        val yj = slicedRing[j].coordinates[1]
         val onBoundary =
             pt[1] * (xi - xj) + yi * (xj - pt[0]) + yj * (pt[0] - xi) == 0.0 &&
                 (xi - pt[0]) * (xj - pt[0]) <= 0 &&

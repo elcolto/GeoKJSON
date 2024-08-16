@@ -8,6 +8,7 @@ import io.github.elcolto.geokjson.geojson.dsl.multiLineString
 import io.github.elcolto.geokjson.geojson.dsl.multiPolygon
 import io.github.elcolto.geokjson.geojson.dsl.point
 import io.github.elcolto.geokjson.geojson.dsl.polygon
+import io.github.elcolto.geokjson.turf.measurement.bbox
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

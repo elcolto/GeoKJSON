@@ -1,8 +1,10 @@
 package io.github.elcolto.geokjson.geojson
 
 import io.github.elcolto.geokjson.geojson.serialization.GeometrySerializer
+import io.github.elcolto.geokjson.geojson.serialization.foreignMembers
 import io.github.elcolto.geokjson.geojson.serialization.jsonJoin
 import io.github.elcolto.geokjson.geojson.serialization.jsonProp
+import io.github.elcolto.geokjson.geojson.serialization.serializeForeignMembers
 import io.github.elcolto.geokjson.geojson.serialization.toBbox
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -15,33 +17,24 @@ import kotlin.jvm.JvmStatic
 
 @Suppress("SERIALIZER_TYPE_INCOMPATIBLE")
 @Serializable(with = GeometrySerializer::class)
-public class GeometryCollection @JvmOverloads constructor(
+public data class GeometryCollection @JvmOverloads constructor(
     public val geometries: List<Geometry>,
     override val bbox: BoundingBox? = null,
+    override val foreignMembers: Map<String, Any>,
 ) : Geometry(), Collection<Geometry> by geometries {
     @JvmOverloads
-    public constructor(vararg geometries: Geometry, bbox: BoundingBox? = null) : this(geometries.toList(), bbox)
+    public constructor(
+        vararg geometries: Geometry,
+        bbox: BoundingBox? = null,
+        foreignMembers: Map<String, Any> = emptyMap(),
+    ) : this(geometries.toList(), bbox, foreignMembers)
 
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other == null || this::class != other::class) return false
-
-        other as GeometryCollection
-
-        if (geometries != other.geometries) return false
-        if (bbox != other.bbox) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = geometries.hashCode()
-        result = 31 * result + (bbox?.hashCode() ?: 0)
-        return result
-    }
-
-    override fun json(): String =
-        """{"type":"GeometryCollection",${bbox.jsonProp()}"geometries":${geometries.jsonJoin { it.json() }}}"""
+    override fun json(): String = """{"type":"GeometryCollection",""" +
+        bbox.jsonProp() +
+        """"geometries":""" +
+        geometries.jsonJoin { it.json() } +
+        serializeForeignMembers() +
+        """}"""
 
     public companion object {
         @JvmStatic
@@ -66,8 +59,9 @@ public class GeometryCollection @JvmOverloads constructor(
             }
 
             val bbox = json["bbox"]?.jsonArray?.toBbox()
+            val foreignMembers = json.foreignMembers()
 
-            return GeometryCollection(geometries, bbox)
+            return GeometryCollection(geometries, bbox, foreignMembers)
         }
     }
 }

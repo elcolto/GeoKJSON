@@ -35,30 +35,12 @@ internal fun Project.configureKotlinMultiplatform(
         nodejs()
     }
 
-    val iosArm64 = iosArm64()
-    val iosX64 = iosX64()
-    val iosSimulatorArm64 = iosSimulatorArm64()
-    val watchosArm32 = watchosArm32()
-    val watchosArm64 = watchosArm64()
-    val watchosSimulatorArm64 = watchosSimulatorArm64()
-    val appleTargets = listOf(
-        iosArm64,
-        iosX64,
-        iosSimulatorArm64,
-        watchosArm32,
-        watchosArm64,
-        watchosSimulatorArm64,
-    )
-
-    appleTargets.forEach { target ->
-        with(target) {
-            binaries {
-                framework {
-                    baseName = "GeoKJSON"
-                }
-            }
-        }
-    }
+    iosArm64()
+    iosX64()
+    iosSimulatorArm64()
+    watchosArm32()
+    watchosArm64()
+    watchosSimulatorArm64()
 
     applyDefaultHierarchyTemplate()
 

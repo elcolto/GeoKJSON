@@ -1,5 +1,6 @@
 package io.github.elcolto.geokjson.convention
 
+import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinMultiplatform
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import com.vanniktech.maven.publish.SonatypeHost
@@ -11,12 +12,13 @@ internal fun Project.configurePublishing(
 
     configure(
         KotlinMultiplatform(
+            javadocJar = JavadocJar.Dokka("dokkaHtml"),
             sourcesJar = true,
             androidVariantsToPublish = listOf("release")
         )
     )
 
-    publishToMavenCentral(SonatypeHost.DEFAULT)
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
     signAllPublications()
 
     coordinates(GroupId, moduleName(), Version)

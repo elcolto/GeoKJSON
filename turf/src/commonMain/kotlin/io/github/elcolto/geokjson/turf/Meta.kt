@@ -27,7 +27,7 @@ public fun Geometry.coordAll(): List<Position> = when (this) {
 }
 
 @ExperimentalTurfApi
-public fun Feature.coordAll(): List<Position>? = geometry?.coordAll()
+public fun Feature<*>.coordAll(): List<Position>? = geometry?.coordAll()
 
 @ExperimentalTurfApi
 public fun FeatureCollection.coordAll(): List<Position> = features.flatMap { it.coordAll() ?: emptyList() }

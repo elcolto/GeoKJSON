@@ -1,11 +1,12 @@
 name: Docs
 on:
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
+  push:
+    branches:
+      - main
+    workflow_run:
+      workflows: [ Publish ]
+      types:
+        - completed
 
 jobs:
   publish:

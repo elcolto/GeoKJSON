@@ -1,26 +1,27 @@
-package io.github.elcolto.geokjson.turf
+package io.github.elcolto.geokjson.turf.transformation
 
 import io.github.elcolto.geokjson.geojson.Feature
 import io.github.elcolto.geokjson.geojson.LineString
+import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @ExperimentalTurfApi
-class TransformationTest {
+class BezierSplineTest {
 
     @Test
     fun testBezierSplineIn() {
-        val feature = Feature.fromJson(readResource("transformation/bezierspline/in/bezierIn.json"))
-        val expectedOut = Feature.fromJson(readResource("transformation/bezierspline/out/bezierIn.json"))
+        val feature = Feature.fromJson<LineString>(readResource("transformation/bezierspline/in/bezierIn.json"))
+        val expectedOut = Feature.fromJson<LineString>(readResource("transformation/bezierspline/out/bezierIn.json"))
 
         assertEquals(expectedOut.geometry, bezierSpline(feature.geometry as LineString))
     }
 
     @Test
     fun testBezierSplineSimple() {
-        val feature = Feature.fromJson(readResource("transformation/bezierspline/in/simple.json"))
-        val expectedOut = Feature.fromJson(readResource("transformation/bezierspline/out/simple.json"))
+        val feature = Feature.fromJson<LineString>(readResource("transformation/bezierspline/in/simple.json"))
+        val expectedOut = Feature.fromJson<LineString>(readResource("transformation/bezierspline/out/simple.json"))
 
         assertEquals(expectedOut.geometry, bezierSpline(feature.geometry as LineString))
     }
@@ -32,8 +33,8 @@ class TransformationTest {
      */
     @Test
     fun testBezierSplineAcrossPacific() {
-        val feature = Feature.fromJson(readResource("transformation/bezierspline/in/issue1063.json"))
-        val expectedOut = Feature.fromJson(readResource("transformation/bezierspline/out/issue1063.json"))
+        val feature = Feature.fromJson<LineString>(readResource("transformation/bezierspline/in/issue1063.json"))
+        val expectedOut = Feature.fromJson<LineString>(readResource("transformation/bezierspline/out/issue1063.json"))
 
         assertEquals(expectedOut.geometry, bezierSpline(feature.geometry as LineString))
     }

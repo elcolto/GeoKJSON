@@ -1,8 +1,10 @@
 package io.github.elcolto.geokjson.geojson
 
 import io.github.elcolto.geokjson.geojson.serialization.FeatureCollectionSerializer
+import io.github.elcolto.geokjson.geojson.serialization.foreignMembers
 import io.github.elcolto.geokjson.geojson.serialization.jsonJoin
 import io.github.elcolto.geokjson.geojson.serialization.jsonProp
+import io.github.elcolto.geokjson.geojson.serialization.serializeForeignMembers
 import io.github.elcolto.geokjson.geojson.serialization.toBbox
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -22,38 +24,30 @@ import kotlin.jvm.JvmStatic
  * @property features The collection of [Feature] objects stored in this collection
  */
 @Serializable(with = FeatureCollectionSerializer::class)
-public class FeatureCollection(
-    public val features: List<Feature> = emptyList(),
+public data class FeatureCollection(
+    public val features: List<Feature<Geometry>> = emptyList(),
     override val bbox: BoundingBox? = null,
-) : Collection<Feature> by features, GeoJson {
+    override val foreignMembers: Map<String, Any> = emptyMap(),
+) : Collection<Feature<Geometry>> by features, GeoJson {
 
-    public constructor(vararg features: Feature, bbox: BoundingBox? = null) : this(features.toMutableList(), bbox)
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other == null || this::class != other::class) return false
-
-        other as FeatureCollection
-
-        if (features != other.features) return false
-        if (bbox != other.bbox) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = features.hashCode()
-        result = 31 * result + (bbox?.hashCode() ?: 0)
-        return result
-    }
+    public constructor(
+        vararg features: Feature<Geometry>,
+        bbox: BoundingBox? = null,
+        foreignMembers: Map<String, Any> = emptyMap(),
+    ) : this(
+        features.toMutableList(),
+        bbox,
+        foreignMembers,
+    )
 
     override fun toString(): String = json()
 
-    override fun json(): String =
-        """{"type":"FeatureCollection",${bbox.jsonProp()}"features":${features.jsonJoin { it.json() }}}"""
-
-    public operator fun component1(): List<Feature> = features
-    public operator fun component2(): BoundingBox? = bbox
+    override fun json(): String = """{"type":"FeatureCollection",""" +
+        bbox.jsonProp() +
+        """"features":""" +
+        features.jsonJoin { it.json() } +
+        serializeForeignMembers() +
+        """}"""
 
     public companion object {
         @JvmStatic
@@ -74,9 +68,11 @@ public class FeatureCollection(
             }
 
             val bbox = json["bbox"]?.jsonArray?.toBbox()
-            val features = json.getValue("features").jsonArray.map { Feature.fromJson(it.jsonObject) }
+            val features = json.getValue("features").jsonArray
+                .map { Feature.fromJson<Geometry>(it.jsonObject) }
+            val foreignMembers = json.foreignMembers()
 
-            return FeatureCollection(features, bbox)
+            return FeatureCollection(features, bbox, foreignMembers)
         }
     }
 }

@@ -1,7 +1,9 @@
 package io.github.elcolto.geokjson.geojson
 
 import io.github.elcolto.geokjson.geojson.serialization.GeometrySerializer
+import io.github.elcolto.geokjson.geojson.serialization.foreignMembers
 import io.github.elcolto.geokjson.geojson.serialization.jsonProp
+import io.github.elcolto.geokjson.geojson.serialization.serializeForeignMembers
 import io.github.elcolto.geokjson.geojson.serialization.toBbox
 import io.github.elcolto.geokjson.geojson.serialization.toPosition
 import kotlinx.serialization.Serializable
@@ -14,32 +16,20 @@ import kotlin.jvm.JvmStatic
 
 @Suppress("SERIALIZER_TYPE_INCOMPATIBLE")
 @Serializable(with = GeometrySerializer::class)
-public class Point @JvmOverloads constructor(
+public data class Point @JvmOverloads constructor(
     public val coordinates: Position,
     override val bbox: BoundingBox? = null,
+    override val foreignMembers: Map<String, Any> = emptyMap(),
 ) : Geometry() {
     @JvmOverloads
-    public constructor(coordinates: DoubleArray, bbox: BoundingBox? = null) : this(Position(coordinates), bbox)
+    public constructor(
+        coordinates: DoubleArray,
+        bbox: BoundingBox? = null,
+        foreignMembers: Map<String, Any> = emptyMap(),
+    ) : this(Position(coordinates), bbox, foreignMembers)
 
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other == null || this::class != other::class) return false
-
-        other as Point
-
-        if (coordinates != other.coordinates) return false
-        if (bbox != other.bbox) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = coordinates.hashCode()
-        result = 31 * result + (bbox?.hashCode() ?: 0)
-        return result
-    }
-
-    override fun json(): String = """{"type":"Point",${bbox.jsonProp()}"coordinates":${coordinates.json()}}"""
+    override fun json(): String =
+        """{"type":"Point",${bbox.jsonProp()}"coordinates":${coordinates.json()}${serializeForeignMembers()}}"""
 
     public companion object {
         @JvmStatic
@@ -60,8 +50,9 @@ public class Point @JvmOverloads constructor(
 
             val coords = json.getValue("coordinates").jsonArray.toPosition()
             val bbox = json["bbox"]?.jsonArray?.toBbox()
+            val foreignMembers = json.foreignMembers()
 
-            return Point(coords, bbox)
+            return Point(coords, bbox, foreignMembers)
         }
     }
 }

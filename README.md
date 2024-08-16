@@ -11,7 +11,11 @@ This project divided into two modules which are even released into separate arti
 - [geojson](geojson) - Containing a collection of [GeoJSON](https://geojson.org/) structured geographic data. These are
   designed to apply to [WGS 84](https://en.wikipedia.org/wiki/World_Geodetic_System#WGS_84)
   and [RFC 7946](https://datatracker.ietf.org/doc/html/rfc7946)
+
+  ![Maven Central](https://img.shields.io/maven-central/v/io.github.elcolto.geokjson/geojson)
+
 - [turf](turf) - A port of [turfjs](https://turfjs.org/) functions for spatial analysis and operations
+  ![Maven Central](https://img.shields.io/maven-central/v/io.github.elcolto.geokjson/turf)
 
 The goal of these libraries is to provide GeoJSON functionality for Kotlin Multiplatform projects. So encapsulation and
 logical operations for geographic needs can be achieved on a shared code base.
@@ -20,9 +24,9 @@ logical operations for geographic needs can be achieved on a shared code base.
 
 ```kotlin
 commonMain {
-    dependencies {
-        implementation("io.github.elcolto.geokjson:geojson:$geokVersion")
-        implementation("io.github.elcolto.geokjson:turf:$geokVersion")
-    }
+  dependencies {
+    implementation("io.github.elcolto.geokjson:geojson:$geokVersion")
+    implementation("io.github.elcolto.geokjson:turf:$geokVersion")
+  }
 }
 ```

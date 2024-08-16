@@ -6,18 +6,18 @@ You can view porting progress for the next release [here](https://github.com/del
 
 ## Measurement
 
-- [x] [`along`](./api/turf/io.github.elcolto.geokjson.turf/along.html)
-- [x] [`area`](./api/turf/io.github.elcolto.geokjson.turf/area.html)
-- [x] [`bbox`](./api/turf/io.github.elcolto.geokjson.turf/bbox.html)
-- [x] [`bboxPolygon`](./api/turf/io.github.elcolto.geokjson.turf/bbox-polygon.html)
-- [x] [`bearing`](./api/turf/io.github.elcolto.geokjson.turf/bearing.html)
-- [x] [`center`](./api/turf/io.github.elcolto.geokjson.turf/center.html)
+- [x] [`along`](./api/turf/io.github.elcolto.geokjson.turf.measurement/along.html)
+- [x] [`area`](./api/turf/io.github.elcolto.geokjson.turf.measurement/area.html)
+- [x] [`bbox`](./api/turf/io.github.elcolto.geokjson.turf.measurement/bbox.html)
+- [x] [`bboxPolygon`](./api/turf/io.github.elcolto.geokjson.turf.measurement/bbox-polygon.html)
+- [x] [`bearing`](./api/turf/io.github.elcolto.geokjson.turf.measurement/bearing.html)
+- [x] [`center`](./api/turf/io.github.elcolto.geokjson.turf.measurement/center.html)
 - [ ] `centerOfMass`
-- [x] [`destination`](./api/turf/io.github.elcolto.geokjson.turf/destination.html)
-- [x] [`distance`](./api/turf/io.github.elcolto.geokjson.turf/distance.html)
-- [ ] `envelope`
-- [x] [`length`](./api/turf/io.github.elcolto.geokjson.turf/length.html)
-- [x] [`midpoint`](./api/turf/io.github.elcolto.geokjson.turf/midpoint.html)
+- [x] [`destination`](./api/turf/io.github.elcolto.geokjson.turf.measurement/destination.html)
+- [x] [`distance`](./api/turf/io.github.elcolto.geokjson.turf.measurement/distance.html)
+- [x] [`envelope`](./api/turf/io.github.elcolto.geokjson.turf.measurement/envelope.html)
+- [x] [`length`](./api/turf/io.github.elcolto.geokjson.turf.measurement/length.html)
+- [x] [`midpoint`](./api/turf/io.github.elcolto.geokjson.turf.measurement/midpoint.html)
 - [ ] `pointOnFeature`
 - [ ] `polygonTangents`
 - [ ] `pointToLineDistance`
@@ -25,7 +25,7 @@ You can view porting progress for the next release [here](https://github.com/del
 - [ ] `rhumbDestination`
 - [ ] `rhumbDistance`
 - [ ] `square`
-- [x] [`greatCircle`](./api/turf/io.github.elcolto.geokjson.turf/great-circle.html)
+- [x] [`greatCircle`](./api/turf/io.github.elcolto.geokjson.turf.measurement/great-circle.html)
 
 ## Coordinate Mutation
 
@@ -39,9 +39,9 @@ Use `round` or `Math.round` from the standard library instead.
 ## Transformation
 
 - [ ] `bboxClip`
-- [x] [`bezierSpline`](./api/turf/io.github.elcolto.geokjson.turf/bezier-spline.html)
+- [x] [`bezierSpline`](./api/turf/io.github.elcolto.geokjson.turf.transformation/bezier-spline.html)
 - [ ] `buffer`
-- [ ] `circle`
+- [x] [`circle`](./api/turf/io.github.elcolto.geokjson.turf.transformation/circle.html)
 - [ ] `clone`
 - [ ] `concave`
 - [ ] `convex`
@@ -71,15 +71,15 @@ Use `round` or `Math.round` from the standard library instead.
 - [ ] `kinks`
 - [ ] `lineArc`
 - [ ] `lineChunk`
-- [x] [`lineIntersect`](./api/turf/io.github.elcolto.geokjson.turf/line-intersect.html)
+- [x] [`lineIntersect`](./api/turf/io.github.elcolto.geokjson.turf.misc/line-intersect.html)
   Partially implemented.
 - [ ] `lineOverlap`
 - [ ] `lineSegment`
-- [x] [`lineSlice`](./api/turf/io.github.elcolto.geokjson.turf/line-slice.html)
+- [x] [`lineSlice`](./api/turf/io.github.elcolto.geokjson.turf.misc/line-slice.html)
 - [ ] `lineSliceAlong`
 - [ ] `lineSplit`
 - [ ] `mask`
-- [x] [`nearestPointOnLine`](./api/turf/io.github.elcolto.geokjson.turf/nearest-point-on-line.html)
+- [x] [`nearestPointOnLine`](./api/turf/io.github.elcolto.geokjson.turf.misc/nearest-point-on-line.html)
 - [ ] `sector`
 - [ ] `shortestPath`
 - [ ] `unkinkPolygon`
@@ -116,7 +116,7 @@ Use the [GeoJson DSL](./geojson-dsl) instead.
 
 - [ ] `hexGrid`
 - [ ] `pointGrid`
-- [x] [`squareGrid`](./api/turf/io.github.elcolto.geokjson.turf/square-grid.html)
+- [x] [`squareGrid`](./api/turf/io.github.elcolto.geokjson.turf.grids/square-grid.html)
 - [ ] `triangleGrid`
 
 ## Classification
@@ -167,7 +167,7 @@ Use the [GeoJson DSL](./geojson-dsl) instead.
 - [ ] `booleanEqual`
 - [ ] `booleanOverlap`
 - [ ] `booleanParallel`
-- [x] [`booleanPointInPolygon`](./api/turf/io.github.elcolto.geokjson.turf/boolean-point-in-polygon.html)
+- [x] [`booleanPointInPolygon`](./api/turf/io.github.elcolto.geokjson.turf.booleans/point-in-polygon.html)
 - [ ] `booleanPointOnLine`
 - [ ] `booleanWithin`
 

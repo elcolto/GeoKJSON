@@ -1,15 +1,19 @@
-package io.github.elcolto.geokjson.turf
+package io.github.elcolto.geokjson.turf.grids
 
 import io.github.elcolto.geokjson.geojson.BoundingBox
 import io.github.elcolto.geokjson.geojson.FeatureCollection
 import io.github.elcolto.geokjson.geojson.Polygon
 import io.github.elcolto.geokjson.geojson.Position
+import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
+import io.github.elcolto.geokjson.turf.Units
+import io.github.elcolto.geokjson.turf.coordAll
+import io.github.elcolto.geokjson.turf.measurement.computeBbox
 import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class GridsTest {
+class SquareGridTest {
 
     private lateinit var box: BoundingBox
 
