@@ -15,23 +15,8 @@ import io.github.elcolto.geokjson.geojson.Point
 import io.github.elcolto.geokjson.geojson.Polygon
 import io.github.elcolto.geokjson.geojson.Position
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonArray
-import kotlinx.serialization.json.JsonNull
-import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.JsonPrimitive
-import kotlinx.serialization.json.boolean
-import kotlinx.serialization.json.booleanOrNull
-import kotlinx.serialization.json.double
-import kotlinx.serialization.json.doubleOrNull
-import kotlinx.serialization.json.float
-import kotlinx.serialization.json.floatOrNull
-import kotlinx.serialization.json.int
-import kotlinx.serialization.json.intOrNull
-import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
-import kotlinx.serialization.json.long
-import kotlinx.serialization.json.longOrNull
 
 internal object GeoJsonDslBuilder {
 
@@ -41,7 +26,7 @@ internal object GeoJsonDslBuilder {
             .jsonObject["type"]
             ?.jsonPrimitive?.content
         val geoJson: GeoJson = when (content) {
-            "Feature" -> Feature.fromJson(testContent)
+            "Feature" -> Feature.fromJson<Geometry>(testContent)
             "FeatureCollection" -> FeatureCollection.fromJson(testContent)
             else -> error("not applicable")
         }
@@ -63,7 +48,7 @@ internal object GeoJsonDslBuilder {
                 .endControlFlow()
 
 
-            is Feature -> (featureToFunSpec(geoJson))
+            is Feature<*> -> featureToFunSpec(geoJson)
             is Geometry -> (geometryBlock(geoJson))
             else -> error("not applicable")
         }
@@ -76,35 +61,15 @@ internal object GeoJsonDslBuilder {
 
     }
 
-    private fun featureToFunSpec(feature: Feature): CodeBlock.Builder {
+    private fun featureToFunSpec(feature: Feature<*>): CodeBlock.Builder {
         val geometryBlock = feature.geometry?.let { geometryBlock(it) }
 
         val propertyBlock = feature.properties.takeIf { it.isNotEmpty() }?.let { map ->
             CodeBlock.builder().apply {
                 map.map { (key, value) ->
-                    val valueToPut = when (value) {
-                        is JsonArray -> value.jsonArray.toString()
-                        is JsonObject -> value.jsonObject.toString()
-                        is JsonPrimitive -> {
-                            val primitive = value.jsonPrimitive
-                            when {
-                                primitive.isString -> primitive.content
-                                primitive.booleanOrNull != null -> primitive.boolean
-                                primitive.intOrNull != null -> primitive.int
-                                primitive.longOrNull != null -> primitive.long
-                                primitive.floatOrNull != null -> primitive.float
-                                primitive.doubleOrNull != null -> primitive.double
-                                else -> null
-                            }
-                        }
-
-                        JsonNull -> null
-                        else -> error("${value.javaClass.simpleName} is not handled")
-                    }
-                    when (valueToPut) {
-                        is String -> addStatement("put(%S, %S)", key, valueToPut)
-                        null -> addStatement("putKey(%S)", key)
-                        else -> addStatement("put(%S, %L)", key, valueToPut)
+                    when (value) {
+                        is String -> addStatement("put(%S, %S)", key, value)
+                        else -> addStatement("put(%S, %L)", key, value)
                     }
                 }
             }

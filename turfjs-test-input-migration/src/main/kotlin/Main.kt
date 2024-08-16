@@ -1,8 +1,13 @@
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.asClassName
+import com.squareup.kotlinpoet.asTypeName
 import io.github.elcolto.GeoJsonDslBuilder
+import io.github.elcolto.geokjson.geojson.Feature
+import io.github.elcolto.geokjson.geojson.Geometry
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.cio.*
@@ -112,6 +117,18 @@ internal suspend fun main(args: Array<String>) {
                         fileName += "Ext"
                     }
 
+                    val propertyTypeName = when (geoJson) {
+
+                        is Feature<*> -> {
+                            val geometryClass = geoJson.geometry?.javaClass ?: Geometry::class.java
+                            geoJson.javaClass.asClassName().parameterizedBy(
+                                geometryClass.asClassName()
+                            )
+                        }
+
+                        else -> geoJson.javaClass.asTypeName()
+                    }
+
                     FileSpec.builder(packageName, fileName)
                         .addImport(
                             "io.github.elcolto.geokjson.geojson.dsl",
@@ -132,7 +149,7 @@ internal suspend fun main(args: Array<String>) {
                             PropertySpec
                                 .builder(
                                     name = fileName,
-                                    type = geoJson.javaClass
+                                    type = propertyTypeName
                                 )
                                 .receiver(ClassName(packageName, objectName))
                                 .getter(GeoJsonDslBuilder.geoJsonToFunSpec(geoJson).build())
