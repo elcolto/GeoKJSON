@@ -65,9 +65,14 @@ private fun isPointOnLineSegment(
     val dyl = y2 - y1
     val cross = dxc * dyl - dyc * dxl
 
-    if (epsilon != null && abs(cross) > epsilon || cross != 0.0) {
+    if (epsilon != null) {
+        if (abs(cross) > epsilon) {
+            return false
+        }
+    } else if (cross != 0.0) {
         return false
     }
+
     val isOnLine = if (abs(dxl) >= abs(dyl)) {
         dxl > 0.0 && x1 <= x && x <= x2 || dxl < 0.0 && x2 <= x && x <= x1
     } else {
