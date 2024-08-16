@@ -3,6 +3,7 @@ package io.github.elcolto.geokjson.turf.booleans
 import io.github.elcolto.geokjson.geojson.FeatureCollection
 import io.github.elcolto.geokjson.geojson.LineString
 import io.github.elcolto.geokjson.geojson.Point
+import io.github.elcolto.geokjson.geojson.Position
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.asInstance
 import io.github.elcolto.geokjson.turf.utils.readResource
@@ -12,6 +13,15 @@ import kotlin.test.assertTrue
 
 @ExperimentalTurfApi
 class PointOnLineTest {
+
+    @Test
+    fun testDefaultValues() {
+        val start = Position(54.0, 10.0)
+        val end = Position(53.0, 10.0)
+        val lineString = LineString(start, end)
+        assertTrue(pointOnLine(start, lineString))
+        assertTrue(pointOnLine(Point(start), lineString))
+    }
 
     @Test
     fun testTrue() {
@@ -34,7 +44,7 @@ class PointOnLineTest {
             val lineString = fc.last().geometry as LineString
 
             assertTrue(
-                pointOnLine(point.coordinates, lineString, ignoreEndVertices, epsilon),
+                pointOnLine(point, lineString, ignoreEndVertices, epsilon),
                 "assertion failed for path $path",
             )
         }
@@ -59,7 +69,7 @@ class PointOnLineTest {
             val lineString = fc.last().geometry as LineString
 
             assertFalse(
-                pointOnLine(point.coordinates, lineString, ignoreEndVertices, epsilon),
+                pointOnLine(point, lineString, ignoreEndVertices, epsilon),
                 "assertion failed for path $path",
             )
         }

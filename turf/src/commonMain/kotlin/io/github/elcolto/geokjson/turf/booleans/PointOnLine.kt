@@ -1,6 +1,7 @@
 package io.github.elcolto.geokjson.turf.booleans
 
 import io.github.elcolto.geokjson.geojson.LineString
+import io.github.elcolto.geokjson.geojson.Point
 import io.github.elcolto.geokjson.geojson.Position
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.coordAll
@@ -18,7 +19,25 @@ import kotlin.math.abs
  */
 @ExperimentalTurfApi
 public fun pointOnLine(
-    pt: Position,
+    point: Point,
+    line: LineString,
+    ignoreEndVertices: Boolean = false,
+    epsilon: Double? = null,
+): Boolean = pointOnLine(point.coordinates, line, ignoreEndVertices, epsilon)
+
+/**
+ * Returns true if a position is on a line. Accepts a optional parameter to ignore the start and end vertices of the
+ * linestring.
+ *
+ * @param ignoreEndVertices whether to ignore the start and end vertices.
+ * @param epsilon Fractional number to compare with the cross product result. Useful for dealing with floating points
+ * such as lng/lat points
+ * @return `true` if a point is on a line. Accepts an optional parameter to ignore the start and end vertices of the
+ * [line].
+ */
+@ExperimentalTurfApi
+public fun pointOnLine(
+    position: Position,
     line: LineString,
     ignoreEndVertices: Boolean = false,
     epsilon: Double? = null,
@@ -35,7 +54,7 @@ public fun pointOnLine(
                 ignoreEndVertices && isEnd -> BoundaryExclusion.END
                 else -> null
             }
-            isPointOnLineSegment(start, end, pt, ignoreBoundary, epsilon)
+            isPointOnLineSegment(start, end, position, ignoreBoundary, epsilon)
         }
 }
 
@@ -50,8 +69,8 @@ private fun isPointOnLineSegment(
     lineSegmentStart: Position,
     lineSegmentEnd: Position,
     point: Position,
-    excludeBoundary: BoundaryExclusion? = null,
-    epsilon: Double? = null,
+    excludeBoundary: BoundaryExclusion?,
+    epsilon: Double?,
 ): Boolean {
     val x = point.longitude
     val y = point.latitude
