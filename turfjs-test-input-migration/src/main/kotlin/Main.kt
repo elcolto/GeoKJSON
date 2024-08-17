@@ -65,8 +65,8 @@ internal suspend fun main(args: Array<String>) {
     val testFiles = FileSystem.SYSTEM.listRecursively(turfPackages)
         .filter { path: Path ->
             path.toFile().isFile &&
-                path.segments.contains("test") &&
-                (path.name.endsWith(".json") || path.name.endsWith(".geojson"))
+                    path.segments.contains("test") &&
+                    (path.name.endsWith(".json") || path.name.endsWith(".geojson"))
         }
         .groupBy { path ->
             "/".toPath() / path.parent?.segments?.let { it.take(it.size - 1) }?.joinToString("/").orEmpty().toPath()
@@ -80,7 +80,7 @@ internal suspend fun main(args: Array<String>) {
 
     val skipped = mutableListOf<String>()
 
-    val fileSpecs = testFiles.flatMap { (key, files) ->
+    val fileSpecs = testFiles.mapNotNull { (key, files) ->
 
         val segments = key.split(regex = "(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])".toRegex()).minus("Test")
 
@@ -95,72 +95,79 @@ internal suspend fun main(args: Array<String>) {
                 .build()
         )
 
-        val propertyFileSpecs = files.mapNotNull { path ->
-            val json = buildString {
-                FileSystem.SYSTEM.source(path).buffer().use { bufferedSource ->
-                    while (true) {
-                        val line = bufferedSource.readUtf8Line() ?: break
-                        appendLine(line)
+        val propertyFileSpecs = files.filter {
+            val smallerThan2Mb = (FileSystem.SYSTEM.metadata(it).size ?: 0) < 2_000_000
+            if (!smallerThan2Mb) {
+                skipped.add(it.toString())
+            }
+            smallerThan2Mb
+        }
+            .mapNotNull { path ->
+                val json = buildString {
+                    FileSystem.SYSTEM.source(path).buffer().use { bufferedSource ->
+                        while (true) {
+                            val line = bufferedSource.readUtf8Line() ?: break
+                            appendLine(line)
+                        }
                     }
                 }
-            }
-            runCatching { GeoJsonDslBuilder.geoJsonFromFile(json) }
-                .onFailure { skipped.add(path.toString()) }
-                .getOrNull()
-                ?.let { geoJson ->
-                    val inOrOut = path.parent?.segments?.last()?.takeIf { it == "in" || it == "out" }
-                    var fileName = path.name.removeSuffix(".json").removeSuffix(".geojson")
-                        .plus(inOrOut?.capitalize().orEmpty())
-                        .replace(regex = "[-|#|\\.]".toRegex(), "")
 
-                    if (fileName == objectName) {
-                        fileName += "Ext"
-                    }
+                runCatching { GeoJsonDslBuilder.geoJsonFromFile(json) }
+                    .onFailure { skipped.add(path.toString()) }
+                    .getOrNull()
+                    ?.let { geoJson ->
+                        val inOrOut = path.parent?.segments?.last()?.takeIf { it == "in" || it == "out" }
+                        var fileName = path.name.removeSuffix(".json").removeSuffix(".geojson")
+                            .plus(inOrOut?.capitalize().orEmpty())
+                            .replace(regex = "[-|#|\\.]".toRegex(), "")
 
-                    val propertyTypeName = when (geoJson) {
-
-                        is Feature<*> -> {
-                            val geometryClass = geoJson.geometry?.javaClass ?: Geometry::class.java
-                            geoJson.javaClass.asClassName().parameterizedBy(
-                                geometryClass.asClassName()
-                            )
+                        if (fileName == objectName) {
+                            fileName += "Ext"
                         }
 
-                        else -> geoJson.javaClass.asTypeName()
-                    }
+                        val propertyTypeName = when (geoJson) {
 
-                    FileSpec.builder(packageName, fileName)
-                        .addImport(
-                            "io.github.elcolto.geokjson.geojson.dsl",
-                            listOf(
-                                "feature",
-                                "featureCollection",
-                                "geometryCollection",
-                                "lineString",
-                                "lngLat",
-                                "multiLineString",
-                                "multiPoint",
-                                "multiPolygon",
-                                "point",
-                                "polygon",
-                            )
-                        )
-                        .addProperty(
-                            PropertySpec
-                                .builder(
-                                    name = fileName,
-                                    type = propertyTypeName
+                            is Feature<*> -> {
+                                val geometryClass = geoJson.geometry?.javaClass ?: Geometry::class.java
+                                geoJson.javaClass.asClassName().parameterizedBy(
+                                    geometryClass.asClassName()
                                 )
-                                .receiver(ClassName(packageName, objectName))
-                                .getter(GeoJsonDslBuilder.geoJsonToFunSpec(geoJson).build())
-                                .build()
-                        )
-                }
+                            }
 
-        }
+                            else -> geoJson.javaClass.asTypeName()
+                        }
+
+                        FileSpec.builder(packageName, fileName)
+                            .addImport(
+                                "io.github.elcolto.geokjson.geojson.dsl",
+                                listOf(
+                                    "feature",
+                                    "featureCollection",
+                                    "geometryCollection",
+                                    "lineString",
+                                    "lngLat",
+                                    "multiLineString",
+                                    "multiPoint",
+                                    "multiPolygon",
+                                    "point",
+                                    "polygon",
+                                )
+                            )
+                            .addProperty(
+                                PropertySpec
+                                    .builder(
+                                        name = fileName,
+                                        type = propertyTypeName
+                                    )
+                                    .receiver(ClassName(packageName, objectName))
+                                    .getter(GeoJsonDslBuilder.geoJsonToFunSpec(geoJson).build())
+                                    .build()
+                            )
+                    }
+            }
 
         listOf(objectSpec) + propertyFileSpecs
-    }
+    }.flatten()
 
     fileSpecs.forEach {
         val fileSpec = it.build()

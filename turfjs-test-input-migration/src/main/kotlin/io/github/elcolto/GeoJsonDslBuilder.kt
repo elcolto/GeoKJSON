@@ -22,9 +22,7 @@ internal object GeoJsonDslBuilder {
 
     @Throws(IllegalStateException::class)
     internal fun geoJsonFromFile(testContent: String): GeoJson {
-        val content = Json.parseToJsonElement(testContent)
-            .jsonObject["type"]
-            ?.jsonPrimitive?.content
+        val content = Json.parseToJsonElement(testContent).jsonObject["type"]?.jsonPrimitive?.content
         val geoJson: GeoJson = when (content) {
             "Feature" -> Feature.fromJson<Geometry>(testContent)
             "FeatureCollection" -> FeatureCollection.fromJson(testContent)
@@ -47,18 +45,14 @@ internal object GeoJsonDslBuilder {
                 .unindent()
                 .endControlFlow()
 
-
             is Feature<*> -> featureToFunSpec(geoJson)
             is Geometry -> (geometryBlock(geoJson))
             else -> error("not applicable")
         }
 
-        return FunSpec.getterBuilder()
-            .addStatement(
-                "return %L",
-                featureBlocks.build()
-            )
-
+        return FunSpec.getterBuilder().addStatement(
+            "return %L", featureBlocks.build()
+        )
     }
 
     private fun featureToFunSpec(feature: Feature<*>): CodeBlock.Builder {
@@ -66,19 +60,35 @@ internal object GeoJsonDslBuilder {
 
         val propertyBlock = feature.properties.takeIf { it.isNotEmpty() }?.let { map ->
             CodeBlock.builder().apply {
-                map.map { (key, value) ->
+                map.mapNotNull { (key, value) ->
                     when (value) {
                         is String -> addStatement("put(%S, %S)", key, value)
+                        is Collection<*> -> if (value.isNotEmpty()) addStatement(
+                            "put(%S, %L)", key, listLiteral(value)
+                        ) else null
+
+                        is Map<*, *> -> {
+                            addStatement("put(")
+                            indent()
+                            add("%S, ", key)
+                            indent()
+                            addStatement("mapOf(")
+                            value.forEach {
+                                addStatement("%S to %S,", it.key, it.value)
+                            }
+                            unindent()
+                            addStatement(")")
+                            unindent()
+                            addStatement(")")
+                        }
+
                         else -> addStatement("put(%S, %L)", key, value)
                     }
                 }
-            }
-                .build()
+            }.build()
         }
 
-        return CodeBlock.builder()
-            .beginControlFlow("feature(geometry = ${geometryBlock?.build()}) {")
-            .indent()
+        return CodeBlock.builder().beginControlFlow("feature(geometry = ${geometryBlock?.build()}) {").indent()
             //properties
             .apply {
                 propertyBlock?.let {
@@ -87,6 +97,13 @@ internal object GeoJsonDslBuilder {
             }
             .unindent()
             .endControlFlow()
+    }
+
+    private fun listLiteral(value: Collection<*>): String {
+        val literal = if (value.all { it is Collection<*> }) {
+            value.filterNotNull().joinToString { listLiteral(it as Collection<*>) }
+        } else value.joinToString()
+        return "listOf($literal)"
     }
 
     private fun geometryBlock(geometry: Geometry): CodeBlock.Builder {
@@ -137,11 +154,9 @@ internal object GeoJsonDslBuilder {
                 is MultiPolygon -> {
                     beginControlFlow("multiPolygon {")
                     indent()
-                    geometry.coordinates
-                        .map { polygon -> Polygon(polygon) }
-                        .forEach {
-                            add(geometryBlock(it).build())
-                        }
+                    geometry.coordinates.map { polygon -> Polygon(polygon) }.forEach {
+                        add(geometryBlock(it).build())
+                    }
                     unindent()
                     endControlFlow()
                 }

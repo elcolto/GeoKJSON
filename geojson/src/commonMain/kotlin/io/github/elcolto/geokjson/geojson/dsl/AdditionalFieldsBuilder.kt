@@ -74,6 +74,11 @@ public class AdditionalFieldsBuilder {
         additionalFields[key] = value
     }
 
+    @JvmName("putDoubleCollection")
+    public fun put(key: String, value: Collection<Double>) {
+        additionalFields[key] = value
+    }
+
     @JvmName("putDoubleArray")
     public fun put(key: String, value: DoubleArray) {
         additionalFields[key] = value
@@ -85,10 +90,17 @@ public class AdditionalFieldsBuilder {
         additionalFields[key] = value
     }
 
+    @JvmName("putAnyMap")
     public fun put(key: String, value: Map<String, Any>) {
         value.checkTypeForSerialization()
         additionalFields[key] = value
     }
+
+    @JvmName("putAnyCollection")
+    public fun put(key: String, value: Collection<*>) {
+        additionalFields[key] = value
+    }
+
 
     public fun build(): Map<String, Any> = additionalFields
 }
