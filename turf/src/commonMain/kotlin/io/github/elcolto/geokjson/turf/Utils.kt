@@ -106,4 +106,6 @@ public fun convertArea(area: Double, from: Units = Units.Meters, to: Units = Uni
 @ExperimentalTurfApi
 public fun bearingToAzimuth(bearing: Double): Double = (bearing % 360 + 360) % 360
 
+internal inline fun <reified T> Any?.asInstance(): T? = this as? T
+
 public const val AREA_EARTH_RADIUS: Int = 6378137
