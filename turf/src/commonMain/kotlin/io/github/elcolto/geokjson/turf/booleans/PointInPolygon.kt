@@ -13,6 +13,21 @@ import io.github.elcolto.geokjson.turf.measurement.bbox
 import kotlin.jvm.JvmOverloads
 
 /**
+ * Takes a [Position] and a [Polygon] and determines if the point
+ * resides inside the polygon. The polygon can be convex or concave. The function accounts for holes.
+ *
+ * @param position input position
+ * @param polygon input polygon
+ * @param ignoreBoundary True if polygon boundary should be ignored when determining if
+ * the point is inside the polygon otherwise false.
+ * @return `true` if the Position is inside the Polygon; `false` if the Position is not inside the Polygon
+ */
+@ExperimentalTurfApi
+@JvmOverloads
+public fun pointInPolygon(position: Position, polygon: Polygon, ignoreBoundary: Boolean = false): Boolean =
+    pointInPolygon(Point(position), polygon, ignoreBoundary)
+
+/**
  * Takes a [Point] and a [Polygon] and determines if the point
  * resides inside the polygon. The polygon can be convex or concave. The function accounts for holes.
  *
@@ -30,6 +45,21 @@ public fun pointInPolygon(point: Point, polygon: Polygon, ignoreBoundary: Boolea
     val polys = listOf(polygon.coordinates)
     return pointInPolygon(point.coordinates, bbox, polys, ignoreBoundary)
 }
+
+/**
+ * Takes a [Position] and a [MultiPolygon] and determines if the point
+ * resides inside the polygon. The polygon can be convex or concave. The function accounts for holes.
+ *
+ * @param position input position
+ * @param polygon input polygon
+ * @param ignoreBoundary True if polygon boundary should be ignored when determining if
+ * the point is inside the polygon otherwise false.
+ * @return `true` if the Position is inside the Polygon; `false` if the Position is not inside the Polygon
+ */
+@ExperimentalTurfApi
+@JvmOverloads
+public fun pointInPolygon(position: Position, polygon: MultiPolygon, ignoreBoundary: Boolean = false): Boolean =
+    pointInPolygon(Point(position), polygon, ignoreBoundary)
 
 /**
  * Takes a [Point] and a [MultiPolygon] and determines if the point

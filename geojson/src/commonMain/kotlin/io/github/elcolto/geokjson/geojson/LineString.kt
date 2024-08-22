@@ -22,6 +22,9 @@ public data class LineString @JvmOverloads constructor(
     override val bbox: BoundingBox? = null,
     override val foreignMembers: Map<String, Any> = emptyMap(),
 ) : Geometry() {
+
+    public val points: List<Point> = coordinates.map { Point(it) }
+
     @JvmOverloads
     public constructor(
         vararg coordinates: Position,
@@ -40,9 +43,11 @@ public data class LineString @JvmOverloads constructor(
         require(coordinates.size >= 2) { "LineString must have at least two positions" }
     }
 
-    override fun json(): String = """{"type":"LineString",${bbox.jsonProp()}"coordinates":${coordinates.jsonJoin(
-        transform = Position::json,
-    )}${serializeForeignMembers()}}"""
+    override fun json(): String = """{"type":"LineString",${bbox.jsonProp()}"coordinates":${
+        coordinates.jsonJoin(
+            transform = Position::json,
+        )
+    }${serializeForeignMembers()}}"""
 
     public companion object {
         @JvmStatic
