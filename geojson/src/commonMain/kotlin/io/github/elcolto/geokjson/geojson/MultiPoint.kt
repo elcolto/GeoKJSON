@@ -22,7 +22,7 @@ public data class MultiPoint @JvmOverloads constructor(
     override val bbox: BoundingBox? = null,
     override val foreignMembers: Map<String, Any> = emptyMap(),
 
-    public val points: List<Point> = coordinates.map { Point(it) }
+    public val points: List<Point> = coordinates.map { Point(it) },
 
 ) : Geometry() {
     @JvmOverloads

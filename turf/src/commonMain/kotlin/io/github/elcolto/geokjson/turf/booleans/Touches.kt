@@ -3,6 +3,7 @@
 package io.github.elcolto.geokjson.turf.booleans
 
 import io.github.elcolto.geokjson.geojson.Geometry
+import io.github.elcolto.geokjson.geojson.GeometryCollection
 import io.github.elcolto.geokjson.geojson.LineString
 import io.github.elcolto.geokjson.geojson.MultiLineString
 import io.github.elcolto.geokjson.geojson.MultiPoint
@@ -15,8 +16,11 @@ import io.github.elcolto.geokjson.turf.coordAll
 
 /**
  * @return true if none of the points common to both geometries intersect the interiors of both geometries.
+ *
+ * @throws IllegalStateException when [geometry1] or [geometry2] is a [GeometryCollection]
  */
 @ExperimentalTurfApi
+@Throws(IllegalStateException::class)
 public fun touches(geometry1: Geometry, geometry2: Geometry): Boolean {
     if (geometry1.coordAll().isEmpty() || geometry2.coordAll().isEmpty()) return false
 

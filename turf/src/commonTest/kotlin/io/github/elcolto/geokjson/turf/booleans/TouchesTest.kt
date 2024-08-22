@@ -1,9 +1,17 @@
 package io.github.elcolto.geokjson.turf.booleans
 
 import io.github.elcolto.geokjson.geojson.FeatureCollection
+import io.github.elcolto.geokjson.geojson.dsl.geometryCollection
+import io.github.elcolto.geokjson.geojson.dsl.lineString
+import io.github.elcolto.geokjson.geojson.dsl.multiLineString
+import io.github.elcolto.geokjson.geojson.dsl.multiPoint
+import io.github.elcolto.geokjson.geojson.dsl.multiPolygon
+import io.github.elcolto.geokjson.geojson.dsl.point
+import io.github.elcolto.geokjson.geojson.dsl.polygon
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlin.test.Test
+import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -267,5 +275,45 @@ class TouchesTest {
                 "assertion failed for path $path",
             )
         }
+    }
+
+    @Test
+    fun testGeometryCollection() {
+        val point = point(0.1, 0.2)
+        val multiPoint = multiPoint {
+            +point
+            +point
+        }
+        val lineString = lineString {
+            +point
+            +point
+        }
+        val multiLineString = multiLineString {
+            +lineString
+        }
+        val polygon = polygon {
+            ring {
+                +lineString
+                complete()
+            }
+        }
+        val multiPolygon = multiPolygon {
+            +polygon
+        }
+        val geometryCollection = geometryCollection {
+            +point
+            +multiPoint
+            +lineString
+            +multiLineString
+            +polygon
+            +multiPolygon
+        }
+        assertFailsWith<IllegalStateException> { touches(geometryCollection, geometryCollection) }
+        assertFailsWith<IllegalStateException> { touches(point, geometryCollection) }
+        assertFailsWith<IllegalStateException> { touches(multiPoint, geometryCollection) }
+        assertFailsWith<IllegalStateException> { touches(lineString, geometryCollection) }
+        assertFailsWith<IllegalStateException> { touches(multiLineString, geometryCollection) }
+        assertFailsWith<IllegalStateException> { touches(polygon, geometryCollection) }
+        assertFailsWith<IllegalStateException> { touches(multiPolygon, geometryCollection) }
     }
 }

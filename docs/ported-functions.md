@@ -169,6 +169,7 @@ Use the [GeoJson DSL](./geojson-dsl) instead.
 - [ ] `booleanParallel`
 - [x] [`booleanPointInPolygon`](./api/turf/io.github.elcolto.geokjson.turf.booleans/point-in-polygon.html)
 - [x] [`booleanPointOnLine`](./api/turf/io.github.elcolto.geokjson.turf.booleans/point-on-line.html)
+- [x] [`booleanTouches`](./api/turf/io.github.elcolto.geokjson.turf.booleans/touches.html)
 - [ ] `booleanWithin`
 
 ## Unit Conversion
