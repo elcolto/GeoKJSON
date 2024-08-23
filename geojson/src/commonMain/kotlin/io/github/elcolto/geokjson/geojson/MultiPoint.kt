@@ -21,6 +21,9 @@ public data class MultiPoint @JvmOverloads constructor(
     public val coordinates: List<Position>,
     override val bbox: BoundingBox? = null,
     override val foreignMembers: Map<String, Any> = emptyMap(),
+
+    public val points: List<Point> = coordinates.map { Point(it) },
+
 ) : Geometry() {
     @JvmOverloads
     public constructor(
@@ -36,9 +39,11 @@ public data class MultiPoint @JvmOverloads constructor(
         foreignMembers: Map<String, Any> = emptyMap(),
     ) : this(coordinates.map(::Position), bbox, foreignMembers)
 
-    override fun json(): String = """{"type":"MultiPoint",${bbox.jsonProp()}"coordinates":${coordinates.jsonJoin(
-        transform = Position::json,
-    )}${serializeForeignMembers()}}"""
+    override fun json(): String = """{"type":"MultiPoint",${bbox.jsonProp()}"coordinates":${
+        coordinates.jsonJoin(
+            transform = Position::json,
+        )
+    }${serializeForeignMembers()}}"""
 
     public companion object {
         @JvmStatic

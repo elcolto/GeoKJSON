@@ -22,6 +22,9 @@ public data class MultiPolygon @JvmOverloads constructor(
     override val bbox: BoundingBox? = null,
     override val foreignMembers: Map<String, Any> = emptyMap(),
 ) : Geometry() {
+
+    public val polygons: List<Polygon> = coordinates.map { Polygon(it) }
+
     @JvmOverloads
     public constructor(
         vararg coordinates: List<List<Position>>,
@@ -36,14 +39,15 @@ public data class MultiPolygon @JvmOverloads constructor(
         foreignMembers: Map<String, Any> = emptyMap(),
     ) : this(coordinates.map { ring -> ring.map { it.map(::Position) } }, bbox, foreignMembers)
 
-    override fun json(): String =
-        """{"type":"MultiPolygon",${bbox.jsonProp()}"coordinates":${coordinates.jsonJoin { polygon ->
+    override fun json(): String = """{"type":"MultiPolygon",${bbox.jsonProp()}"coordinates":${
+        coordinates.jsonJoin { polygon ->
             polygon.jsonJoin {
                 it.jsonJoin(
                     transform = Position::json,
                 )
             }
-        }}${serializeForeignMembers()}}"""
+        }
+    }${serializeForeignMembers()}}"""
 
     public companion object {
         @JvmStatic

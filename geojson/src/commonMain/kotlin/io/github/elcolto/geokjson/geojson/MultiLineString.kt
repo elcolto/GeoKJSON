@@ -22,6 +22,9 @@ public data class MultiLineString @JvmOverloads constructor(
     override val bbox: BoundingBox? = null,
     override val foreignMembers: Map<String, Any> = emptyMap(),
 ) : Geometry() {
+
+    public val lines: List<LineString> = coordinates.map { LineString(it) }
+
     @JvmOverloads
     public constructor(
         vararg coordinates: List<Position>,
@@ -46,11 +49,13 @@ public data class MultiLineString @JvmOverloads constructor(
         }
     }
 
-    override fun json(): String = """{"type":"MultiLineString",${bbox.jsonProp()}"coordinates":${coordinates.jsonJoin {
-        it.jsonJoin(
-            transform = Position::json,
-        )
-    }}${serializeForeignMembers()}}"""
+    override fun json(): String = """{"type":"MultiLineString",${bbox.jsonProp()}"coordinates":${
+        coordinates.jsonJoin {
+            it.jsonJoin(
+                transform = Position::json,
+            )
+        }
+    }${serializeForeignMembers()}}"""
 
     public companion object {
         @JvmStatic

@@ -49,8 +49,14 @@ public final class io/github/elcolto/geokjson/turf/booleans/PointInPolygonKt {
 	public static final fun pointInPolygon (Lio/github/elcolto/geokjson/geojson/Point;Lio/github/elcolto/geokjson/geojson/MultiPolygon;Z)Z
 	public static final fun pointInPolygon (Lio/github/elcolto/geokjson/geojson/Point;Lio/github/elcolto/geokjson/geojson/Polygon;)Z
 	public static final fun pointInPolygon (Lio/github/elcolto/geokjson/geojson/Point;Lio/github/elcolto/geokjson/geojson/Polygon;Z)Z
+	public static final fun pointInPolygon (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/MultiPolygon;)Z
+	public static final fun pointInPolygon (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/MultiPolygon;Z)Z
+	public static final fun pointInPolygon (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Polygon;)Z
+	public static final fun pointInPolygon (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Polygon;Z)Z
 	public static synthetic fun pointInPolygon$default (Lio/github/elcolto/geokjson/geojson/Point;Lio/github/elcolto/geokjson/geojson/MultiPolygon;ZILjava/lang/Object;)Z
 	public static synthetic fun pointInPolygon$default (Lio/github/elcolto/geokjson/geojson/Point;Lio/github/elcolto/geokjson/geojson/Polygon;ZILjava/lang/Object;)Z
+	public static synthetic fun pointInPolygon$default (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/MultiPolygon;ZILjava/lang/Object;)Z
+	public static synthetic fun pointInPolygon$default (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Polygon;ZILjava/lang/Object;)Z
 }
 
 public final class io/github/elcolto/geokjson/turf/booleans/PointOnLineKt {
@@ -58,6 +64,10 @@ public final class io/github/elcolto/geokjson/turf/booleans/PointOnLineKt {
 	public static final fun pointOnLine (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/LineString;ZLjava/lang/Double;)Z
 	public static synthetic fun pointOnLine$default (Lio/github/elcolto/geokjson/geojson/Point;Lio/github/elcolto/geokjson/geojson/LineString;ZLjava/lang/Double;ILjava/lang/Object;)Z
 	public static synthetic fun pointOnLine$default (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/LineString;ZLjava/lang/Double;ILjava/lang/Object;)Z
+}
+
+public final class io/github/elcolto/geokjson/turf/booleans/TouchesKt {
+	public static final fun touches (Lio/github/elcolto/geokjson/geojson/Geometry;Lio/github/elcolto/geokjson/geojson/Geometry;)Z
 }
 
 public final class io/github/elcolto/geokjson/turf/grids/SquareGridKt {
