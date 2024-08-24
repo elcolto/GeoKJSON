@@ -99,9 +99,9 @@ private fun isPointOnLineSegment(
     }
 
     return when (excludeBoundary) {
-        BoundaryExclusion.START -> isOnLine && (x != x1 && y != y1)
-        BoundaryExclusion.END -> isOnLine && (x != x2 && y != y2)
-        BoundaryExclusion.BOTH -> isOnLine && (x != x1 && x != x2 && y != y1 && y != y2)
+        BoundaryExclusion.START -> isOnLine && !(x == x1 && y == y1)
+        BoundaryExclusion.END -> isOnLine && !(x == x2 && y == y2)
+        BoundaryExclusion.BOTH -> isOnLine && !((x == x1 && y == y1) || (x == x2 && y == y2))
         null -> isOnLine
     }
 }
