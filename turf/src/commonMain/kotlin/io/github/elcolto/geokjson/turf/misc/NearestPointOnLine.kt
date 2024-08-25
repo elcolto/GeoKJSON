@@ -15,29 +15,29 @@ import kotlin.math.max
 public object NearestPointOnLine {
 
     /**
-     * Identifier to access distance to target within [Feature.properties]
+     * Identifier to access distance to target within `Feature.properties`
      */
     public const val DISTANCE_TO_POINT: String = "distance"
 
     /**
-     * Identifier to access distance along the line from the start to target within [Feature.properties]
+     * Identifier to access distance along the line from the start to target within `Feature.properties`
      */
     public const val LOCATION: String = "location"
 
     /**
-     * Identifier to access index of target within [Feature.properties]
+     * Identifier to access index of target within `Feature.properties`
      */
     public const val INDEX: String = "index"
 }
 
 /**
- * Finds the closest [Position] along a [LineString] to a given position
+ * Finds the closest `Position` along a `LineString` to a given position
  *
- * @param line The [LineString] to find a position along
- * @param point The [Position] given to find the closest point along the [line]
- * @return [Feature] with [Feature.properties]:
- *  - `distance`: Distance between the input position and [Feature.geometry]
- *  - `location`: Distance along the [line] from the start to the [Feature.geometry]
+ * @param line The `LineString` to find a position along
+ * @param point The `Position` given to find the closest point along the [line]
+ * @return `Feature` with `Feature.properties`:
+ *  - `distance`: Distance between the input position and `Feature.geometry`
+ *  - `location`: Distance along the [line] from the start to the `Feature.geometry`
  *  - `index`: Index of the segment of the line on which [point] lies
  */
 @ExperimentalTurfApi
@@ -45,13 +45,13 @@ public fun nearestPointOnLine(line: LineString, point: Position, units: Units = 
     nearestPointOnLine(listOf(line), point, units)
 
 /**
- * Finds the closest [Position] along a [MultiLineString] to a given position
+ * Finds the closest `Position` along a `MultiLineString` to a given position
  *
- * @param lines The [MultiLineString] to find a position along
- * @param point The [Position] given to find the closest point along the [lines]
- * @return [Feature] with [Feature.properties]:
- *  - `distance`: Distance between the input position and [Feature.geometry]
- *  - `location`: Distance along the [lines] from the start to the [Feature.geometry]
+ * @param lines The `MultiLineString` to find a position along
+ * @param point The `Position` given to find the closest point along the [lines]
+ * @return `Feature` with `Feature.properties`:
+ *  - `distance`: Distance between the input position and `Feature.geometry`
+ *  - `location`: Distance along the [lines] from the start to the `Feature.geometry`
  *  - `index`: Index of the segment of the line on which [point] lies
  */
 @ExperimentalTurfApi
@@ -136,22 +136,22 @@ private fun feature(position: Position, distance: Double, location: Double, inde
 )
 
 /**
- * `distance` on [Feature.properties] calculated with [nearestPointOnLine]. Will throw an [NoSuchElementException] when
+ * `distance` on `Feature.properties` calculated with [nearestPointOnLine]. Will throw an `NoSuchElementException` when
  * property is not available. For a safe cal access `properties` with key [NearestPointOnLine.DISTANCE_TO_POINT]
  */
 public val Feature<Point>.nearestPointDistance: Double
     get() = properties.getValue(NearestPointOnLine.DISTANCE_TO_POINT) as Double
 
 /**
- * `location` on [Feature.properties] calculated with [nearestPointOnLine]. Will throw an [NoSuchElementException] when
- * property is not available. For a safe cal access `properties` with key [NearestPointOnLine.LOCATION]
+ * `location` on `Feature.properties` calculated with [nearestPointOnLine]. Will throw an `NoSuchElementException` when
+ * property is not available. For a safe cal access `properties` with key `NearestPointOnLine.LOCATION`
  */
 public val Feature<Point>.nearestPointLocation: Double
     get() = properties.getValue(NearestPointOnLine.LOCATION) as Double
 
 /**
- * `index` on [Feature.properties] calculated with [nearestPointOnLine]. Will throw an [NoSuchElementException] when
- * property is not available. For a safe cal access `properties` with key [NearestPointOnLine.INDEX]
+ * `index` on `Feature.properties` calculated with [nearestPointOnLine]. Will throw an `NoSuchElementException` when
+ * property is not available. For a safe cal access `properties` with key `NearestPointOnLine.INDEX`
  */
 public val Feature<Point>.nearestPointIndex: Int
     get() = properties.getValue(NearestPointOnLine.INDEX) as Int
