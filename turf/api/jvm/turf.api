@@ -169,27 +169,20 @@ public final class io/github/elcolto/geokjson/turf/misc/LineSliceKt {
 }
 
 public final class io/github/elcolto/geokjson/turf/misc/NearestPointOnLine {
-	public fun <init> (Lio/github/elcolto/geokjson/geojson/Position;DDI)V
-	public final fun component1 ()Lio/github/elcolto/geokjson/geojson/Position;
-	public final fun component2 ()D
-	public final fun component3 ()D
-	public final fun component4 ()I
-	public final fun copy (Lio/github/elcolto/geokjson/geojson/Position;DDI)Lio/github/elcolto/geokjson/turf/misc/NearestPointOnLine;
-	public static synthetic fun copy$default (Lio/github/elcolto/geokjson/turf/misc/NearestPointOnLine;Lio/github/elcolto/geokjson/geojson/Position;DDIILjava/lang/Object;)Lio/github/elcolto/geokjson/turf/misc/NearestPointOnLine;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getDistance ()D
-	public final fun getIndex ()I
-	public final fun getLocation ()D
-	public final fun getPoint ()Lio/github/elcolto/geokjson/geojson/Position;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+	public static final field DISTANCE_TO_POINT Ljava/lang/String;
+	public static final field INDEX Ljava/lang/String;
+	public static final field INSTANCE Lio/github/elcolto/geokjson/turf/misc/NearestPointOnLine;
+	public static final field LOCATION Ljava/lang/String;
 }
 
 public final class io/github/elcolto/geokjson/turf/misc/NearestPointOnLineKt {
-	public static final fun nearestPointOnLine (Lio/github/elcolto/geokjson/geojson/LineString;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;)Lio/github/elcolto/geokjson/turf/misc/NearestPointOnLine;
-	public static final fun nearestPointOnLine (Lio/github/elcolto/geokjson/geojson/MultiLineString;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;)Lio/github/elcolto/geokjson/turf/misc/NearestPointOnLine;
-	public static synthetic fun nearestPointOnLine$default (Lio/github/elcolto/geokjson/geojson/LineString;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;ILjava/lang/Object;)Lio/github/elcolto/geokjson/turf/misc/NearestPointOnLine;
-	public static synthetic fun nearestPointOnLine$default (Lio/github/elcolto/geokjson/geojson/MultiLineString;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;ILjava/lang/Object;)Lio/github/elcolto/geokjson/turf/misc/NearestPointOnLine;
+	public static final fun getNearestPointDistance (Lio/github/elcolto/geokjson/geojson/Feature;)D
+	public static final fun getNearestPointIndex (Lio/github/elcolto/geokjson/geojson/Feature;)I
+	public static final fun getNearestPointLocation (Lio/github/elcolto/geokjson/geojson/Feature;)D
+	public static final fun nearestPointOnLine (Lio/github/elcolto/geokjson/geojson/LineString;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;)Lio/github/elcolto/geokjson/geojson/Feature;
+	public static final fun nearestPointOnLine (Lio/github/elcolto/geokjson/geojson/MultiLineString;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;)Lio/github/elcolto/geokjson/geojson/Feature;
+	public static synthetic fun nearestPointOnLine$default (Lio/github/elcolto/geokjson/geojson/LineString;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/Feature;
+	public static synthetic fun nearestPointOnLine$default (Lio/github/elcolto/geokjson/geojson/MultiLineString;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/Feature;
 }
 
 public final class io/github/elcolto/geokjson/turf/transformation/BezierSplineKt {

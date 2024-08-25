@@ -123,8 +123,9 @@ public fun nearestPoint(target: Point, featureCollection: FeatureCollection): Po
     requireNotNull(nearestPointFeature(target, featureCollection).geometry)
 
 public object NearestPoint {
+
     /**
-     * Identifier to store distance to point within [Feature.properties]
+     * Identifier to store distance to target within [Feature.properties]
      */
     public const val DISTANCE_TO_POINT: String = "distanceToPoint"
 }
