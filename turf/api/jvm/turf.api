@@ -111,6 +111,10 @@ public final class io/github/elcolto/geokjson/turf/measurement/CenterKt {
 	public static final fun center (Lio/github/elcolto/geokjson/geojson/Geometry;)Lio/github/elcolto/geokjson/geojson/Point;
 }
 
+public final class io/github/elcolto/geokjson/turf/measurement/CentroidKt {
+	public static final fun centroid (Lio/github/elcolto/geokjson/geojson/Geometry;)Lio/github/elcolto/geokjson/geojson/Point;
+}
+
 public final class io/github/elcolto/geokjson/turf/measurement/DestinationKt {
 	public static final fun destination (Lio/github/elcolto/geokjson/geojson/Position;DD)Lio/github/elcolto/geokjson/geojson/Position;
 	public static final fun destination (Lio/github/elcolto/geokjson/geojson/Position;DDLio/github/elcolto/geokjson/turf/Units;)Lio/github/elcolto/geokjson/geojson/Position;

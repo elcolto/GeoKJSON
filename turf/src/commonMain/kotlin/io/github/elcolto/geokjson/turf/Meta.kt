@@ -31,3 +31,21 @@ public fun Feature<*>.coordAll(): List<Position>? = geometry?.coordAll()
 
 @ExperimentalTurfApi
 public fun FeatureCollection.coordAll(): List<Position> = features.flatMap { it.coordAll() ?: emptyList() }
+
+/**
+ * @return a List of all coordinate except of closing coordinate on [Polygon] or [MultiPolygon]
+ */
+@ExperimentalTurfApi
+internal fun Geometry.unwrappedCoordinates(): List<Position> {
+    val coordinates = when (this) {
+        is MultiPolygon -> polygons.flatMap { it.unwrappedCoordinates() }
+        is Polygon -> {
+            val positions = coordAll()
+            positions.take(positions.size - 1)
+        }
+
+        is GeometryCollection -> geometries.flatMap { it.unwrappedCoordinates() }
+        else -> coordAll()
+    }
+    return coordinates
+}
