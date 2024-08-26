@@ -13,6 +13,7 @@ You can view porting progress for the next release [here](https://github.com/del
 - [x] [`bearing`](./api/turf/io.github.elcolto.geokjson.turf.measurement/bearing.html)
 - [x] [`center`](./api/turf/io.github.elcolto.geokjson.turf.measurement/center.html)
 - [ ] `centerOfMass`
+- [x] [`centroid`](./api/turf/io.github.elcolto.geokjson.turf.measurement/centroid.html)
 - [x] [`destination`](./api/turf/io.github.elcolto.geokjson.turf.measurement/destination.html)
 - [x] [`distance`](./api/turf/io.github.elcolto.geokjson.turf.measurement/distance.html)
 - [x] [`envelope`](./api/turf/io.github.elcolto.geokjson.turf.measurement/envelope.html)

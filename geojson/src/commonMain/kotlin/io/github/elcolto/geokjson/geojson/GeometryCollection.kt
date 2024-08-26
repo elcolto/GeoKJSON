@@ -20,14 +20,8 @@ import kotlin.jvm.JvmStatic
 public data class GeometryCollection @JvmOverloads constructor(
     public val geometries: List<Geometry>,
     override val bbox: BoundingBox? = null,
-    override val foreignMembers: Map<String, Any>,
+    override val foreignMembers: Map<String, Any> = emptyMap(),
 ) : Geometry(), Collection<Geometry> by geometries {
-    @JvmOverloads
-    public constructor(
-        vararg geometries: Geometry,
-        bbox: BoundingBox? = null,
-        foreignMembers: Map<String, Any> = emptyMap(),
-    ) : this(geometries.toList(), bbox, foreignMembers)
 
     override fun json(): String = """{"type":"GeometryCollection",""" +
         bbox.jsonProp() +
