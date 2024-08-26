@@ -24,7 +24,7 @@ You can view porting progress for the next release [here](https://github.com/del
 - [ ] `rhumbBearing`
 - [ ] `rhumbDestination`
 - [ ] `rhumbDistance`
-- [ ] `square`
+- [x] [`square`](./api/turf/io.github.elcolto.geokjson.turf.measurement/square.html)
 - [x] [`greatCircle`](./api/turf/io.github.elcolto.geokjson.turf.measurement/great-circle.html)
 
 ## Coordinate Mutation

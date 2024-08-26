@@ -143,6 +143,10 @@ public final class io/github/elcolto/geokjson/turf/measurement/MidpointKt {
 	public static final fun midpoint (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;)Lio/github/elcolto/geokjson/geojson/Position;
 }
 
+public final class io/github/elcolto/geokjson/turf/measurement/SquareKt {
+	public static final fun square (Lio/github/elcolto/geokjson/geojson/BoundingBox;)Lio/github/elcolto/geokjson/geojson/BoundingBox;
+}
+
 public final class io/github/elcolto/geokjson/turf/misc/LineIntersectKt {
 	public static final fun lineIntersect (Lio/github/elcolto/geokjson/geojson/LineString;Lio/github/elcolto/geokjson/geojson/LineString;)Ljava/util/List;
 }
