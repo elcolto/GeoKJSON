@@ -104,6 +104,8 @@ public final class io/github/elcolto/geokjson/turf/measurement/BearingKt {
 	public static final fun bearing (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;)D
 	public static final fun bearing (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;Z)D
 	public static synthetic fun bearing$default (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;ZILjava/lang/Object;)D
+	public static final fun rhumbBearing (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;Z)D
+	public static synthetic fun rhumbBearing$default (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;ZILjava/lang/Object;)D
 }
 
 public final class io/github/elcolto/geokjson/turf/measurement/CenterKt {
