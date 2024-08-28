@@ -23,7 +23,7 @@ You can view porting progress for the next release [here](https://github.com/del
 - [ ] `polygonTangents`
 - [ ] `pointToLineDistance`
 - [x] [`rhumbBearing`](./api/turf/io.github.elcolto.geokjson.turf.measurement/rhumb-bearing.html)
-- [ ] `rhumbDestination`
+- [x] [`rhumbDestination`](./api/turf/io.github.elcolto.geokjson.turf.measurement/rhumb-destination.html)
 - [ ] `rhumbDistance`
 - [x] [`square`](./api/turf/io.github.elcolto.geokjson.turf.measurement/square.html)
 - [x] [`greatCircle`](./api/turf/io.github.elcolto.geokjson.turf.measurement/great-circle.html)

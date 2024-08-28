@@ -66,13 +66,7 @@ public fun lengthToDegrees(distance: Double, units: Units = Units.Kilometers): D
 @ExperimentalTurfApi
 public fun convertLength(length: Double, from: Units = Units.Meters, to: Units = Units.Kilometers): Double {
     require(length >= 0) { "length must be a positive number" }
-    return radiansToLength(
-        lengthToRadians(
-            length,
-            from,
-        ),
-        to,
-    )
+    return radiansToLength(lengthToRadians(length, from), to)
 }
 
 /**
