@@ -22,9 +22,9 @@ You can view porting progress for the next release [here](https://github.com/del
 - [ ] `pointOnFeature`
 - [ ] `polygonTangents`
 - [ ] `pointToLineDistance`
-- [ ] `rhumbBearing`
-- [ ] `rhumbDestination`
-- [ ] `rhumbDistance`
+- [x] [`rhumbBearing`](./api/turf/io.github.elcolto.geokjson.turf.measurement/rhumb-bearing.html)
+- [x] [`rhumbDestination`](./api/turf/io.github.elcolto.geokjson.turf.measurement/rhumb-destination.html)
+- [x] [`rhumbDistance`]((./api/turf/io.github.elcolto.geokjson.turf.measurement/rhumb-distance.html))
 - [x] [`square`](./api/turf/io.github.elcolto.geokjson.turf.measurement/square.html)
 - [x] [`greatCircle`](./api/turf/io.github.elcolto.geokjson.turf.measurement/great-circle.html)
 
@@ -34,7 +34,7 @@ You can view porting progress for the next release [here](https://github.com/del
 - [ ] `flip`
 - [ ] `rewind`
 - [x] `round`  
-Use `round` or `Math.round` from the standard library instead.
+  Use `round` or `Math.round` from the standard library instead.
 - [ ] `truncate`
 
 ## Transformation
