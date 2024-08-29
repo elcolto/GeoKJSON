@@ -1,7 +1,7 @@
 [versions]
 kotlin = "2.0.20"
 resources = "0.9.0"
-benchmark = "0.4.11"
+benchmark = "0.4.12"
 agp = "8.5.2"
 ktlint = "12.1.1"
 detekt = "1.23.6"
