@@ -130,6 +130,9 @@ public final class io/github/elcolto/geokjson/turf/measurement/DistanceKt {
 	public static final fun distance (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;)D
 	public static final fun distance (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;)D
 	public static synthetic fun distance$default (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;ILjava/lang/Object;)D
+	public static final fun rhumbDistance (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;)D
+	public static final fun rhumbDistance (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;)D
+	public static synthetic fun rhumbDistance$default (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;ILjava/lang/Object;)D
 }
 
 public final class io/github/elcolto/geokjson/turf/measurement/EnvelopeKt {

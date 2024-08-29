@@ -1,5 +1,7 @@
 package io.github.elcolto.geokjson.turf
 
+import io.github.elcolto.geokjson.geojson.Position
+
 /**
  * Convert a distance measurement (assuming a spherical Earth) from radians to a more friendly unit.
  *
@@ -103,3 +105,14 @@ public fun bearingToAzimuth(bearing: Double): Double = (bearing % 360 + 360) % 3
 internal inline fun <reified T> Any?.asInstance(): T? = this as? T
 
 public const val AREA_EARTH_RADIUS: Int = 6378137
+
+// compensate the crossing of the 180th meridian (https://macwright.org/2016/09/26/the-180th-meridian.html)
+// solution from https://github.com/mapbox/mapbox-gl-js/issues/3250#issuecomment-294887678
+internal fun compensateAntiMeridianLongitude(from: Position, to: Position): Double {
+    val longitude = when {
+        to.longitude - from.longitude > 180 -> to.longitude - 360
+        from.longitude - to.longitude > 180 -> to.longitude + 360
+        else -> to.longitude
+    }
+    return longitude
+}

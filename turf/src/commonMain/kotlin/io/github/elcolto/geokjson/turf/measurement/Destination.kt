@@ -4,6 +4,7 @@ import io.github.elcolto.geokjson.geojson.Position
 import io.github.elcolto.geokjson.turf.EARTH_RADIUS
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.Units
+import io.github.elcolto.geokjson.turf.compensateAntiMeridianLongitude
 import io.github.elcolto.geokjson.turf.convertLength
 import io.github.elcolto.geokjson.turf.degrees
 import io.github.elcolto.geokjson.turf.lengthToRadians
@@ -69,21 +70,9 @@ public fun rhumbDestination(
     bearing: Double,
     units: Units = Units.Kilometers,
 ): Position {
-    val wasNegativeDistance = distance < 0
-    var distanceInMeters = convertLength(abs(distance), from = units, to = Units.Meters)
-    if (wasNegativeDistance) {
-        distanceInMeters = -abs(distanceInMeters)
-    }
-
+    val distanceInMeters = convertLength(distance, from = units, to = Units.Meters)
     val destination = calculateRhumbDestination(origin, distanceInMeters, bearing)
-
-    val longitude = when {
-        destination.longitude - origin.longitude > 180 -> destination.longitude - 360
-        origin.longitude - destination.longitude > 180 -> destination.longitude + 360
-        else -> destination.longitude
-    }
-
-    return Position(longitude, destination.latitude)
+    return Position(compensateAntiMeridianLongitude(origin, destination), destination.latitude)
 }
 
 @Suppress("MagicNumber")
