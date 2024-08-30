@@ -203,3 +203,64 @@ public final class io/github/elcolto/geokjson/turf/transformation/CircleKt {
 	public static synthetic fun circle$default (Lio/github/elcolto/geokjson/geojson/Point;DILio/github/elcolto/geokjson/turf/Units;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/Polygon;
 }
 
+public final class io/github/elcolto/geokjson/turf/transformation/ScaleKt {
+	public static final fun scale (Lio/github/elcolto/geokjson/geojson/Geometry;DLio/github/elcolto/geokjson/turf/transformation/ScaleOrigin;)Lio/github/elcolto/geokjson/geojson/Geometry;
+	public static synthetic fun scale$default (Lio/github/elcolto/geokjson/geojson/Geometry;DLio/github/elcolto/geokjson/turf/transformation/ScaleOrigin;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/Geometry;
+}
+
+public abstract class io/github/elcolto/geokjson/turf/transformation/ScaleOrigin {
+}
+
+public final class io/github/elcolto/geokjson/turf/transformation/ScaleOrigin$Center : io/github/elcolto/geokjson/turf/transformation/ScaleOrigin {
+	public static final field INSTANCE Lio/github/elcolto/geokjson/turf/transformation/ScaleOrigin$Center;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/elcolto/geokjson/turf/transformation/ScaleOrigin$Centroid : io/github/elcolto/geokjson/turf/transformation/ScaleOrigin {
+	public static final field INSTANCE Lio/github/elcolto/geokjson/turf/transformation/ScaleOrigin$Centroid;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/elcolto/geokjson/turf/transformation/ScaleOrigin$Coordinates : io/github/elcolto/geokjson/turf/transformation/ScaleOrigin {
+	public fun <init> (Lio/github/elcolto/geokjson/geojson/Position;)V
+	public final fun component1 ()Lio/github/elcolto/geokjson/geojson/Position;
+	public final fun copy (Lio/github/elcolto/geokjson/geojson/Position;)Lio/github/elcolto/geokjson/turf/transformation/ScaleOrigin$Coordinates;
+	public static synthetic fun copy$default (Lio/github/elcolto/geokjson/turf/transformation/ScaleOrigin$Coordinates;Lio/github/elcolto/geokjson/geojson/Position;ILjava/lang/Object;)Lio/github/elcolto/geokjson/turf/transformation/ScaleOrigin$Coordinates;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getPosition ()Lio/github/elcolto/geokjson/geojson/Position;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/elcolto/geokjson/turf/transformation/ScaleOrigin$NorthEast : io/github/elcolto/geokjson/turf/transformation/ScaleOrigin {
+	public static final field INSTANCE Lio/github/elcolto/geokjson/turf/transformation/ScaleOrigin$NorthEast;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/elcolto/geokjson/turf/transformation/ScaleOrigin$NorthWest : io/github/elcolto/geokjson/turf/transformation/ScaleOrigin {
+	public static final field INSTANCE Lio/github/elcolto/geokjson/turf/transformation/ScaleOrigin$NorthWest;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/elcolto/geokjson/turf/transformation/ScaleOrigin$SouthEast : io/github/elcolto/geokjson/turf/transformation/ScaleOrigin {
+	public static final field INSTANCE Lio/github/elcolto/geokjson/turf/transformation/ScaleOrigin$SouthEast;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/elcolto/geokjson/turf/transformation/ScaleOrigin$SouthWest : io/github/elcolto/geokjson/turf/transformation/ScaleOrigin {
+	public static final field INSTANCE Lio/github/elcolto/geokjson/turf/transformation/ScaleOrigin$SouthWest;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+

@@ -54,7 +54,7 @@ You can view porting progress for the next release [here](https://github.com/del
 - [ ] `tessellate`
 - [ ] `transformRotate`
 - [ ] `transformTranslate`
-- [ ] `transformScale`
+- [x] [`transformScale`](./api/turf/io.github.elcolto.geokjson.turf.transformation/scale.html)
 - [ ] `union`
 - [ ] `voronoi`
 
