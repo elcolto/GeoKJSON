@@ -84,6 +84,9 @@ private fun <T : Geometry> defineOrigin(geometry: T, origin: ScaleOrigin): Posit
     }
 }
 
+/**
+ * Option to define an origin, at which point of an origin geometry the scaling will occur
+ */
 public sealed class ScaleOrigin {
     public data object SouthWest : ScaleOrigin()
     public data object SouthEast : ScaleOrigin()
