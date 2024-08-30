@@ -15,7 +15,7 @@ class ScaleTest {
 
     @Test
     fun testScaleIssue1059() {
-        testScale("transformation/scale/in/issue-#1059.geojson", "transformation/scale/out/issue-#1059.geojson")
+        testScale("transformation/scale/in/issue-1059.geojson", "transformation/scale/out/issue-1059.geojson")
     }
 
     @Test
