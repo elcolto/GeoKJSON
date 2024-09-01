@@ -30,7 +30,7 @@ You can view porting progress for the next release [here](https://github.com/del
 
 ## Coordinate Mutation
 
-- [ ] `cleanCoords`
+- [x] [`cleanCoords`](./api/turf/io.github.elcolto.geokjson.turf.coordinatemutation/clean-coordinates.html)
 - [ ] `flip`
 - [ ] `rewind`
 - [x] `round`  
