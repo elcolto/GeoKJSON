@@ -24,10 +24,10 @@ public fun lineSlice(start: Position, stop: Position, line: LineString): LineStr
     var reverse = false
     val (startPos, endPos) =
         if (startIndex <= endIndex) {
-            startVertex.geometry!! to stopVertex.geometry!!
+            startVertex.getGeometry() to stopVertex.getGeometry()
         } else {
             reverse = true
-            stopVertex.geometry!! to startVertex.geometry!!
+            stopVertex.getGeometry() to startVertex.getGeometry()
         }
 
     val positions = mutableListOf(startPos)

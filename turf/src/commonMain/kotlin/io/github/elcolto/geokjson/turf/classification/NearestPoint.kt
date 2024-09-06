@@ -118,9 +118,9 @@ public fun nearestPointFeature(
  * @returns the closest point in the set to the reference point.
  **/
 @ExperimentalTurfApi
-@Throws(IllegalArgumentException::class)
+@Throws(NoSuchElementException::class)
 public fun nearestPoint(target: Point, featureCollection: FeatureCollection): Point =
-    requireNotNull(nearestPointFeature(target, featureCollection).geometry)
+    nearestPointFeature(target, featureCollection).getGeometry()
 
 public object NearestPoint {
 

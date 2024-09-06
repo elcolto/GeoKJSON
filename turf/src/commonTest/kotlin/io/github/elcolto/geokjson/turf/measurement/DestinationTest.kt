@@ -40,7 +40,7 @@ class DestinationTest {
             val distance = feature.properties["dist"].asInstance<Int>()?.toDouble() ?: 100.0
             val units = feature.properties["units"].asInstance<String>()?.let { Units.valueOf(it.capitalize()) }
                 ?: Units.Kilometers
-            val origin = feature.geometry!!.coordinates
+            val origin = feature.getGeometry().coordinates
 
             val destination = rhumbDestination(origin, distance, bearing, units)
 

@@ -58,7 +58,7 @@ class SquareGridTest {
             Position(13.17194422502807, 52.515969323342695),
             Position(13.170147683370761, 52.515969323342695),
         )
-        assertEquals(expectedFistItem, grid.features.first().geometry!!.coordAll())
+        assertEquals(expectedFistItem, grid.features.first().getGeometry().coordAll())
         val expectedLastItem = mutableListOf(
             Position(13.18272347497193, 52.517765865),
             Position(13.18272347497193, 52.51956240665731),
@@ -66,7 +66,7 @@ class SquareGridTest {
             Position(13.18452001662924, 52.517765865),
             Position(13.18272347497193, 52.517765865),
         )
-        assertEquals(expectedLastItem, grid.features.last().geometry!!.coordAll())
+        assertEquals(expectedLastItem, grid.features.last().getGeometry().coordAll())
     }
 
     @OptIn(ExperimentalTurfApi::class)

@@ -14,7 +14,7 @@ class CleanCoordinatesTest {
         val feature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/in/clean-segment.geojson"),
         )
-        val geometry = cleanCoordinates(feature.geometry!!)
+        val geometry = cleanCoordinates(feature.getGeometry())
         val expectedFeature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/out/clean-segment.geojson"),
         )
@@ -27,7 +27,7 @@ class CleanCoordinatesTest {
         val feature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/in/closed-linestring.geojson"),
         )
-        val geometry = cleanCoordinates(feature.geometry!!)
+        val geometry = cleanCoordinates(feature.getGeometry())
         val expectedFeature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/out/closed-linestring.geojson"),
         )
@@ -49,7 +49,7 @@ class CleanCoordinatesTest {
         val feature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/in/line-3-coords.geojson"),
         )
-        val geometry = cleanCoordinates(feature.geometry!!)
+        val geometry = cleanCoordinates(feature.getGeometry())
         val expectedFeature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/out/line-3-coords.geojson"),
         )
@@ -62,7 +62,7 @@ class CleanCoordinatesTest {
         val feature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/in/multiline.geojson"),
         )
-        val geometry = cleanCoordinates(feature.geometry!!)
+        val geometry = cleanCoordinates(feature.getGeometry())
         val expectedFeature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/out/multiline.geojson"),
         )
@@ -75,7 +75,7 @@ class CleanCoordinatesTest {
         val feature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/in/multipoint.geojson"),
         )
-        val geometry = cleanCoordinates(feature.geometry!!)
+        val geometry = cleanCoordinates(feature.getGeometry())
         val expectedFeature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/out/multipoint.geojson"),
         )
@@ -88,7 +88,7 @@ class CleanCoordinatesTest {
         val feature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/in/multipolygon.geojson"),
         )
-        val geometry = cleanCoordinates(feature.geometry!!)
+        val geometry = cleanCoordinates(feature.getGeometry())
         val expectedFeature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/out/multipolygon.geojson"),
         )
@@ -99,7 +99,7 @@ class CleanCoordinatesTest {
     @Test
     fun testPoint() {
         val feature = Feature.fromJson<Geometry>(readResource("coordinatemutation/cleancoordinates/in/point.geojson"))
-        val geometry = cleanCoordinates(feature.geometry!!)
+        val geometry = cleanCoordinates(feature.getGeometry())
         val expectedFeature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/out/point.geojson"),
         )
@@ -110,7 +110,7 @@ class CleanCoordinatesTest {
     @Test
     fun testPolygon() {
         val feature = Feature.fromJson<Geometry>(readResource("coordinatemutation/cleancoordinates/in/polygon.geojson"))
-        val geometry = cleanCoordinates(feature.geometry!!)
+        val geometry = cleanCoordinates(feature.getGeometry())
         val expectedFeature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/out/polygon.geojson"),
         )
@@ -123,7 +123,7 @@ class CleanCoordinatesTest {
         val feature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/in/polygon-with-hole.geojson"),
         )
-        val geometry = cleanCoordinates(feature.geometry!!)
+        val geometry = cleanCoordinates(feature.getGeometry())
         val expectedFeature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/out/polygon-with-hole.geojson"),
         )
@@ -134,7 +134,7 @@ class CleanCoordinatesTest {
     @Test
     fun testSegment() {
         val feature = Feature.fromJson<Geometry>(readResource("coordinatemutation/cleancoordinates/in/segment.geojson"))
-        val geometry = cleanCoordinates(feature.geometry!!)
+        val geometry = cleanCoordinates(feature.getGeometry())
         val expectedFeature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/out/segment.geojson"),
         )
@@ -147,7 +147,7 @@ class CleanCoordinatesTest {
         val feature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/in/simple-line.geojson"),
         )
-        val geometry = cleanCoordinates(feature.geometry!!)
+        val geometry = cleanCoordinates(feature.getGeometry())
         val expectedFeature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/out/simple-line.geojson"),
         )
@@ -160,7 +160,7 @@ class CleanCoordinatesTest {
         val feature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/in/triangle.geojson"),
         )
-        val geometry = cleanCoordinates(feature.geometry!!)
+        val geometry = cleanCoordinates(feature.getGeometry())
         val expectedFeature = Feature.fromJson<Geometry>(
             readResource("coordinatemutation/cleancoordinates/out/triangle.geojson"),
         )

@@ -45,6 +45,14 @@ public data class Feature<out T : Geometry>(
     @JvmName("getPropertyCast")
     public inline fun <reified T : Any?> getProperty(key: String): T? = properties[key] as T?
 
+    /**
+     * Returns the [geometry] or throws an exception if it is `null`.
+     * @throws NoSuchElementException when the feature doesn't contain a geometry
+     */
+    @JvmName(name = "getNonNullableGeometry")
+    public inline fun getGeometry(): T = runCatching { geometry!! }
+        .getOrElse { throw NoSuchElementException("Feature has no geometry") }
+
     override fun toString(): String = json()
 
     private fun idProp(): String = if (this.id == null) "" else ""","id":"${this.id}""""
