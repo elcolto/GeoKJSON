@@ -136,21 +136,21 @@ private fun feature(position: Position, distance: Double, location: Double, inde
 )
 
 /**
- * `distance` on `Feature.properties` calculated with [nearestPointOnLine]. Will throw an `NoSuchElementException` when
+ * `distance` on `Feature.properties` calculated with [nearestPointOnLine]. Will throw a `NoSuchElementException` when
  * property is not available. For a safe cal access `properties` with key [NearestPointOnLine.DISTANCE_TO_POINT]
  */
 public val Feature<Point>.nearestPointDistance: Double
     get() = properties.getValue(NearestPointOnLine.DISTANCE_TO_POINT) as Double
 
 /**
- * `location` on `Feature.properties` calculated with [nearestPointOnLine]. Will throw an `NoSuchElementException` when
+ * `location` on `Feature.properties` calculated with [nearestPointOnLine]. Will throw a `NoSuchElementException` when
  * property is not available. For a safe cal access `properties` with key `NearestPointOnLine.LOCATION`
  */
 public val Feature<Point>.nearestPointLocation: Double
     get() = properties.getValue(NearestPointOnLine.LOCATION) as Double
 
 /**
- * `index` on `Feature.properties` calculated with [nearestPointOnLine]. Will throw an `NoSuchElementException` when
+ * `index` on `Feature.properties` calculated with [nearestPointOnLine]. Will throw a `NoSuchElementException` when
  * property is not available. For a safe cal access `properties` with key `NearestPointOnLine.INDEX`
  */
 public val Feature<Point>.nearestPointIndex: Int
