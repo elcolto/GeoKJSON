@@ -28,7 +28,7 @@ class CentroidTest {
     fun testImbalancePolygon() {
         val polygon = Feature.fromJson<Polygon>(
             readResource("measurement/centroid/in/imbalanced-polygon.geojson"),
-        ).geometry!!
+        ).getGeometry()
 
         val pos = centroid(polygon).coordinates
         assertDoubleEquals(4.851791984156558, pos.longitude, epsilon = 0.000001)
@@ -39,7 +39,7 @@ class CentroidTest {
     fun testLineString() {
         val lineString = Feature.fromJson<LineString>(
             readResource("measurement/centroid/in/linestring.geojson"),
-        ).geometry!!
+        ).getGeometry()
 
         val pos = centroid(lineString).coordinates
         assertDoubleEquals(4.860076904296875, pos.longitude, epsilon = 0.000001)
@@ -48,7 +48,7 @@ class CentroidTest {
 
     @Test
     fun testPoint() {
-        val point = Feature.fromJson<Point>(readResource("measurement/centroid/in/point.geojson")).geometry!!
+        val point = Feature.fromJson<Point>(readResource("measurement/centroid/in/point.geojson")).getGeometry()
 
         val pos = centroid(point).coordinates
         assertDoubleEquals(4.831961989402771, pos.longitude, epsilon = 0.000001)
@@ -57,7 +57,7 @@ class CentroidTest {
 
     @Test
     fun testPolygon() {
-        val polygon = Feature.fromJson<Polygon>(readResource("measurement/centroid/in/polygon.geojson")).geometry!!
+        val polygon = Feature.fromJson<Polygon>(readResource("measurement/centroid/in/polygon.geojson")).getGeometry()
 
         val pos = centroid(polygon).coordinates
         assertDoubleEquals(4.841194152832031, pos.longitude, epsilon = 0.000001)

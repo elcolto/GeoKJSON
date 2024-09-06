@@ -123,9 +123,9 @@ class ScaleTest {
         val scaleOrigin = originString?.let { stringToScaledOrigin(it, null) }
             ?: originPosition?.let { stringToScaledOrigin("coordinates", it) }
 
-        val scaledGeometry = scale(feature.geometry!!, factor.toDouble(), scaleOrigin ?: ScaleOrigin.Centroid)
+        val scaledGeometry = scale(feature.getGeometry(), factor.toDouble(), scaleOrigin ?: ScaleOrigin.Centroid)
 
-        assertGeometryEquals(expectedFc.features.first().geometry!!, scaledGeometry, 0.000001)
+        assertGeometryEquals(expectedFc.features.first().getGeometry(), scaledGeometry, 0.000001)
     }
 
     private fun stringToScaledOrigin(value: String, position: Position?): ScaleOrigin = when (value) {

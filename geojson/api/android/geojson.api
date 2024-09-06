@@ -46,6 +46,7 @@ public final class io/github/elcolto/geokjson/geojson/Feature : io/github/elcolt
 	public fun getForeignMembers ()Ljava/util/Map;
 	public final fun getGeometry ()Lio/github/elcolto/geokjson/geojson/Geometry;
 	public final fun getId ()Ljava/lang/String;
+	public final fun getNonNullableGeometry ()Lio/github/elcolto/geokjson/geojson/Geometry;
 	public final fun getProperties ()Ljava/util/Map;
 	public fun hashCode ()I
 	public fun json ()Ljava/lang/String;
