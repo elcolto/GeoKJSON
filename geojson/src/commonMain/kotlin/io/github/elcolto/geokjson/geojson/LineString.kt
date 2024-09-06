@@ -60,8 +60,7 @@ public data class LineString @JvmOverloads constructor(
             null
         }
 
-        @JvmStatic
-        public fun fromJson(json: JsonObject): LineString {
+        internal fun fromJson(json: JsonObject): LineString {
             require(json.getValue("type").jsonPrimitive.content == "LineString") {
                 "Object \"type\" is not \"LineString\"."
             }

@@ -60,8 +60,7 @@ public data class MultiPolygon @JvmOverloads constructor(
             null
         }
 
-        @JvmStatic
-        public fun fromJson(json: JsonObject): MultiPolygon {
+        internal fun fromJson(json: JsonObject): MultiPolygon {
             require(json.getValue("type").jsonPrimitive.content == "MultiPolygon") {
                 "Object \"type\" is not \"MultiPolygon\"."
             }

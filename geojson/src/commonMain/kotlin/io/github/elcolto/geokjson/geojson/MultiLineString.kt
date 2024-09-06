@@ -69,8 +69,7 @@ public data class MultiLineString @JvmOverloads constructor(
             null
         }
 
-        @JvmStatic
-        public fun fromJson(json: JsonObject): MultiLineString {
+        internal fun fromJson(json: JsonObject): MultiLineString {
             require(json.getValue("type").jsonPrimitive.content == "MultiLineString") {
                 "Object \"type\" is not \"MultiLineString\"."
             }

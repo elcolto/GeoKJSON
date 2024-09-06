@@ -73,8 +73,7 @@ public data class Feature<out T : Geometry>(
             null
         }
 
-        @JvmStatic
-        public fun <T : Geometry> fromJson(json: JsonObject): Feature<T> {
+        internal fun <T : Geometry> fromJson(json: JsonObject): Feature<T> {
             require(json.getValue("type").jsonPrimitive.content == "Feature") {
                 "Object \"type\" is not \"Feature\"."
             }

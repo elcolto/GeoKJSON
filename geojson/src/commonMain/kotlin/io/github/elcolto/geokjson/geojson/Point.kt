@@ -42,8 +42,7 @@ public data class Point @JvmOverloads constructor(
             null
         }
 
-        @JvmStatic
-        public fun fromJson(json: JsonObject): Point {
+        internal fun fromJson(json: JsonObject): Point {
             require(json.getValue("type").jsonPrimitive.content == "Point") {
                 "Object \"type\" is not \"Point\"."
             }

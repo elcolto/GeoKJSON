@@ -25,8 +25,7 @@ public sealed class Geometry protected constructor() : GeoJson {
             null
         }
 
-        @JvmStatic
-        public fun fromJson(json: JsonObject): Geometry =
+        internal fun fromJson(json: JsonObject): Geometry =
             when (val type = json.getValue("type").jsonPrimitive.content) {
                 "Point" -> Point.fromJson(json)
                 "MultiPoint" -> MultiPoint.fromJson(json)

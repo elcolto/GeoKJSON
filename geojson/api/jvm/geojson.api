@@ -40,7 +40,6 @@ public final class io/github/elcolto/geokjson/geojson/Feature : io/github/elcolt
 	public static synthetic fun copy$default (Lio/github/elcolto/geokjson/geojson/Feature;Lio/github/elcolto/geokjson/geojson/Geometry;Ljava/util/Map;Ljava/lang/String;Lio/github/elcolto/geokjson/geojson/BoundingBox;Ljava/util/Map;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/Feature;
 	public fun equals (Ljava/lang/Object;)Z
 	public static final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Feature;
-	public static final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/Feature;
 	public static final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Feature;
 	public fun getBbox ()Lio/github/elcolto/geokjson/geojson/BoundingBox;
 	public fun getForeignMembers ()Ljava/util/Map;
@@ -55,7 +54,6 @@ public final class io/github/elcolto/geokjson/geojson/Feature : io/github/elcolt
 
 public final class io/github/elcolto/geokjson/geojson/Feature$Companion {
 	public final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Feature;
-	public final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/Feature;
 	public final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Feature;
 	public final fun serializer (Lkotlinx/serialization/KSerializer;)Lkotlinx/serialization/KSerializer;
 }
@@ -81,7 +79,6 @@ public final class io/github/elcolto/geokjson/geojson/FeatureCollection : io/git
 	public static synthetic fun copy$default (Lio/github/elcolto/geokjson/geojson/FeatureCollection;Ljava/util/List;Lio/github/elcolto/geokjson/geojson/BoundingBox;Ljava/util/Map;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/FeatureCollection;
 	public fun equals (Ljava/lang/Object;)Z
 	public static final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/FeatureCollection;
-	public static final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/FeatureCollection;
 	public static final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/FeatureCollection;
 	public fun getBbox ()Lio/github/elcolto/geokjson/geojson/BoundingBox;
 	public final fun getFeatures ()Ljava/util/List;
@@ -103,7 +100,6 @@ public final class io/github/elcolto/geokjson/geojson/FeatureCollection : io/git
 
 public final class io/github/elcolto/geokjson/geojson/FeatureCollection$Companion {
 	public final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/FeatureCollection;
-	public final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/FeatureCollection;
 	public final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/FeatureCollection;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
@@ -117,7 +113,6 @@ public abstract interface class io/github/elcolto/geokjson/geojson/GeoJson {
 public abstract class io/github/elcolto/geokjson/geojson/Geometry : io/github/elcolto/geokjson/geojson/GeoJson {
 	public static final field Companion Lio/github/elcolto/geokjson/geojson/Geometry$Companion;
 	public static final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Geometry;
-	public static final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/Geometry;
 	public static final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Geometry;
 	public abstract fun getBbox ()Lio/github/elcolto/geokjson/geojson/BoundingBox;
 	public abstract fun getForeignMembers ()Ljava/util/Map;
@@ -126,7 +121,6 @@ public abstract class io/github/elcolto/geokjson/geojson/Geometry : io/github/el
 
 public final class io/github/elcolto/geokjson/geojson/Geometry$Companion {
 	public final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Geometry;
-	public final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/Geometry;
 	public final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Geometry;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
@@ -151,7 +145,6 @@ public final class io/github/elcolto/geokjson/geojson/GeometryCollection : io/gi
 	public static synthetic fun copy$default (Lio/github/elcolto/geokjson/geojson/GeometryCollection;Ljava/util/List;Lio/github/elcolto/geokjson/geojson/BoundingBox;Ljava/util/Map;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/GeometryCollection;
 	public fun equals (Ljava/lang/Object;)Z
 	public static final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/GeometryCollection;
-	public static final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/GeometryCollection;
 	public static final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/GeometryCollection;
 	public fun getBbox ()Lio/github/elcolto/geokjson/geojson/BoundingBox;
 	public fun getForeignMembers ()Ljava/util/Map;
@@ -173,7 +166,6 @@ public final class io/github/elcolto/geokjson/geojson/GeometryCollection : io/gi
 
 public final class io/github/elcolto/geokjson/geojson/GeometryCollection$Companion {
 	public final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/GeometryCollection;
-	public final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/GeometryCollection;
 	public final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/GeometryCollection;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
@@ -199,7 +191,6 @@ public final class io/github/elcolto/geokjson/geojson/LineString : io/github/elc
 	public static synthetic fun copy$default (Lio/github/elcolto/geokjson/geojson/LineString;Ljava/util/List;Lio/github/elcolto/geokjson/geojson/BoundingBox;Ljava/util/Map;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/LineString;
 	public fun equals (Ljava/lang/Object;)Z
 	public static final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/LineString;
-	public static final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/LineString;
 	public static final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/LineString;
 	public fun getBbox ()Lio/github/elcolto/geokjson/geojson/BoundingBox;
 	public final fun getCoordinates ()Ljava/util/List;
@@ -212,7 +203,6 @@ public final class io/github/elcolto/geokjson/geojson/LineString : io/github/elc
 
 public final class io/github/elcolto/geokjson/geojson/LineString$Companion {
 	public final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/LineString;
-	public final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/LineString;
 	public final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/LineString;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
@@ -238,7 +228,6 @@ public final class io/github/elcolto/geokjson/geojson/MultiLineString : io/githu
 	public static synthetic fun copy$default (Lio/github/elcolto/geokjson/geojson/MultiLineString;Ljava/util/List;Lio/github/elcolto/geokjson/geojson/BoundingBox;Ljava/util/Map;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/MultiLineString;
 	public fun equals (Ljava/lang/Object;)Z
 	public static final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/MultiLineString;
-	public static final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/MultiLineString;
 	public static final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/MultiLineString;
 	public fun getBbox ()Lio/github/elcolto/geokjson/geojson/BoundingBox;
 	public final fun getCoordinates ()Ljava/util/List;
@@ -251,7 +240,6 @@ public final class io/github/elcolto/geokjson/geojson/MultiLineString : io/githu
 
 public final class io/github/elcolto/geokjson/geojson/MultiLineString$Companion {
 	public final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/MultiLineString;
-	public final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/MultiLineString;
 	public final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/MultiLineString;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
@@ -279,7 +267,6 @@ public final class io/github/elcolto/geokjson/geojson/MultiPoint : io/github/elc
 	public static synthetic fun copy$default (Lio/github/elcolto/geokjson/geojson/MultiPoint;Ljava/util/List;Lio/github/elcolto/geokjson/geojson/BoundingBox;Ljava/util/Map;Ljava/util/List;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/MultiPoint;
 	public fun equals (Ljava/lang/Object;)Z
 	public static final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/MultiPoint;
-	public static final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/MultiPoint;
 	public static final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/MultiPoint;
 	public fun getBbox ()Lio/github/elcolto/geokjson/geojson/BoundingBox;
 	public final fun getCoordinates ()Ljava/util/List;
@@ -292,7 +279,6 @@ public final class io/github/elcolto/geokjson/geojson/MultiPoint : io/github/elc
 
 public final class io/github/elcolto/geokjson/geojson/MultiPoint$Companion {
 	public final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/MultiPoint;
-	public final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/MultiPoint;
 	public final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/MultiPoint;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
@@ -318,7 +304,6 @@ public final class io/github/elcolto/geokjson/geojson/MultiPolygon : io/github/e
 	public static synthetic fun copy$default (Lio/github/elcolto/geokjson/geojson/MultiPolygon;Ljava/util/List;Lio/github/elcolto/geokjson/geojson/BoundingBox;Ljava/util/Map;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/MultiPolygon;
 	public fun equals (Ljava/lang/Object;)Z
 	public static final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/MultiPolygon;
-	public static final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/MultiPolygon;
 	public static final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/MultiPolygon;
 	public fun getBbox ()Lio/github/elcolto/geokjson/geojson/BoundingBox;
 	public final fun getCoordinates ()Ljava/util/List;
@@ -331,7 +316,6 @@ public final class io/github/elcolto/geokjson/geojson/MultiPolygon : io/github/e
 
 public final class io/github/elcolto/geokjson/geojson/MultiPolygon$Companion {
 	public final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/MultiPolygon;
-	public final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/MultiPolygon;
 	public final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/MultiPolygon;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
@@ -353,7 +337,6 @@ public final class io/github/elcolto/geokjson/geojson/Point : io/github/elcolto/
 	public static synthetic fun copy$default (Lio/github/elcolto/geokjson/geojson/Point;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/BoundingBox;Ljava/util/Map;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/Point;
 	public fun equals (Ljava/lang/Object;)Z
 	public static final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Point;
-	public static final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/Point;
 	public static final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Point;
 	public fun getBbox ()Lio/github/elcolto/geokjson/geojson/BoundingBox;
 	public final fun getCoordinates ()Lio/github/elcolto/geokjson/geojson/Position;
@@ -365,7 +348,6 @@ public final class io/github/elcolto/geokjson/geojson/Point : io/github/elcolto/
 
 public final class io/github/elcolto/geokjson/geojson/Point$Companion {
 	public final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Point;
-	public final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/Point;
 	public final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Point;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
@@ -391,7 +373,6 @@ public final class io/github/elcolto/geokjson/geojson/Polygon : io/github/elcolt
 	public static synthetic fun copy$default (Lio/github/elcolto/geokjson/geojson/Polygon;Ljava/util/List;Lio/github/elcolto/geokjson/geojson/BoundingBox;Ljava/util/Map;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/Polygon;
 	public fun equals (Ljava/lang/Object;)Z
 	public static final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Polygon;
-	public static final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/Polygon;
 	public static final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Polygon;
 	public fun getBbox ()Lio/github/elcolto/geokjson/geojson/BoundingBox;
 	public final fun getCoordinates ()Ljava/util/List;
@@ -404,7 +385,6 @@ public final class io/github/elcolto/geokjson/geojson/Polygon : io/github/elcolt
 
 public final class io/github/elcolto/geokjson/geojson/Polygon$Companion {
 	public final fun fromJson (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Polygon;
-	public final fun fromJson (Lkotlinx/serialization/json/JsonObject;)Lio/github/elcolto/geokjson/geojson/Polygon;
 	public final fun fromJsonOrNull (Ljava/lang/String;)Lio/github/elcolto/geokjson/geojson/Polygon;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
