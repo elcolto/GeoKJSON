@@ -18,14 +18,23 @@ public fun lineSlice(start: Position, stop: Position, line: LineString): LineStr
     val startVertex = nearestPointOnLine(line, start)
     val stopVertex = nearestPointOnLine(line, stop)
 
+    val startIndex = startVertex.nearestPointIndex
+    val endIndex = stopVertex.nearestPointIndex
+
+    var reverse = false
     val (startPos, endPos) =
-        if (startVertex.index <= stopVertex.index) startVertex to stopVertex else stopVertex to startVertex
+        if (startIndex <= endIndex) {
+            startVertex.geometry!! to stopVertex.geometry!!
+        } else {
+            reverse = true
+            stopVertex.geometry!! to startVertex.geometry!!
+        }
 
-    val positions = mutableListOf(startPos.point)
-    for (i in startPos.index + 1 until endPos.index + 1) {
-        positions.add(line.coordinates[i])
+    val positions = mutableListOf(startPos)
+    for (i in (if (reverse) endIndex else startIndex) + 1 until (if (reverse) startIndex else endIndex) + 1) {
+        positions.add(line.points[i])
     }
-    positions.add(endPos.point)
+    positions.add(endPos)
 
-    return LineString(positions)
+    return LineString(positions.map { it.coordinates })
 }

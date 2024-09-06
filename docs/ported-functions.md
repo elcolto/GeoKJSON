@@ -122,7 +122,7 @@ Use the [GeoJson DSL](./geojson-dsl) instead.
 
 ## Classification
 
-- [ ] `nearestPoint`
+- [x] [`nearestPoint`](./api/turf/io.github.elcolto.geokjson.turf.classification/nearest-point.html)
 
 ## Aggregation
 
