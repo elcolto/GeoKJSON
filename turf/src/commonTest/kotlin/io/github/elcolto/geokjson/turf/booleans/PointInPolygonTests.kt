@@ -7,14 +7,12 @@ import io.github.elcolto.geokjson.geojson.dsl.point
 import io.github.elcolto.geokjson.geojson.dsl.polygon
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.utils.readResource
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 @ExperimentalTurfApi
-@ExperimentalSerializationApi
 class PointInPolygonTests {
 
     @Test

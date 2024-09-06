@@ -61,8 +61,7 @@ public data class FeatureCollection(
             null
         }
 
-        @JvmStatic
-        public fun fromJson(json: JsonObject): FeatureCollection {
+        internal fun fromJson(json: JsonObject): FeatureCollection {
             require(json.getValue("type").jsonPrimitive.content == "FeatureCollection") {
                 "Object \"type\" is not \"FeatureCollection\"."
             }

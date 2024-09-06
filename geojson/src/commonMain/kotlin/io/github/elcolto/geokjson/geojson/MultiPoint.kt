@@ -56,8 +56,7 @@ public data class MultiPoint @JvmOverloads constructor(
             null
         }
 
-        @JvmStatic
-        public fun fromJson(json: JsonObject): MultiPoint {
+        internal fun fromJson(json: JsonObject): MultiPoint {
             require(json.getValue("type").jsonPrimitive.content == "MultiPoint") {
                 "Object \"type\" is not \"MultiPoint\"."
             }

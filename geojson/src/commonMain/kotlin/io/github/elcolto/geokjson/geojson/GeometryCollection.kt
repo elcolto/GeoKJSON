@@ -42,8 +42,7 @@ public data class GeometryCollection @JvmOverloads constructor(
             null
         }
 
-        @JvmStatic
-        public fun fromJson(json: JsonObject): GeometryCollection {
+        internal fun fromJson(json: JsonObject): GeometryCollection {
             require(json.getValue("type").jsonPrimitive.content == "GeometryCollection") {
                 "Object \"type\" is not \"GeometryCollection\"."
             }

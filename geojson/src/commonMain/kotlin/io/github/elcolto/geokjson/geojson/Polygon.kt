@@ -58,8 +58,7 @@ public data class Polygon @JvmOverloads constructor(
             null
         }
 
-        @JvmStatic
-        public fun fromJson(json: JsonObject): Polygon {
+        internal fun fromJson(json: JsonObject): Polygon {
             require(json.getValue("type").jsonPrimitive.content == "Polygon") {
                 "Object \"type\" is not \"Polygon\"."
             }
