@@ -13,6 +13,7 @@ You can view porting progress for the next release [here](https://github.com/del
 - [x] [`bearing`](./api/turf/io.github.elcolto.geokjson.turf.measurement/bearing.html)
 - [x] [`center`](./api/turf/io.github.elcolto.geokjson.turf.measurement/center.html)
 - [ ] `centerOfMass`
+- [x] [`centroid`](./api/turf/io.github.elcolto.geokjson.turf.measurement/centroid.html)
 - [x] [`destination`](./api/turf/io.github.elcolto.geokjson.turf.measurement/destination.html)
 - [x] [`distance`](./api/turf/io.github.elcolto.geokjson.turf.measurement/distance.html)
 - [x] [`envelope`](./api/turf/io.github.elcolto.geokjson.turf.measurement/envelope.html)
@@ -21,19 +22,19 @@ You can view porting progress for the next release [here](https://github.com/del
 - [ ] `pointOnFeature`
 - [ ] `polygonTangents`
 - [ ] `pointToLineDistance`
-- [ ] `rhumbBearing`
-- [ ] `rhumbDestination`
-- [ ] `rhumbDistance`
-- [ ] `square`
+- [x] [`rhumbBearing`](./api/turf/io.github.elcolto.geokjson.turf.measurement/rhumb-bearing.html)
+- [x] [`rhumbDestination`](./api/turf/io.github.elcolto.geokjson.turf.measurement/rhumb-destination.html)
+- [x] [`rhumbDistance`]((./api/turf/io.github.elcolto.geokjson.turf.measurement/rhumb-distance.html))
+- [x] [`square`](./api/turf/io.github.elcolto.geokjson.turf.measurement/square.html)
 - [x] [`greatCircle`](./api/turf/io.github.elcolto.geokjson.turf.measurement/great-circle.html)
 
 ## Coordinate Mutation
 
-- [ ] `cleanCoords`
+- [x] [`cleanCoords`](./api/turf/io.github.elcolto.geokjson.turf.coordinatemutation/clean-coordinates.html)
 - [ ] `flip`
 - [ ] `rewind`
 - [x] `round`  
-Use `round` or `Math.round` from the standard library instead.
+  Use `round` or `Math.round` from the standard library instead.
 - [ ] `truncate`
 
 ## Transformation
@@ -53,7 +54,7 @@ Use `round` or `Math.round` from the standard library instead.
 - [ ] `tessellate`
 - [ ] `transformRotate`
 - [ ] `transformTranslate`
-- [ ] `transformScale`
+- [x] [`transformScale`](./api/turf/io.github.elcolto.geokjson.turf.transformation/scale.html)
 - [ ] `union`
 - [ ] `voronoi`
 

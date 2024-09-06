@@ -348,7 +348,7 @@ class SerializationTests {
         val point = Point(Position(12.3, 45.6))
         val multiPoint = MultiPoint(Position(12.3, 45.6), Position(78.9, 12.3))
 
-        val collection = GeometryCollection(point, multiPoint)
+        val collection = GeometryCollection(listOf(point, multiPoint))
         val json = """{"type":"GeometryCollection","geometries":[{"type":"Point","coordinates":[12.3,45.6]},
             |{"type":"MultiPoint","coordinates":[[12.3,45.6],[78.9,12.3]]}]}"""
             .trimMargin()
@@ -371,7 +371,7 @@ class SerializationTests {
         )
 
         assertEquals(
-            GeometryCollection(point, multiPoint),
+            GeometryCollection(listOf(point, multiPoint)),
             collection,
             "GeometryCollection",
         )
