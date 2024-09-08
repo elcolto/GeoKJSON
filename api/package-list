@@ -1,0 +1,15 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+module:geojson
+io.github.elcolto.geokjson.geojson
+io.github.elcolto.geokjson.geojson.dsl
+module:turf
+io.github.elcolto.geokjson.turf
+io.github.elcolto.geokjson.turf.booleans
+io.github.elcolto.geokjson.turf.classification
+io.github.elcolto.geokjson.turf.coordinatemutation
+io.github.elcolto.geokjson.turf.grids
+io.github.elcolto.geokjson.turf.measurement
+io.github.elcolto.geokjson.turf.misc
+io.github.elcolto.geokjson.turf.transformation
