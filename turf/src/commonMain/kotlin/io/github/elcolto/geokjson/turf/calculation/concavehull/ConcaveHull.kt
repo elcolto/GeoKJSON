@@ -1,4 +1,5 @@
 @file:Suppress("CyclomaticComplexMethod", "ComplexCondition", "ReturnCount", "MagicNumber")
+
 package io.github.elcolto.geokjson.turf.calculation.concavehull
 
 import io.github.elcolto.geokjson.geojson.Point
