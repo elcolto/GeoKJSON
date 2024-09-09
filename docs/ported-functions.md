@@ -45,7 +45,7 @@ You can view porting progress for the next release [here](https://github.com/del
 - [x] [`circle`](./api/turf/io.github.elcolto.geokjson.turf.transformation/circle.html)
 - [ ] `clone`
 - [ ] `concave`
-- [ ] `convex`
+- [x] [`convex`](./api/turf/io.github.elcolto.geokjson.turf.transformation/convex.html)
 - [ ] `difference`
 - [ ] `dissolve`
 - [ ] `intersect`
