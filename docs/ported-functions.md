@@ -12,7 +12,7 @@ You can view porting progress for the next release [here](https://github.com/del
 - [x] [`bboxPolygon`](./api/turf/io.github.elcolto.geokjson.turf.measurement/bbox-polygon.html)
 - [x] [`bearing`](./api/turf/io.github.elcolto.geokjson.turf.measurement/bearing.html)
 - [x] [`center`](./api/turf/io.github.elcolto.geokjson.turf.measurement/center.html)
-- [ ] `centerOfMass`
+- [x] [`centerOfMass`]((./api/turf/io.github.elcolto.geokjson.turf.measurement/center-of-mass.html))
 - [x] [`centroid`](./api/turf/io.github.elcolto.geokjson.turf.measurement/centroid.html)
 - [x] [`destination`](./api/turf/io.github.elcolto.geokjson.turf.measurement/destination.html)
 - [x] [`distance`](./api/turf/io.github.elcolto.geokjson.turf.measurement/distance.html)
