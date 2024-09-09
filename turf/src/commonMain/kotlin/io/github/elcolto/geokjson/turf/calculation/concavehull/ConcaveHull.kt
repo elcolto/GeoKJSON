@@ -1,3 +1,4 @@
+@file:Suppress("CyclomaticComplexMethod", "ComplexCondition", "ReturnCount", "MagicNumber")
 package io.github.elcolto.geokjson.turf.calculation.concavehull
 
 import io.github.elcolto.geokjson.geojson.Point
@@ -30,12 +31,11 @@ internal object ConcaveHull {
     private fun kNearestNeighbors(
         points: MutableList<Point>,
         centerPoint: Point,
-        k: Int
+        k: Int,
     ): MutableList<Pair<Double, Point>> {
-        val nearestList =   points.map { point ->
+        val nearestList = points.map { point ->
             euclideanDistance(centerPoint, point) to point
         }.sortedBy { it.first }
-
 
         val result = ArrayList<Pair<Double, Point>>()
         for (i in 0 until k.coerceAtMost(nearestList.size)) {
@@ -68,7 +68,7 @@ internal object ConcaveHull {
     private fun sortByAngle(
         nearestPoints: MutableList<Pair<Double, Point>>,
         currentPoint: Point,
-        prevAngle: Double
+        prevAngle: Double,
     ): List<Point> {
         // Sort by angle descending
         val sortedList = nearestPoints.asReversed()
@@ -104,7 +104,9 @@ internal object ConcaveHull {
         if (pX.isNaN()) return false
 
         // check if intersection x coordinate lies in line line segment
-        if (pX > l1p1.x && pX > l1p2.x || pX > l2p1.x && pX > l2p2.x || pX < l1p1.x && pX < l1p2.x || pX < l2p1.x && pX < l2p2.x) {
+        if (pX > l1p1.x && pX > l1p2.x || pX > l2p1.x && pX > l2p2.x ||
+            pX < l1p1.x && pX < l1p2.x || pX < l2p1.x && pX < l2p2.x
+        ) {
             return false
         }
 
@@ -113,7 +115,10 @@ internal object ConcaveHull {
         if (pY.isNaN()) return false
 
         // check if intersection y coordinate lies in line line segment
-        return !(pY > l1p1.y && pY > l1p2.y || pY > l2p1.y && pY > l2p2.y || pY < l1p1.y && pY < l1p2.y || pY < l2p1.y && pY < l2p2.y)
+        return !(
+            pY > l1p1.y && pY > l1p2.y || pY > l2p1.y && pY > l2p2.y ||
+                pY < l1p1.y && pY < l1p2.y || pY < l2p1.y && pY < l2p2.y
+            )
     }
 
     private fun pointInPolygon(p: Point?, pp: ArrayList<Point>): Boolean {
@@ -121,7 +126,9 @@ internal object ConcaveHull {
         var i = 0
         var j = pp.size - 1
         while (i < pp.size) {
-            if (pp[i].y > p!!.y != pp[j].y > p.y && p.x < (pp[j].x - pp[i].x) * (p.y - pp[i].y) / (pp[j].y - pp[i].y) + pp[i].x) {
+            if (pp[i].y > p!!.y != pp[j].y > p.y &&
+                p.x < (pp[j].x - pp[i].x) * (p.y - pp[i].y) / (pp[j].y - pp[i].y) + pp[i].x
+            ) {
                 result = !result
             }
             j = i++
@@ -129,10 +136,7 @@ internal object ConcaveHull {
         return result
     }
 
-    fun calculateConcaveHull(
-        pointArrayList: List<Point>, k: Int
-    ): List<Point> {
-
+    fun calculateConcaveHull(pointArrayList: List<Point>, k: Int): List<Point> {
         // the resulting concave hull
         val concaveHull = ArrayList<Point>()
 
@@ -184,7 +188,7 @@ internal object ConcaveHull {
                 its = false
                 while (!its && j < concaveHull.size - lastPoint) {
                     its = intersect(
-                        currentPoint, clockwisePoints[i], concaveHull[step - 2 - j], concaveHull[step - 1 - j]
+                        currentPoint, clockwisePoints[i], concaveHull[step - 2 - j], concaveHull[step - 1 - j],
                     )
                     j++
                 }
@@ -192,7 +196,7 @@ internal object ConcaveHull {
 
             // if there is no candidate increase k - try again
             if (its) {
-                return calculateConcaveHull(pointArrayList, k + 1);
+                return calculateConcaveHull(pointArrayList, k + 1)
             }
 
             // add candidate to concave hull and remove from dataset

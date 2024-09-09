@@ -217,6 +217,11 @@ public final class io/github/elcolto/geokjson/turf/transformation/CircleKt {
 	public static synthetic fun circle$default (Lio/github/elcolto/geokjson/geojson/Point;DILio/github/elcolto/geokjson/turf/Units;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/Polygon;
 }
 
+public final class io/github/elcolto/geokjson/turf/transformation/ConvexKt {
+	public static final fun convex (Lio/github/elcolto/geokjson/geojson/Geometry;I)Lio/github/elcolto/geokjson/geojson/Polygon;
+	public static synthetic fun convex$default (Lio/github/elcolto/geokjson/geojson/Geometry;IILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/Polygon;
+}
+
 public final class io/github/elcolto/geokjson/turf/transformation/ScaleKt {
 	public static final fun scale (Lio/github/elcolto/geokjson/geojson/Geometry;DLio/github/elcolto/geokjson/turf/transformation/ScaleOrigin;)Lio/github/elcolto/geokjson/geojson/Geometry;
 	public static synthetic fun scale$default (Lio/github/elcolto/geokjson/geojson/Geometry;DLio/github/elcolto/geokjson/turf/transformation/ScaleOrigin;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/Geometry;
