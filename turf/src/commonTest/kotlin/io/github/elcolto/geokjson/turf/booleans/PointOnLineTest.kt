@@ -5,7 +5,7 @@ import io.github.elcolto.geokjson.geojson.LineString
 import io.github.elcolto.geokjson.geojson.Point
 import io.github.elcolto.geokjson.geojson.Position
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
-import io.github.elcolto.geokjson.turf.asInstance
+import io.github.elcolto.geokjson.turf.utils.asInstance
 import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlin.test.Test
 import kotlin.test.assertFalse
