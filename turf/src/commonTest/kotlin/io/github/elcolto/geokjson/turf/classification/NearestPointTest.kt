@@ -7,7 +7,7 @@ import io.github.elcolto.geokjson.geojson.dsl.featureCollection
 import io.github.elcolto.geokjson.geojson.dsl.lineString
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.Units
-import io.github.elcolto.geokjson.turf.asInstance
+import io.github.elcolto.geokjson.turf.utils.asInstance
 import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlin.test.Test
 import kotlin.test.assertEquals

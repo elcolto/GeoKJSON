@@ -4,7 +4,7 @@ import io.github.elcolto.geokjson.geojson.FeatureCollection
 import io.github.elcolto.geokjson.geojson.MultiLineString
 import io.github.elcolto.geokjson.geojson.Point
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
-import io.github.elcolto.geokjson.turf.asInstance
+import io.github.elcolto.geokjson.turf.utils.asInstance
 import io.github.elcolto.geokjson.turf.utils.assertDoubleEquals
 import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlin.test.Test
