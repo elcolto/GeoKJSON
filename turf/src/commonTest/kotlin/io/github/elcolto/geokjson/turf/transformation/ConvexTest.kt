@@ -2,8 +2,8 @@ package io.github.elcolto.geokjson.turf.transformation
 
 import io.github.elcolto.geokjson.geojson.FeatureCollection
 import io.github.elcolto.geokjson.geojson.GeometryCollection
+import io.github.elcolto.geokjson.geojson.Polygon
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
-import io.github.elcolto.geokjson.turf.asInstance
 import io.github.elcolto.geokjson.turf.coordAll
 import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlin.test.Test
@@ -58,6 +58,6 @@ class ConvexTest {
         val expectedCoordinates = expectedGeometry.coordAll().distinct().sortedBy { it.longitude }
 
         assertContentEquals(expectedCoordinates, actual) // check coordinates are the same
-        assertEquals(expectedGeometry.asInstance()!!, polygon)
+        assertEquals(expectedGeometry as Polygon, polygon)
     }
 }
