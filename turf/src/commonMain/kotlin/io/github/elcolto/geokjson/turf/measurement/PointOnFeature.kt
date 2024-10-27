@@ -8,6 +8,7 @@ import io.github.elcolto.geokjson.geojson.MultiPoint
 import io.github.elcolto.geokjson.geojson.MultiPolygon
 import io.github.elcolto.geokjson.geojson.Point
 import io.github.elcolto.geokjson.geojson.Polygon
+import io.github.elcolto.geokjson.geojson.Position
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.booleans.pointInPolygon
 import io.github.elcolto.geokjson.turf.classification.nearestPoint
@@ -65,26 +66,12 @@ private fun isPointOnSurface(geometry: Geometry, centroid: Point): Boolean = whe
     }
 
     is LineString -> geometry.coordinates.zipWithNext().any { (p1, p2) ->
-        pointOnSegment(
-            centroid.coordinates.longitude,
-            centroid.coordinates.latitude,
-            p1.longitude,
-            p1.latitude,
-            p2.longitude,
-            p2.latitude,
-        )
+        pointOnSegment(centroid.coordinates, p1, p2)
     }
 
     is MultiLineString -> geometry.coordinates.any { line ->
         line.zipWithNext().any { (p1, p2) ->
-            pointOnSegment(
-                centroid.coordinates.longitude,
-                centroid.coordinates.latitude,
-                p1.longitude,
-                p1.latitude,
-                p2.longitude,
-                p2.latitude,
-            )
+            pointOnSegment(centroid.coordinates, p1, p2)
         }
     }
 
@@ -93,7 +80,10 @@ private fun isPointOnSurface(geometry: Geometry, centroid: Point): Boolean = whe
     is GeometryCollection -> geometry.any { isPointOnSurface(it, centroid) }
 }
 
-private fun pointOnSegment(x: Double, y: Double, x1: Double, y1: Double, x2: Double, y2: Double): Boolean {
+private fun pointOnSegment(point: Position, start: Position, end: Position): Boolean {
+    val (x, y) = point
+    val (x1, y1) = start
+    val (x2, y2) = end
     val ab = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))
     val ap = sqrt((x - x1) * (x - x1) + (y - y1) * (y - y1))
     val pb = sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y))
