@@ -2,8 +2,6 @@
 
 The following functions have been ported from [turfjs](https://turfjs.org/docs/api/along).
 
-You can view porting progress for the next release [here](https://github.com/dellisd/spatial-k/milestone/1).
-
 ## Measurement
 
 - [x] [`along`](./api/turf/io.github.elcolto.geokjson.turf.measurement/along.html)
@@ -19,7 +17,7 @@ You can view porting progress for the next release [here](https://github.com/del
 - [x] [`envelope`](./api/turf/io.github.elcolto.geokjson.turf.measurement/envelope.html)
 - [x] [`length`](./api/turf/io.github.elcolto.geokjson.turf.measurement/length.html)
 - [x] [`midpoint`](./api/turf/io.github.elcolto.geokjson.turf.measurement/midpoint.html)
-- [ ] `pointOnFeature`
+- [x] [`pointOnFeature`](./api/turf/io.github.elcolto.geokjson.turf.measurement/point-on-feature.html)
 - [ ] `polygonTangents`
 - [ ] `pointToLineDistance`
 - [x] [`rhumbBearing`](./api/turf/io.github.elcolto.geokjson.turf.measurement/rhumb-bearing.html)
