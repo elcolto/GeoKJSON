@@ -49,14 +49,15 @@ public fun pointOnFeature(geometry: Geometry): Point {
     } else {
         nearestPoint(
             target = center,
-            points = geometry.coordAll().map { Point(it) }
+            points = geometry.coordAll().map { Point(it) },
         )
     }
 }
 
 @OptIn(ExperimentalTurfApi::class)
 private fun isPointOnSurface(geometry: Geometry, centroid: Point): Boolean = when (geometry) {
-    is Point -> geometry.coordinates.longitude == centroid.coordinates.longitude &&
+    is Point ->
+        geometry.coordinates.longitude == centroid.coordinates.longitude &&
             geometry.coordinates.latitude == centroid.coordinates.latitude
 
     is MultiPoint -> geometry.coordinates.any {
@@ -70,7 +71,7 @@ private fun isPointOnSurface(geometry: Geometry, centroid: Point): Boolean = whe
             p1.longitude,
             p1.latitude,
             p2.longitude,
-            p2.latitude
+            p2.latitude,
         )
     }
 
@@ -82,7 +83,7 @@ private fun isPointOnSurface(geometry: Geometry, centroid: Point): Boolean = whe
                 p1.longitude,
                 p1.latitude,
                 p2.longitude,
-                p2.latitude
+                p2.latitude,
             )
         }
     }
@@ -92,11 +93,9 @@ private fun isPointOnSurface(geometry: Geometry, centroid: Point): Boolean = whe
     is GeometryCollection -> geometry.any { isPointOnSurface(it, centroid) }
 }
 
-
 private fun pointOnSegment(x: Double, y: Double, x1: Double, y1: Double, x2: Double, y2: Double): Boolean {
     val ab = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))
     val ap = sqrt((x - x1) * (x - x1) + (y - y1) * (y - y1))
     val pb = sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y))
     return ab == ap + pb
 }
-

@@ -18,9 +18,10 @@ class PointOnFeatureTest {
     @Test
     fun testPointOnLine() {
         val fc = FeatureCollection.fromJson(readResource("measurement/pointonfeature/in/lines.json"))
-        val expectedPoint = FeatureCollection.fromJson(readResource("measurement/pointonfeature/out/lines.json")).features.last()
+        val expectedPoint = FeatureCollection.fromJson(
+            readResource("measurement/pointonfeature/out/lines.json"),
+        ).features.last()
             .getGeometry() as Point
-
 
         val point = fc.features.map { it.getGeometry() }
             .let { GeometryCollection(it) }
@@ -33,10 +34,12 @@ class PointOnFeatureTest {
     @Test
     fun testPointOnMultiLineString() {
         val feature = Feature.fromJson<MultiLineString>(readResource("measurement/pointonfeature/in/multiline.json"))
-        val expectedPoint = FeatureCollection.fromJson(readResource("measurement/pointonfeature/out/multiline.json")).features.last()
+        val expectedPoint = FeatureCollection.fromJson(
+            readResource("measurement/pointonfeature/out/multiline.json"),
+        ).features.last()
             .getGeometry() as Point
 
-        val point =  pointOnFeature(feature.getGeometry())
+        val point = pointOnFeature(feature.getGeometry())
 
         assertDoubleEquals(expectedPoint.coordinates.longitude, point.coordinates.longitude, 0.00001)
         assertDoubleEquals(expectedPoint.coordinates.latitude, point.coordinates.latitude, 0.00001)
@@ -45,7 +48,9 @@ class PointOnFeatureTest {
     @Test
     fun testPointOnMultiPoint() {
         val feature = Feature.fromJson<MultiPoint>(readResource("measurement/pointonfeature/in/multipoint.json"))
-        val expectedPoint = FeatureCollection.fromJson(readResource("measurement/pointonfeature/out/multipoint.json")).features.last()
+        val expectedPoint = FeatureCollection.fromJson(
+            readResource("measurement/pointonfeature/out/multipoint.json"),
+        ).features.last()
             .getGeometry() as Point
 
         val point = pointOnFeature(feature.getGeometry())
@@ -57,7 +62,9 @@ class PointOnFeatureTest {
     @Test
     fun testPointOnPolygon() {
         val fc = FeatureCollection.fromJson(readResource("measurement/pointonfeature/in/polygons.json"))
-        val expectedPoint = FeatureCollection.fromJson(readResource("measurement/pointonfeature/out/polygons.json")).features.last()
+        val expectedPoint = FeatureCollection.fromJson(
+            readResource("measurement/pointonfeature/out/polygons.json"),
+        ).features.last()
             .getGeometry() as Point
 
         val point = fc.features.map { it.getGeometry() }
@@ -71,7 +78,9 @@ class PointOnFeatureTest {
     @Test
     fun testPointOnPolygonInCenter() {
         val fc = FeatureCollection.fromJson(readResource("measurement/pointonfeature/in/polygon-in-center.json"))
-        val expectedPoint = FeatureCollection.fromJson(readResource("measurement/pointonfeature/out/polygon-in-center.json")).features.last()
+        val expectedPoint = FeatureCollection.fromJson(
+            readResource("measurement/pointonfeature/out/polygon-in-center.json"),
+        ).features.last()
             .getGeometry() as Point
 
         val point = fc.features.map { it.getGeometry() }
@@ -85,7 +94,9 @@ class PointOnFeatureTest {
     @Test
     fun testPointOnMultiPolygon() {
         val feature = Feature.fromJson<MultiPolygon>(readResource("measurement/pointonfeature/in/multipolygon.json"))
-        val expectedPoint = FeatureCollection.fromJson(readResource("measurement/pointonfeature/out/multipolygon.json")).features.last()
+        val expectedPoint = FeatureCollection.fromJson(
+            readResource("measurement/pointonfeature/out/multipolygon.json"),
+        ).features.last()
             .getGeometry() as Point
 
         val point = pointOnFeature(feature.getGeometry())
@@ -93,5 +104,4 @@ class PointOnFeatureTest {
         assertDoubleEquals(expectedPoint.coordinates.longitude, point.coordinates.longitude, 0.00001)
         assertDoubleEquals(expectedPoint.coordinates.latitude, point.coordinates.latitude, 0.00001)
     }
-
 }
