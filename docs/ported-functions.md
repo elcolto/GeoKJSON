@@ -19,7 +19,7 @@ The following functions have been ported from [turfjs](https://turfjs.org/docs/a
 - [x] [`midpoint`](./api/turf/io.github.elcolto.geokjson.turf.measurement/midpoint.html)
 - [x] [`pointOnFeature`](./api/turf/io.github.elcolto.geokjson.turf.measurement/point-on-feature.html)
 - [ ] `polygonTangents`
-- [ ] `pointToLineDistance`
+- [x] [`pointToLineDistance`](./api/turf/io.github.elcolto.geokjson.turf.measurement/point-to-line-distance.html)
 - [x] [`rhumbBearing`](./api/turf/io.github.elcolto.geokjson.turf.measurement/rhumb-bearing.html)
 - [x] [`rhumbDestination`](./api/turf/io.github.elcolto.geokjson.turf.measurement/rhumb-destination.html)
 - [x] [`rhumbDistance`]((./api/turf/io.github.elcolto.geokjson.turf.measurement/rhumb-distance.html))
