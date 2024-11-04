@@ -7,17 +7,14 @@ import io.github.elcolto.geokjson.geojson.Point
 import io.github.elcolto.geokjson.geojson.Position
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.Units
-import io.github.elcolto.geokjson.turf.measurement.bearing
-import io.github.elcolto.geokjson.turf.measurement.destination
 import io.github.elcolto.geokjson.turf.measurement.distance
-import kotlin.math.max
 
 public object NearestPointOnLine {
 
     /**
      * Identifier to access distance to target within `Feature.properties`
      */
-    public const val DISTANCE_TO_POINT: String = "distance"
+    public const val DISTANCE_TO_POINT: String = "dist"
 
     /**
      * Identifier to access distance along the line from the start to target within `Feature.properties`
@@ -69,60 +66,45 @@ internal fun nearestPointOnLine(
     point: Position,
     units: Units = Units.Kilometers,
 ): Feature<Point> {
-    var closest = feature(
-        Position(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY),
-        Double.POSITIVE_INFINITY,
-        Double.POSITIVE_INFINITY,
-        -1,
+    require(lines.isNotEmpty()) { "lines must not be empty" }
+    require(!point.latitude.isNaN() && !point.longitude.isNaN()) { "point must be valid" }
+
+    var closestPoint = feature(
+        position = Position(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY),
+        distance = Double.POSITIVE_INFINITY,
+        location = -1.0,
+        index = -1,
     )
+    var currentLocation = 0.0
 
-    var length = 0.0
-
-    lines.flatMap { it.points }
-        .zipWithNext()
-        .forEachIndexed { i, (start, stop) ->
-
-            val startDistance = distance(point, start.coordinates, units = units)
-            val stopDistance = distance(point, stop.coordinates, units = units)
-
-            val sectionLength = distance(start.coordinates, stop.coordinates, units = units)
-
-            val heightDistance = max(startDistance, stopDistance)
-            val direction = bearing(start.coordinates, stop.coordinates)
-            val perpPoint1 = destination(point, heightDistance, direction + 90, units = units)
-            val perpPoint2 = destination(point, heightDistance, direction - 90, units = units)
-
-            val intersect = lineIntersect(
-                LineString(perpPoint1, perpPoint2),
-                LineString(start.coordinates, stop.coordinates),
-            ).getOrNull(0)
-
-            if (startDistance < closest.nearestPointDistance) {
-                closest = feature(position = start.coordinates, location = length, distance = startDistance, index = i)
-            }
-
-            if (stopDistance < closest.nearestPointDistance) {
-                closest = feature(
-                    position = stop.coordinates,
-                    location = length + sectionLength,
-                    distance = stopDistance,
-                    index = i + 1,
-                )
-            }
-
-            if (intersect != null && distance(point, intersect, units = units) < closest.nearestPointDistance) {
-                val intersectDistance = distance(point, intersect, units = units)
-                closest = feature(
-                    position = intersect,
-                    distance = intersectDistance,
-                    location = length + distance(start.coordinates, intersect, units = units),
-                    index = i,
-                )
-            }
-
-            length += sectionLength
+    lines.flatMap { line ->
+        line.coordinates.zipWithNext().mapIndexed { segmentIndex, (startPos, stopPos) ->
+            Triple(segmentIndex, startPos, stopPos)
         }
-    return closest
+    }.forEach { (segmentIndex, startPos, stopPos) ->
+        val sectionLength = distance(startPos, stopPos, units)
+
+        val (intersectPos, _, wasEnd) = when {
+            startPos == point -> Triple(startPos, false, false)
+            stopPos == point -> Triple(stopPos, false, true)
+            else -> nearestPointOnSegment(startPos, stopPos, point)
+        }
+
+        val intersectDistance = distance(point, intersectPos, units)
+
+        if (intersectDistance < closestPoint.nearestPointDistance) {
+            val location = currentLocation + distance(startPos, intersectPos, units)
+            closestPoint = feature(
+                position = intersectPos,
+                distance = intersectDistance,
+                location = location,
+                index = if (wasEnd) segmentIndex + 1 else segmentIndex,
+            )
+        }
+
+        currentLocation += sectionLength
+    }
+    return closestPoint
 }
 
 @ExperimentalTurfApi
