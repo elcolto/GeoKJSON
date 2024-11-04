@@ -180,6 +180,10 @@ public final class io/github/elcolto/geokjson/turf/measurement/MidpointKt {
 	public static final fun midpoint (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;)Lio/github/elcolto/geokjson/geojson/Position;
 }
 
+public final class io/github/elcolto/geokjson/turf/measurement/PointOnFeatureKt {
+	public static final fun pointOnFeature (Lio/github/elcolto/geokjson/geojson/Geometry;)Lio/github/elcolto/geokjson/geojson/Point;
+}
+
 public final class io/github/elcolto/geokjson/turf/measurement/SquareKt {
 	public static final fun square (Lio/github/elcolto/geokjson/geojson/BoundingBox;)Lio/github/elcolto/geokjson/geojson/BoundingBox;
 }
