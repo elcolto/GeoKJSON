@@ -160,6 +160,14 @@ public final class io/github/elcolto/geokjson/turf/measurement/DistanceKt {
 	public static synthetic fun rhumbDistance$default (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/turf/Units;ILjava/lang/Object;)D
 }
 
+public final class io/github/elcolto/geokjson/turf/measurement/DistanceMethod : java/lang/Enum {
+	public static final field GEODESIC Lio/github/elcolto/geokjson/turf/measurement/DistanceMethod;
+	public static final field PLANAR Lio/github/elcolto/geokjson/turf/measurement/DistanceMethod;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/github/elcolto/geokjson/turf/measurement/DistanceMethod;
+	public static fun values ()[Lio/github/elcolto/geokjson/turf/measurement/DistanceMethod;
+}
+
 public final class io/github/elcolto/geokjson/turf/measurement/EnvelopeKt {
 	public static final fun envelope (Lio/github/elcolto/geokjson/geojson/GeoJson;)Lio/github/elcolto/geokjson/geojson/Polygon;
 }
@@ -182,6 +190,13 @@ public final class io/github/elcolto/geokjson/turf/measurement/MidpointKt {
 
 public final class io/github/elcolto/geokjson/turf/measurement/PointOnFeatureKt {
 	public static final fun pointOnFeature (Lio/github/elcolto/geokjson/geojson/Geometry;)Lio/github/elcolto/geokjson/geojson/Point;
+}
+
+public final class io/github/elcolto/geokjson/turf/measurement/PointToLineDistanceKt {
+	public static final fun pointToLineDistance (Lio/github/elcolto/geokjson/geojson/Point;Lio/github/elcolto/geokjson/geojson/LineString;Lio/github/elcolto/geokjson/turf/Units;Lio/github/elcolto/geokjson/turf/measurement/DistanceMethod;)D
+	public static final fun pointToLineDistance (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/LineString;Lio/github/elcolto/geokjson/turf/Units;Lio/github/elcolto/geokjson/turf/measurement/DistanceMethod;)D
+	public static synthetic fun pointToLineDistance$default (Lio/github/elcolto/geokjson/geojson/Point;Lio/github/elcolto/geokjson/geojson/LineString;Lio/github/elcolto/geokjson/turf/Units;Lio/github/elcolto/geokjson/turf/measurement/DistanceMethod;ILjava/lang/Object;)D
+	public static synthetic fun pointToLineDistance$default (Lio/github/elcolto/geokjson/geojson/Position;Lio/github/elcolto/geokjson/geojson/LineString;Lio/github/elcolto/geokjson/turf/Units;Lio/github/elcolto/geokjson/turf/measurement/DistanceMethod;ILjava/lang/Object;)D
 }
 
 public final class io/github/elcolto/geokjson/turf/measurement/SquareKt {
