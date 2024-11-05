@@ -3,6 +3,7 @@ package io.github.elcolto.geokjson.turf.measurement
 import io.github.elcolto.geokjson.geojson.FeatureCollection
 import io.github.elcolto.geokjson.geojson.LineString
 import io.github.elcolto.geokjson.geojson.Point
+import io.github.elcolto.geokjson.geojson.Position
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.Units
 import io.github.elcolto.geokjson.turf.utils.assertDoubleEquals
@@ -10,6 +11,9 @@ import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlin.math.pow
 import kotlin.math.round
 import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
+import kotlin.test.assertTrue
 
 @OptIn(ExperimentalTurfApi::class)
 internal class PointToLineDistanceTest {
@@ -112,6 +116,75 @@ internal class PointToLineDistanceTest {
     @Test
     fun testSegment4() {
         testPointToLineDistance("segment4.geojson", 340.7276874254)
+    }
+
+    @Test
+    fun checkPlanarAndGeodesicResultsAreDifferent() {
+        val pos = Position(0.0, 0.0)
+        val line = LineString(Position(10.0, 10.0), Position(-1.0, 1.0))
+        val geoOut = pointToLineDistance(pos, line, method = DistanceMethod.GEODESIC)
+        val planarOut = pointToLineDistance(pos, line, method = DistanceMethod.PLANAR)
+        assertNotEquals(geoOut, planarOut)
+    }
+
+    @Test
+    fun testTurfJsIssue2270() {
+        // This point should be about 3.4m from the line. Definitely not 4.3!
+        // https://github.com/Turfjs/turf/issues/2270#issuecomment-1073787691
+        val pt1 = Position(10.748363481687537, 59.94785299224352)
+        val line1 = LineString(
+            Position(10.7482034954027, 59.9477463357725),
+            Position(10.7484686179823, 59.9480515133037),
+        )
+        val d1 = pointToLineDistance(pt1, line1, units = Units.Meters)
+        assertEquals(d1, 3.4, 0.09, "Point is approx 3.4m from line")
+
+        // This point should be about 1000m from the line. Definitely not 1017!
+        // https://github.com/Turfjs/turf/issues/2270#issuecomment-2307907374
+        val pt2 = Position(11.991689565382663, 34.00578044047174)
+        val line2 = LineString(
+            Position(12.0, 34.0),
+            Position(11.993027757380355, 33.99311060965808),
+        )
+        val d2 = round(pointToLineDistance(pt2, line2, units = Units.Meters))
+        assertEquals(d2, 1000.0, "Point is approx 1000m from line")
+    }
+
+    @Test
+    fun testTurfJsIssue1156() {
+        // According to issue 1156 the result of pointToLineDistance varies suddenly
+        // at a certain longitude. Code below
+
+        // When the error occurs we would expect to see 'd' jump from about 188 to
+        // over 800
+        // ...
+        // [ 11.028347, 41 ] 188.9853459755496 189.00642024172396
+        // [ 11.028348, 41 ] 842.5784253401666 189.08988164279026
+        //                   ^^^
+
+        // https://github.com/Turfjs/turf/issues/1156#issue-279806209
+        val line = LineString(
+            Position(10.964832305908203, 41.004681939880314),
+            Position(10.977363586425781, 40.99096148527727),
+            Position(10.983200073242188, 40.97075154073346),
+            Position(11.02834701538086, 40.98372150040732),
+            Position(11.02508544921875, 41.00716631272605),
+            Position(10.994186401367188, 41.01947819666632),
+            Position(10.964832305908203, 41.004681939880314),
+        )
+
+        val x0 = 11.02834
+        val x1 = 11.02835
+        val dx = 0.000001
+        var x = x0
+        var i = 0
+        while (x <= x1) {
+            val p = Position(x, 41.0)
+            val d = pointToLineDistance(p, line, units = Units.Meters)
+            assertTrue(d < 190, "pointToLineDistance never jumps past 190")
+            i++
+            x = x0 + i * dx
+        }
     }
 
     private fun testPointToLineDistance(path: String, expectedDistance: Double) {
