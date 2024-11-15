@@ -6,6 +6,7 @@ import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 @OptIn(ExperimentalTurfApi::class)
 class PolygonTangentsTest {
@@ -72,6 +73,15 @@ class PolygonTangentsTest {
             "measurement/polygontangents/in/square.geojson",
             "measurement/polygontangents/out/square.geojson",
         )
+    }
+
+    @Test
+    fun testFailsWithGeometry() {
+        val point = Point(doubleArrayOf(10.0, 12.0))
+        val geometry = Point(doubleArrayOf(1.0, 2.0))
+        assertFailsWith<IllegalArgumentException> {
+            polygonTangents(point, geometry)
+        }
     }
 
     private fun runTest(inputPath: String, expectedPath: String) {

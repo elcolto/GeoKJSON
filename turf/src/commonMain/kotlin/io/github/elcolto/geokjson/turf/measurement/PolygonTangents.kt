@@ -55,11 +55,7 @@ public fun polygonTangents(position: Position, polygon: Geometry): List<Point> {
             val rings = polygon.coordinates
             val initialRightTan = rings.first()[nearestPtIndex]
             val initialLeftTan =
-                if (initialRightTan.latitude < position.latitude) {
-                    initialRightTan
-                } else {
-                    rings.first().first()
-                }
+                if (initialRightTan.latitude < position.latitude) initialRightTan else rings.first().first()
 
             val (finalRightTan, finalLeftTan) = processRings(rings, initialRightTan, initialLeftTan)
             listOf(Point(finalRightTan), Point(finalLeftTan))
@@ -67,14 +63,10 @@ public fun polygonTangents(position: Position, polygon: Geometry): List<Point> {
 
         is MultiPolygon -> {
             val initialRightTan = polygon.coordinates.flatten().flatten()[nearestPtIndex]
-            val firstRingFirstPoint = polygon.coordinates.first().first().first()
+            val firstPosition = polygon.coordinates.first().first().first()
 
             val initialLeftTan =
-                if (initialRightTan.latitude < position.latitude) {
-                    initialRightTan
-                } else {
-                    firstRingFirstPoint
-                }
+                if (initialRightTan.latitude < position.latitude) initialRightTan else firstPosition
 
             val (finalRightTan, finalLeftTan) = polygon.coordinates.fold(
                 initialRightTan to initialLeftTan,
@@ -109,14 +101,15 @@ private fun processPolygon(
     } else {
         acc.third
     }
+
     Triple(enext, nextRightTan, nextLeftTan)
-}.let { it.second to it.third }
+}
+    .let { it.second to it.third }
 
 private fun isAbove(point1: Position, point2: Position, point3: Position): Boolean = isLeft(point1, point2, point3) > 0
 
 private fun isBelow(point1: Position, point2: Position, point3: Position): Boolean = isLeft(point1, point2, point3) < 0
 
-private fun isLeft(point1: Position, point2: Position, point3: Position): Double = (
+private fun isLeft(point1: Position, point2: Position, point3: Position): Double =
     (point2.longitude - point1.longitude) * (point3.latitude - point1.latitude) -
         (point3.longitude - point1.longitude) * (point2.latitude - point1.latitude)
-    )
