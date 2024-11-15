@@ -2,8 +2,8 @@ package io.github.elcolto.geokjson.turf.measurement
 
 import io.github.elcolto.geokjson.geojson.Position
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
-import io.github.elcolto.geokjson.turf.utils.assertDoubleEquals
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 @ExperimentalTurfApi
 class MidpointTest {
@@ -15,7 +15,7 @@ class MidpointTest {
 
         val midpoint = midpoint(point1, point2)
 
-        assertDoubleEquals(-76.6311, midpoint.longitude, 0.0001)
-        assertDoubleEquals(42.2101, midpoint.latitude, 0.0001)
+        assertEquals(-76.6311, midpoint.longitude, 0.0001)
+        assertEquals(42.2101, midpoint.latitude, 0.0001)
     }
 }

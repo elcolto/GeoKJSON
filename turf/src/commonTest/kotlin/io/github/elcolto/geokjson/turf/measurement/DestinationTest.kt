@@ -6,9 +6,9 @@ import io.github.elcolto.geokjson.geojson.Position
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.Units
 import io.github.elcolto.geokjson.turf.utils.asInstance
-import io.github.elcolto.geokjson.turf.utils.assertDoubleEquals
 import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 @ExperimentalTurfApi
 class DestinationTest {
@@ -17,8 +17,8 @@ class DestinationTest {
         val point0 = Position(-75.0, 38.10096062273525)
         val (longitude, latitude) = destination(point0, 100.0, 0.0)
 
-        assertDoubleEquals(-75.0, longitude, 0.1)
-        assertDoubleEquals(39.000281, latitude, 0.000001)
+        assertEquals(-75.0, longitude, 0.1)
+        assertEquals(39.000281, latitude, 0.000001)
     }
 
     @Test
@@ -44,16 +44,16 @@ class DestinationTest {
 
             val destination = rhumbDestination(origin, distance, bearing, units)
 
-            assertDoubleEquals(
+            assertEquals(
                 expectedPosition.longitude,
                 destination.longitude,
-                epsilon = 0.0000001,
+                absoluteTolerance = 0.0000001,
                 "longitude failed on path $path",
             )
-            assertDoubleEquals(
+            assertEquals(
                 expectedPosition.latitude,
                 destination.latitude,
-                epsilon = 0.0000001,
+                absoluteTolerance = 0.0000001,
                 "latitude failed on path $path",
             )
         }

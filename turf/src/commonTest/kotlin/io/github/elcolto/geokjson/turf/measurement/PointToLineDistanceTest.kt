@@ -6,7 +6,6 @@ import io.github.elcolto.geokjson.geojson.Point
 import io.github.elcolto.geokjson.geojson.Position
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.Units
-import io.github.elcolto.geokjson.turf.utils.assertDoubleEquals
 import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlin.math.pow
 import kotlin.math.round
@@ -200,10 +199,10 @@ internal class PointToLineDistanceTest {
 
         val multiplier = 10.0.pow(10)
 
-        assertDoubleEquals(
+        assertEquals(
             expectedDistance,
             round(distance * multiplier) / multiplier,
-            epsilon = 0.0000001,
+            absoluteTolerance = 0.0000001,
             "distance failed on path $path",
         )
     }
