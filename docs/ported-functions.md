@@ -29,7 +29,7 @@ The following functions have been ported from [turfjs](https://turfjs.org/docs/a
 ## Coordinate Mutation
 
 - [x] [`cleanCoords`](./api/turf/io.github.elcolto.geokjson.turf.coordinatemutation/clean-coordinates.html)
-- [ ] `flip`
+- [x] [`flip`](./api/turf/io.github.elcolto.geokjson.turf.coordinatemutation/flip.html)
 - [ ] `rewind`
 - [x] `round`  
   Use `round` or `Math.round` from the standard library instead.
