@@ -44,6 +44,10 @@ public final class io/github/elcolto/geokjson/turf/UtilsKt {
 	public static synthetic fun radiansToLength$default (DLio/github/elcolto/geokjson/turf/Units;ILjava/lang/Object;)D
 }
 
+public final class io/github/elcolto/geokjson/turf/booleans/ClockwiseKt {
+	public static final fun clockwise (Lio/github/elcolto/geokjson/geojson/LineString;)Z
+}
+
 public final class io/github/elcolto/geokjson/turf/booleans/PointInPolygonKt {
 	public static final fun pointInPolygon (Lio/github/elcolto/geokjson/geojson/Point;Lio/github/elcolto/geokjson/geojson/MultiPolygon;)Z
 	public static final fun pointInPolygon (Lio/github/elcolto/geokjson/geojson/Point;Lio/github/elcolto/geokjson/geojson/MultiPolygon;Z)Z

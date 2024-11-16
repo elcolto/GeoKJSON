@@ -159,7 +159,7 @@ Use the [GeoJson DSL](./geojson-dsl) instead.
 
 ## Booleans
 
-- [ ] `booleanClockwise`
+- [x] [`booleanClockwise`]((./api/turf/io.github.elcolto.geokjson.turf.booleans/clockwise.html))
 - [ ] `booleanContains`
 - [ ] `booleanCrosses`
 - [ ] `booleanDisjoint`
