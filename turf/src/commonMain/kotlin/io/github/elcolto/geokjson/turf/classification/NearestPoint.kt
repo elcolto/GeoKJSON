@@ -7,6 +7,7 @@ import io.github.elcolto.geokjson.geojson.Position
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.Units
 import io.github.elcolto.geokjson.turf.measurement.distance
+import io.github.elcolto.geokjson.turf.misc.NearestPointOnLine
 
 /**
  * Takes a target [Point] and a [List] of [Point] geometries and returns the
@@ -24,12 +25,20 @@ import io.github.elcolto.geokjson.turf.measurement.distance
 @Throws(IllegalArgumentException::class)
 public fun nearestPointFeature(target: Position, points: List<Point>, units: Units = Units.Kilometers): Feature<Point> {
     require(points.isNotEmpty()) { "Parameter points must not be empty" }
-    val nearestPoint = points.map { (it to distance(it.coordinates, target, units)) }
-        .minBy { it.second }
+    val nearestPoint = points.mapIndexed { index, point ->
+        Triple(
+            point,
+            index,
+            distance(point.coordinates, target, units),
+        )
+    }.minBy { it.third }
 
     return Feature(
         nearestPoint.first,
-        mapOf(NearestPoint.DISTANCE_TO_POINT to nearestPoint.second),
+        mapOf(
+            NearestPointOnLine.INDEX to nearestPoint.second,
+            NearestPoint.DISTANCE_TO_POINT to nearestPoint.third,
+        ),
     )
 }
 

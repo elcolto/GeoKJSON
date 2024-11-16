@@ -68,15 +68,22 @@ public class BoundingBox constructor(public val coordinates: DoubleArray) {
     public operator fun component1(): Position = southwest
     public operator fun component2(): Position = northeast
 
+    public operator fun get(index: Int): Double {
+        require(index in coordinates.indices)
+        return coordinates[index]
+    }
+
+    public operator fun contains(position: Position): Boolean =
+        position.longitude >= southwest.longitude && position.longitude <= northeast.longitude &&
+            position.latitude >= southwest.latitude && position.latitude <= northeast.latitude
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || this::class != other::class) return false
 
         other as BoundingBox
 
-        if (!coordinates.contentEquals(other.coordinates)) return false
-
-        return true
+        return coordinates.contentEquals(other.coordinates)
     }
 
     override fun hashCode(): Int {
