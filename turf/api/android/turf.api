@@ -95,6 +95,12 @@ public final class io/github/elcolto/geokjson/turf/coordinatemutation/CleanCoord
 	public static final fun cleanCoordinates (Lio/github/elcolto/geokjson/geojson/Geometry;)Lio/github/elcolto/geokjson/geojson/Geometry;
 }
 
+public final class io/github/elcolto/geokjson/turf/coordinatemutation/FlipKt {
+	public static final fun flip (Lio/github/elcolto/geokjson/geojson/FeatureCollection;)Lio/github/elcolto/geokjson/geojson/FeatureCollection;
+	public static final fun flip (Lio/github/elcolto/geokjson/geojson/Position;)Lio/github/elcolto/geokjson/geojson/Position;
+	public static final fun flipGeometry (Lio/github/elcolto/geokjson/geojson/Geometry;)Lio/github/elcolto/geokjson/geojson/Geometry;
+}
+
 public final class io/github/elcolto/geokjson/turf/grids/SquareGridKt {
 	public static final fun squareGrid (Lio/github/elcolto/geokjson/geojson/BoundingBox;DDLio/github/elcolto/geokjson/turf/Units;)Lio/github/elcolto/geokjson/geojson/FeatureCollection;
 	public static synthetic fun squareGrid$default (Lio/github/elcolto/geokjson/geojson/BoundingBox;DDLio/github/elcolto/geokjson/turf/Units;ILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/FeatureCollection;
