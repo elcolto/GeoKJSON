@@ -6,11 +6,11 @@ import io.github.elcolto.geokjson.geojson.LineString
 import io.github.elcolto.geokjson.geojson.MultiLineString
 import io.github.elcolto.geokjson.geojson.Point
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
-import io.github.elcolto.geokjson.turf.utils.assertDoubleEquals
 import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlin.math.pow
 import kotlin.math.round
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 @ExperimentalTurfApi
 class NearestPointOnLineTest {
@@ -47,23 +47,23 @@ class NearestPointOnLineTest {
             multiLine.geometry as MultiLineString,
             (point.geometry as Point).coordinates,
         )
-        assertDoubleEquals(
+        assertEquals(
             (expected.geometry as Point).coordinates.longitude,
             (nearestPointFeature.geometry as Point).coordinates.longitude,
             0.000001,
         )
-        assertDoubleEquals(
+        assertEquals(
             (expected.geometry as Point).coordinates.latitude,
             (nearestPointFeature.geometry as Point).coordinates.latitude,
             0.000001,
         )
-        assertDoubleEquals(
+        assertEquals(
             expected.nearestPointDistance,
             tunc(nearestPointFeature.nearestPointDistance, 6),
             0.000001,
             message = "distance check failed on input $input",
         )
-        assertDoubleEquals(
+        assertEquals(
             expected.nearestPointLocation,
             tunc(nearestPointFeature.nearestPointLocation, 6),
             0.000001,
@@ -112,25 +112,25 @@ class NearestPointOnLineTest {
             line.geometry as LineString,
             (point.geometry as Point).coordinates,
         )
-        assertDoubleEquals(
+        assertEquals(
             (expected.geometry as Point).coordinates.longitude,
             (nearestPointFeature.geometry as Point).coordinates.longitude,
             0.000001,
             message = "longitude check failed on input $input",
         )
-        assertDoubleEquals(
+        assertEquals(
             (expected.geometry as Point).coordinates.latitude,
             (nearestPointFeature.geometry as Point).coordinates.latitude,
             0.000001,
             message = "latitude check failed on input $input",
         )
-        assertDoubleEquals(
+        assertEquals(
             expected.nearestPointDistance,
             nearestPointFeature.nearestPointDistance,
             0.000001,
             message = "distance check failed on input $input",
         )
-        assertDoubleEquals(
+        assertEquals(
             expected.nearestPointLocation,
             nearestPointFeature.nearestPointLocation,
             0.000001,

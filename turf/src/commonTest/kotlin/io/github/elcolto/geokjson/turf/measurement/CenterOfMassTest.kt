@@ -8,7 +8,6 @@ import io.github.elcolto.geokjson.geojson.LineString
 import io.github.elcolto.geokjson.geojson.Point
 import io.github.elcolto.geokjson.geojson.Polygon
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
-import io.github.elcolto.geokjson.turf.utils.assertDoubleEquals
 import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -27,8 +26,8 @@ class CenterOfMassTest {
         val geometryCollection = fc.features.map { it.getGeometry() }.let { GeometryCollection(it) }
         val centerOfMass = centerOfMass(geometryCollection)
 
-        assertDoubleEquals(expectedPoint.coordinates.longitude, centerOfMass.coordinates.longitude, 0.0001)
-        assertDoubleEquals(expectedPoint.coordinates.latitude, centerOfMass.coordinates.latitude, 0.0001)
+        assertEquals(expectedPoint.coordinates.longitude, centerOfMass.coordinates.longitude, 0.0001)
+        assertEquals(expectedPoint.coordinates.latitude, centerOfMass.coordinates.latitude, 0.0001)
     }
 
     @Test

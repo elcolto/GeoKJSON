@@ -8,9 +8,9 @@ import io.github.elcolto.geokjson.geojson.MultiPoint
 import io.github.elcolto.geokjson.geojson.MultiPolygon
 import io.github.elcolto.geokjson.geojson.Point
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
-import io.github.elcolto.geokjson.turf.utils.assertDoubleEquals
 import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 @OptIn(ExperimentalTurfApi::class)
 class PointOnFeatureTest {
@@ -27,8 +27,8 @@ class PointOnFeatureTest {
             .let { GeometryCollection(it) }
             .let { pointOnFeature(it) }
 
-        assertDoubleEquals(expectedPoint.coordinates.longitude, point.coordinates.longitude, 0.00001)
-        assertDoubleEquals(expectedPoint.coordinates.latitude, point.coordinates.latitude, 0.00001)
+        assertEquals(expectedPoint.coordinates.longitude, point.coordinates.longitude, 0.00001)
+        assertEquals(expectedPoint.coordinates.latitude, point.coordinates.latitude, 0.00001)
     }
 
     @Test
@@ -41,8 +41,8 @@ class PointOnFeatureTest {
 
         val point = pointOnFeature(feature.getGeometry())
 
-        assertDoubleEquals(expectedPoint.coordinates.longitude, point.coordinates.longitude, 0.00001)
-        assertDoubleEquals(expectedPoint.coordinates.latitude, point.coordinates.latitude, 0.00001)
+        assertEquals(expectedPoint.coordinates.longitude, point.coordinates.longitude, 0.00001)
+        assertEquals(expectedPoint.coordinates.latitude, point.coordinates.latitude, 0.00001)
     }
 
     @Test
@@ -55,8 +55,8 @@ class PointOnFeatureTest {
 
         val point = pointOnFeature(feature.getGeometry())
 
-        assertDoubleEquals(expectedPoint.coordinates.longitude, point.coordinates.longitude, 0.00001)
-        assertDoubleEquals(expectedPoint.coordinates.latitude, point.coordinates.latitude, 0.00001)
+        assertEquals(expectedPoint.coordinates.longitude, point.coordinates.longitude, 0.00001)
+        assertEquals(expectedPoint.coordinates.latitude, point.coordinates.latitude, 0.00001)
     }
 
     @Test
@@ -71,8 +71,8 @@ class PointOnFeatureTest {
             .let { GeometryCollection(it) }
             .let { pointOnFeature(it) }
 
-        assertDoubleEquals(expectedPoint.coordinates.longitude, point.coordinates.longitude, 0.00001)
-        assertDoubleEquals(expectedPoint.coordinates.latitude, point.coordinates.latitude, 0.00001)
+        assertEquals(expectedPoint.coordinates.longitude, point.coordinates.longitude, 0.00001)
+        assertEquals(expectedPoint.coordinates.latitude, point.coordinates.latitude, 0.00001)
     }
 
     @Test
@@ -87,8 +87,8 @@ class PointOnFeatureTest {
             .let { GeometryCollection(it) }
             .let { pointOnFeature(it) }
 
-        assertDoubleEquals(expectedPoint.coordinates.longitude, point.coordinates.longitude, 0.00001)
-        assertDoubleEquals(expectedPoint.coordinates.latitude, point.coordinates.latitude, 0.00001)
+        assertEquals(expectedPoint.coordinates.longitude, point.coordinates.longitude, 0.00001)
+        assertEquals(expectedPoint.coordinates.latitude, point.coordinates.latitude, 0.00001)
     }
 
     @Test
@@ -101,7 +101,7 @@ class PointOnFeatureTest {
 
         val point = pointOnFeature(feature.getGeometry())
 
-        assertDoubleEquals(expectedPoint.coordinates.longitude, point.coordinates.longitude, 0.00001)
-        assertDoubleEquals(expectedPoint.coordinates.latitude, point.coordinates.latitude, 0.00001)
+        assertEquals(expectedPoint.coordinates.longitude, point.coordinates.longitude, 0.00001)
+        assertEquals(expectedPoint.coordinates.latitude, point.coordinates.latitude, 0.00001)
     }
 }

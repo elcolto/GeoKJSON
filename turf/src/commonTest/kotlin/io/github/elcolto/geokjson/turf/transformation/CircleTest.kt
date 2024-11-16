@@ -5,7 +5,6 @@ import io.github.elcolto.geokjson.geojson.FeatureCollection
 import io.github.elcolto.geokjson.geojson.Point
 import io.github.elcolto.geokjson.turf.ExperimentalTurfApi
 import io.github.elcolto.geokjson.turf.coordAll
-import io.github.elcolto.geokjson.turf.utils.assertDoubleEquals
 import io.github.elcolto.geokjson.turf.utils.readResource
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -30,8 +29,8 @@ class CircleTest {
             val (expectedLat, expectedLon) = position
             val (lat, lon) = circleCoordinates[index]
             // apple targets precision is less
-            assertDoubleEquals(expectedLat, lat, epsilon = 0.0000000000001)
-            assertDoubleEquals(expectedLon, lon, epsilon = 0.0000000000001)
+            assertEquals(expectedLat, lat, absoluteTolerance = 0.0000000000001)
+            assertEquals(expectedLon, lon, absoluteTolerance = 0.0000000000001)
         }
         assertEquals(expectedCircle.geometry?.bbox, circle.bbox)
     }

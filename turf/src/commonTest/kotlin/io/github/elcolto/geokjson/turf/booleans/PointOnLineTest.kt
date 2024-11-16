@@ -39,12 +39,12 @@ class PointOnLineTest {
             val fc = FeatureCollection.fromJson(readResource(path))
             val foreignMembers = fc.foreignMembers["properties"].asInstance<Map<String, Any>>()
             val ignoreEndVertices = foreignMembers?.get("ignoreEndVertices").asInstance<Boolean>() ?: false
-            val epsilon = foreignMembers?.get("epsilon").asInstance<Double>()
+            val absoluteTolerance = foreignMembers?.get("epsilon").asInstance<Double>()
             val point = fc.features.first().geometry as Point
             val lineString = fc.last().geometry as LineString
 
             assertTrue(
-                pointOnLine(point, lineString, ignoreEndVertices, epsilon),
+                pointOnLine(point, lineString, ignoreEndVertices, absoluteTolerance),
                 "assertion failed for path $path",
             )
         }
@@ -64,12 +64,12 @@ class PointOnLineTest {
             val fc = FeatureCollection.fromJson(readResource(path))
             val foreignMembers = fc.foreignMembers["properties"].asInstance<Map<String, Any>>()
             val ignoreEndVertices = foreignMembers?.get("ignoreEndVertices").asInstance<Boolean>() ?: false
-            val epsilon = foreignMembers?.get("epsilon").asInstance<Double>()
+            val absoluteTolerance = foreignMembers?.get("epsilon").asInstance<Double>()
             val point = fc.features.first().geometry as Point
             val lineString = fc.last().geometry as LineString
 
             assertFalse(
-                pointOnLine(point, lineString, ignoreEndVertices, epsilon),
+                pointOnLine(point, lineString, ignoreEndVertices, absoluteTolerance),
                 "assertion failed for path $path",
             )
         }
