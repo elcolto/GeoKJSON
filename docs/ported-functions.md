@@ -15,6 +15,7 @@ The following functions have been ported from [turfjs](https://turfjs.org/docs/a
 - [x] [`destination`](./api/turf/io.github.elcolto.geokjson.turf.measurement/destination.html)
 - [x] [`distance`](./api/turf/io.github.elcolto.geokjson.turf.measurement/distance.html)
 - [x] [`envelope`](./api/turf/io.github.elcolto.geokjson.turf.measurement/envelope.html)
+- [x] [`greatCircle`](./api/turf/io.github.elcolto.geokjson.turf.measurement/great-circle.html)
 - [x] [`length`](./api/turf/io.github.elcolto.geokjson.turf.measurement/length.html)
 - [x] [`midpoint`](./api/turf/io.github.elcolto.geokjson.turf.measurement/midpoint.html)
 - [x] [`pointOnFeature`](./api/turf/io.github.elcolto.geokjson.turf.measurement/point-on-feature.html)
@@ -24,7 +25,6 @@ The following functions have been ported from [turfjs](https://turfjs.org/docs/a
 - [x] [`rhumbDestination`](./api/turf/io.github.elcolto.geokjson.turf.measurement/rhumb-destination.html)
 - [x] [`rhumbDistance`]((./api/turf/io.github.elcolto.geokjson.turf.measurement/rhumb-distance.html))
 - [x] [`square`](./api/turf/io.github.elcolto.geokjson.turf.measurement/square.html)
-- [x] [`greatCircle`](./api/turf/io.github.elcolto.geokjson.turf.measurement/great-circle.html)
 
 ## Coordinate Mutation
 
