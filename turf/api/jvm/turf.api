@@ -109,10 +109,11 @@ public final class io/github/elcolto/geokjson/turf/coordinatemutation/FlipKt {
 public final class io/github/elcolto/geokjson/turf/coordinatemutation/RewindKt {
 	public static final fun rewind (Lio/github/elcolto/geokjson/geojson/Feature;Z)Lio/github/elcolto/geokjson/geojson/Feature;
 	public static final fun rewind (Lio/github/elcolto/geokjson/geojson/FeatureCollection;Z)Lio/github/elcolto/geokjson/geojson/FeatureCollection;
-	public static final fun rewind (Lio/github/elcolto/geokjson/geojson/Geometry;Z)Lio/github/elcolto/geokjson/geojson/Geometry;
 	public static synthetic fun rewind$default (Lio/github/elcolto/geokjson/geojson/Feature;ZILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/Feature;
 	public static synthetic fun rewind$default (Lio/github/elcolto/geokjson/geojson/FeatureCollection;ZILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/FeatureCollection;
-	public static synthetic fun rewind$default (Lio/github/elcolto/geokjson/geojson/Geometry;ZILjava/lang/Object;)Lio/github/elcolto/geokjson/geojson/Geometry;
+	public static final fun rewindGeometry (Lio/github/elcolto/geokjson/geojson/Geometry;Z)Lio/github/elcolto/geokjson/geojson/Geometry;
+	public static final fun rewindLineString (Ljava/util/List;Z)Ljava/util/List;
+	public static final fun rewindPolygon (Ljava/util/List;Z)Ljava/util/List;
 }
 
 public final class io/github/elcolto/geokjson/turf/grids/SquareGridKt {

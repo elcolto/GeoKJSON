@@ -22,43 +22,48 @@ import io.github.elcolto.geokjson.turf.booleans.clockwise
  * @return rewind Geometry
  */
 @ExperimentalTurfApi
-public fun rewind(geometry: Geometry, reverse: Boolean = false): Geometry {
-    return when (geometry) {
-        is GeometryCollection -> {
-            val geometries = geometry.geometries.map { rewind(it, reverse) }
-            geometry.copy(geometries = geometries)
-        }
+public inline fun <reified T : Geometry> rewind(geometry: T, reverse: Boolean = false): T =
+    rewindGeometry(geometry, reverse) as T
 
-        is LineString -> {
-            val coordinates = rewindLineString(geometry.coordinates, reverse)
-            geometry.copy(coordinates = coordinates)
-        }
-
-        is MultiLineString -> {
-            val coordinates = geometry.coordinates.map { line -> rewindLineString(line, reverse) }
-            geometry.copy(coordinates = coordinates)
-        }
-
-        is Polygon -> {
-            val coordinates = rewindPolygon(geometry.coordinates, reverse)
-            geometry.copy(coordinates = coordinates)
-        }
-
-        is MultiPolygon -> {
-            val coordinates = geometry.coordinates.map { polygon -> rewindPolygon(polygon, reverse) }
-            geometry.copy(coordinates = coordinates)
-        }
-
-        else -> geometry
+@PublishedApi
+@ExperimentalTurfApi
+internal fun rewindGeometry(geometry: Geometry, reverse: Boolean): Geometry = when (geometry) {
+    is GeometryCollection -> {
+        val geometries: List<Geometry> = geometry.geometries.map { rewindGeometry(it, reverse) }
+        geometry.copy(geometries = geometries)
     }
+
+    is LineString -> {
+        val coordinates = rewindLineString(geometry.coordinates, reverse)
+        geometry.copy(coordinates = coordinates)
+    }
+
+    is MultiLineString -> {
+        val coordinates = geometry.coordinates.map { line -> rewindLineString(line, reverse) }
+        geometry.copy(coordinates = coordinates)
+    }
+
+    is Polygon -> {
+        val coordinates = rewindPolygon(geometry.coordinates, reverse)
+        geometry.copy(coordinates = coordinates)
+    }
+
+    is MultiPolygon -> {
+        val coordinates = geometry.coordinates.map { polygon -> rewindPolygon(polygon, reverse) }
+        geometry.copy(coordinates = coordinates)
+    }
+
+    else -> geometry
 }
 
+@PublishedApi
 @ExperimentalTurfApi
-private fun rewindLineString(line: List<Position>, reverse: Boolean): List<Position> =
+internal fun rewindLineString(line: List<Position>, reverse: Boolean): List<Position> =
     if (reverse == clockwise(line)) line.reversed() else line
 
+@PublishedApi
 @ExperimentalTurfApi
-private fun rewindPolygon(polygon: List<List<Position>>, reverse: Boolean): List<List<Position>> =
+internal fun rewindPolygon(polygon: List<List<Position>>, reverse: Boolean): List<List<Position>> =
     polygon.mapIndexed { index, ring ->
         val isFirstRing = index == 0
         if ((isFirstRing xor reverse) && clockwise(ring)) ring.reversed() else ring
@@ -66,7 +71,7 @@ private fun rewindPolygon(polygon: List<List<Position>>, reverse: Boolean): List
 
 @ExperimentalTurfApi
 public fun <T : Geometry> rewind(feature: Feature<T>, reverse: Boolean = false): Feature<T> {
-    val rewoundGeometry = feature.geometry?.let { rewind(it, reverse) as T }
+    val rewoundGeometry = feature.geometry?.let { rewind<Geometry>(it, reverse) as T }
     return feature.copy(geometry = rewoundGeometry)
 }
 
