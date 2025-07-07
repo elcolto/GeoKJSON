@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.1.0"
+kotlin = "2.2.0"
 resources = "0.10.0"
 benchmark = "0.4.13"
 agp = "8.11.0"
