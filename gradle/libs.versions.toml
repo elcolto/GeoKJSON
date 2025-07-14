@@ -2,7 +2,7 @@
 kotlin = "2.1.0"
 resources = "0.10.0"
 benchmark = "0.4.13"
-agp = "8.11.0"
+agp = "8.11.1"
 ktlint = "12.1.1"
 detekt = "1.23.7"
 binary-validator = "0.18.1"
