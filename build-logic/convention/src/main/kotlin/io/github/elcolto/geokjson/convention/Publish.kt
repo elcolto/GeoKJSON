@@ -3,7 +3,6 @@ package io.github.elcolto.geokjson.convention
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinMultiplatform
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
-import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.api.Project
 
 internal fun Project.configurePublishing(
@@ -17,11 +16,10 @@ internal fun Project.configurePublishing(
             androidVariantsToPublish = listOf("release")
         )
     )
-
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-    signAllPublications()
-
     coordinates(GroupId, moduleName(), Version)
+
+    publishToMavenCentral()
+    signAllPublications()
 
     pom {
         name.set("GeoKJSON")
