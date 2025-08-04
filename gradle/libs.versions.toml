@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.1.0"
-resources = "0.10.0"
+resources = "0.10.1"
 benchmark = "0.4.13"
 agp = "8.11.1"
 ktlint = "12.1.1"
