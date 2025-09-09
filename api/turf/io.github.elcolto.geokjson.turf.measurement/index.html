@@ -1,0 +1,471 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>io.github.elcolto.geokjson.turf.measurement</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../index.html">
+                    GeoKJSON
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":turf:dokkaHtmlPartial/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":turf:dokkaHtmlPartial/commonMain" data-filter=":turf:dokkaHtmlPartial/commonMain">
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    GeoKJSON
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageids="turf::io.github.elcolto.geokjson.turf.measurement////PointingToDeclaration//1012045182">
+  <div class="breadcrumbs"><a href="../index.html">turf</a><span class="delimiter">/</span><span class="current">io.github.elcolto.geokjson.turf.measurement</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-1947774882%2FClasslikes%2F1012045182" anchor-label="DistanceMethod" id="-1947774882%2FClasslikes%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-distance-method/index.html"><span>Distance</span><wbr><span><span>Method</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1947774882%2FClasslikes%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-distance-method/index.html">DistanceMethod</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-distance-method/index.html">DistanceMethod</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Enum representing the method to use for calculating distances.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1418287050%2FFunctions%2F1012045182" anchor-label="along" id="1418287050%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="along.html"><span><span>along</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1418287050%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><a href="along.html"><span class="token function">along</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">line<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-line-string/index.html">LineString</a><span class="token punctuation">, </span></span><span class="parameter ">distance<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">units<span class="token operator">: </span><a href="../io.github.elcolto.geokjson.turf/-units/index.html">Units</a><span class="token operator"> = </span>Units.Kilometers</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a></div><div class="brief "><p class="paragraph">Takes a <a href="../../geojson/io.github.elcolto.geokjson.geojson/-line-string/index.html">LineString</a> and returns a <a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">position</a> at a specified distance along the line.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-159267282%2FFunctions%2F1012045182" anchor-label="area" id="-159267282%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="area.html"><span><span>area</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-159267282%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="area.html"><span class="token function">area</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">geometry<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-geometry/index.html">Geometry</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Takes a geometry and returns its area in square meters.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1188781389%2FFunctions%2F1012045182" anchor-label="bbox" id="-1188781389%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bbox.html"><span><span>bbox</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1188781389%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="bbox.html"><span class="token function">bbox</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">featureCollection<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-feature-collection/index.html">FeatureCollection</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-bounding-box/index.html">BoundingBox</a></div><div class="brief "><p class="paragraph">Takes a feature collection and calculates a bbox that covers all features in the collection.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="bbox.html"><span class="token function">bbox</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">feature<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-feature/index.html">Feature</a><span class="token operator">&lt;</span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-geometry/index.html">Geometry</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-bounding-box/index.html">BoundingBox</a></div><div class="brief "><p class="paragraph">Takes a feature and calculates the bbox of the feature's geometry, and returns a bounding box.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="bbox.html"><span class="token function">bbox</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">geometry<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-geometry/index.html">Geometry</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-bounding-box/index.html">BoundingBox</a></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="bbox.html"><span class="token function">bbox</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">geometry<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-line-string/index.html">LineString</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-bounding-box/index.html">BoundingBox</a></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="bbox.html"><span class="token function">bbox</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">geometry<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-multi-line-string/index.html">MultiLineString</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-bounding-box/index.html">BoundingBox</a></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="bbox.html"><span class="token function">bbox</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">geometry<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-multi-point/index.html">MultiPoint</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-bounding-box/index.html">BoundingBox</a></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="bbox.html"><span class="token function">bbox</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">geometry<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-multi-polygon/index.html">MultiPolygon</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-bounding-box/index.html">BoundingBox</a></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="bbox.html"><span class="token function">bbox</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">geometry<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-point/index.html">Point</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-bounding-box/index.html">BoundingBox</a></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="bbox.html"><span class="token function">bbox</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">geometry<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-polygon/index.html">Polygon</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-bounding-box/index.html">BoundingBox</a></div><div class="brief "><p class="paragraph">Takes a geometry and calculates the bbox of all input features, and returns a bounding box.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1769397211%2FFunctions%2F1012045182" anchor-label="bboxPolygon" id="1769397211%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bbox-polygon.html"><span>bbox</span><wbr><span><span>Polygon</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1769397211%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="bbox-polygon.html"><span class="token function">bboxPolygon</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">bbox<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-bounding-box/index.html">BoundingBox</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-polygon/index.html">Polygon</a></div><div class="brief "><p class="paragraph">Takes a bbox and returns an equivalent <a href="../../geojson/io.github.elcolto.geokjson.geojson/-polygon/index.html">Polygon</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1697095846%2FFunctions%2F1012045182" anchor-label="bearing" id="-1697095846%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bearing.html"><span><span>bearing</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1697095846%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><a href="bearing.html"><span class="token function">bearing</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">start<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a><span class="token punctuation">, </span></span><span class="parameter ">end<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a><span class="token punctuation">, </span></span><span class="parameter ">final<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Takes two positions (<a href="bearing.html">start</a>, <a href="bearing.html">end</a>) and finds the geographic bearing between them, i.e. the angle measured in degrees from the north line (0 degrees)</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="960442994%2FFunctions%2F1012045182" anchor-label="center" id="960442994%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="center.html"><span><span>center</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="960442994%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="center.html"><span class="token function">center</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">feature<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-feature/index.html">Feature</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-point/index.html">Point</a></div><div class="brief "><p class="paragraph">Takes any kind of <a href="../../geojson/io.github.elcolto.geokjson.geojson/-feature/index.html">Feature</a> and returns the center point. It will create a <a href="../../geojson/io.github.elcolto.geokjson.geojson/-bounding-box/index.html">BoundingBox</a> around the given <a href="../../geojson/io.github.elcolto.geokjson.geojson/-feature/index.html">Feature</a> and calculates the center point of it.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="center.html"><span class="token function">center</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">geometry<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-geometry/index.html">Geometry</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-point/index.html">Point</a></div><div class="brief "><p class="paragraph">It overloads the center(feature: Feature) method.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-755427103%2FFunctions%2F1012045182" anchor-label="centroid" id="-755427103%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="centroid.html"><span><span>centroid</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-755427103%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="centroid.html"><span class="token function">centroid</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">geometry<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-geometry/index.html">Geometry</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-point/index.html">Point</a></div><div class="brief "><p class="paragraph">Computes the centroid as the mean of all vertices within the object.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1259138968%2FFunctions%2F1012045182" anchor-label="computeBbox" id="-1259138968%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="compute-bbox.html"><span>compute</span><wbr><span><span>Bbox</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1259138968%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="compute-bbox.html"><span class="token function">computeBbox</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">coordinates<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-bounding-box/index.html">BoundingBox</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1492633124%2FFunctions%2F1012045182" anchor-label="destination" id="-1492633124%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="destination.html"><span><span>destination</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1492633124%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><a href="destination.html"><span class="token function">destination</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">origin<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a><span class="token punctuation">, </span></span><span class="parameter ">distance<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">bearing<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">units<span class="token operator">: </span><a href="../io.github.elcolto.geokjson.turf/-units/index.html">Units</a><span class="token operator"> = </span>Units.Kilometers</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a></div><div class="brief "><p class="paragraph">Takes a <a href="destination.html">position</a> and calculates the location of a destination position given a distance in degrees, radians, miles, or kilometers; and bearing in degrees. This uses the Haversine formula to account for global curvature.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="162212595%2FFunctions%2F1012045182" anchor-label="distance" id="162212595%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="distance.html"><span><span>distance</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="162212595%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><a href="distance.html"><span class="token function">distance</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">from<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a><span class="token punctuation">, </span></span><span class="parameter ">to<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a><span class="token punctuation">, </span></span><span class="parameter ">units<span class="token operator">: </span><a href="../io.github.elcolto.geokjson.turf/-units/index.html">Units</a><span class="token operator"> = </span>Units.Kilometers</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Calculates the distance between two positions. This uses the Haversine formula to account for global curvature.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="490208838%2FFunctions%2F1012045182" anchor-label="envelope" id="490208838%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="envelope.html"><span><span>envelope</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="490208838%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="envelope.html"><span class="token function">envelope</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">geoJson<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-geo-json/index.html">GeoJson</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-polygon/index.html">Polygon</a></div><div class="brief "><p class="paragraph">Takes any <a href="../../geojson/io.github.elcolto.geokjson.geojson/-geo-json/index.html">GeoJson</a> and returns a  rectangular <a href="../../geojson/io.github.elcolto.geokjson.geojson/-polygon/index.html">Polygon</a> that encompasses all vertices.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="443859433%2FFunctions%2F1012045182" anchor-label="greatCircle" id="443859433%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="great-circle.html"><span>great</span><wbr><span><span>Circle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="443859433%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="great-circle.html"><span class="token function">greatCircle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">start<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a><span class="token punctuation">, </span></span><span class="parameter ">end<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a><span class="token punctuation">, </span></span><span class="parameter ">pointCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">100</span><span class="token punctuation">, </span></span><span class="parameter ">antimeridianOffset<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator"> = </span><span class="token constant">10.0</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-geometry/index.html">Geometry</a></div><div class="brief "><p class="paragraph">Calculate great circles routes as <a href="../../geojson/io.github.elcolto.geokjson.geojson/-line-string/index.html">LineString</a>. Raises error when <a href="great-circle.html">start</a> and <a href="great-circle.html">end</a> are antipodes.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1327054676%2FFunctions%2F1012045182" anchor-label="length" id="1327054676%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="length.html"><span><span>length</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1327054676%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="length.html"><span class="token function">length</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">lineString<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-line-string/index.html">LineString</a><span class="token punctuation">, </span></span><span class="parameter ">units<span class="token operator">: </span><a href="../io.github.elcolto.geokjson.turf/-units/index.html">Units</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Calculates the length of the given <a href="../../geojson/io.github.elcolto.geokjson.geojson/-line-string/index.html">LineString</a> in the given <a href="../io.github.elcolto.geokjson.turf/-units/index.html">Units</a>.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="length.html"><span class="token function">length</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">multiLineString<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-multi-line-string/index.html">MultiLineString</a><span class="token punctuation">, </span></span><span class="parameter ">units<span class="token operator">: </span><a href="../io.github.elcolto.geokjson.turf/-units/index.html">Units</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Calculates the combined length of all <a href="../../geojson/io.github.elcolto.geokjson.geojson/-line-string/index.html">LineString</a>s from the given <a href="../../geojson/io.github.elcolto.geokjson.geojson/-multi-line-string/index.html">MultiLineString</a> in the given <a href="../io.github.elcolto.geokjson.turf/-units/index.html">Units</a>.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="length.html"><span class="token function">length</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">multiPolygon<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-multi-polygon/index.html">MultiPolygon</a><span class="token punctuation">, </span></span><span class="parameter ">units<span class="token operator">: </span><a href="../io.github.elcolto.geokjson.turf/-units/index.html">Units</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Calculates the combined length of perimeter the <a href="../../geojson/io.github.elcolto.geokjson.geojson/-polygon/index.html">Polygon</a>s in the <a href="../../geojson/io.github.elcolto.geokjson.geojson/-multi-polygon/index.html">MultiPolygon</a> in the given <a href="../io.github.elcolto.geokjson.turf/-units/index.html">Units</a>. Any holes in the polygons will be included in the length.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="length.html"><span class="token function">length</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">polygon<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-polygon/index.html">Polygon</a><span class="token punctuation">, </span></span><span class="parameter ">units<span class="token operator">: </span><a href="../io.github.elcolto.geokjson.turf/-units/index.html">Units</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Calculates the length of perimeter the given <a href="../../geojson/io.github.elcolto.geokjson.geojson/-polygon/index.html">Polygon</a> in the given <a href="../io.github.elcolto.geokjson.turf/-units/index.html">Units</a>. Any holes in the polygon will be included in the length.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1382395944%2FFunctions%2F1012045182" anchor-label="midpoint" id="1382395944%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="midpoint.html"><span><span>midpoint</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1382395944%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="midpoint.html"><span class="token function">midpoint</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">point1<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a><span class="token punctuation">, </span></span><span class="parameter ">point2<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a></div><div class="brief "><p class="paragraph">Takes two <a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a>s and returns a point midway between them. The midpoint is calculated geodesically, meaning the curvature of the earth is taken into account.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-620471672%2FFunctions%2F1012045182" anchor-label="pointOnFeature" id="-620471672%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="point-on-feature.html"><span>point</span><wbr><span>On</span><wbr><span><span>Feature</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-620471672%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="point-on-feature.html"><span class="token function">pointOnFeature</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">geometry<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-geometry/index.html">Geometry</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-point/index.html">Point</a></div><div class="brief "><p class="paragraph">Takes a Feature or FeatureCollection and returns a <a href="../../geojson/io.github.elcolto.geokjson.geojson/-point/index.html">Point</a> guaranteed to be on the surface of the feature.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1901129855%2FFunctions%2F1012045182" anchor-label="pointToLineDistance" id="-1901129855%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="point-to-line-distance.html"><span>point</span><wbr><span>To</span><wbr><span>Line</span><wbr><span><span>Distance</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1901129855%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="point-to-line-distance.html"><span class="token function">pointToLineDistance</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">point<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-point/index.html">Point</a><span class="token punctuation">, </span></span><span class="parameter ">line<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-line-string/index.html">LineString</a><span class="token punctuation">, </span></span><span class="parameter ">units<span class="token operator">: </span><a href="../io.github.elcolto.geokjson.turf/-units/index.html">Units</a><span class="token operator"> = </span>Units.Kilometers<span class="token punctuation">, </span></span><span class="parameter ">method<span class="token operator">: </span><a href="-distance-method/index.html">DistanceMethod</a><span class="token operator"> = </span>DistanceMethod.GEODESIC</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="point-to-line-distance.html"><span class="token function">pointToLineDistance</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">position<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a><span class="token punctuation">, </span></span><span class="parameter ">line<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-line-string/index.html">LineString</a><span class="token punctuation">, </span></span><span class="parameter ">units<span class="token operator">: </span><a href="../io.github.elcolto.geokjson.turf/-units/index.html">Units</a><span class="token operator"> = </span>Units.Kilometers<span class="token punctuation">, </span></span><span class="parameter ">method<span class="token operator">: </span><a href="-distance-method/index.html">DistanceMethod</a><span class="token operator"> = </span>DistanceMethod.GEODESIC</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Calculates the distance between a given point and the nearest point on a line. Sometimes referred to as the cross track distance.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1783396137%2FFunctions%2F1012045182" anchor-label="polygonTangents" id="-1783396137%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="polygon-tangents.html"><span>polygon</span><wbr><span><span>Tangents</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1783396137%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="polygon-tangents.html"><span class="token function">polygonTangents</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">point<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-point/index.html">Point</a><span class="token punctuation">, </span></span><span class="parameter ">polygon<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-geometry/index.html">Geometry</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-point/index.html">Point</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Finds the tangents of a Polygon|MultiPolygon from a <a href="../../geojson/io.github.elcolto.geokjson.geojson/-point/index.html">Point</a>.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="polygon-tangents.html"><span class="token function">polygonTangents</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">position<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a><span class="token punctuation">, </span></span><span class="parameter ">polygon<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-geometry/index.html">Geometry</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-point/index.html">Point</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Finds the tangents of a Polygon|MultiPolygon from a <a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1223268138%2FFunctions%2F1012045182" anchor-label="rhumbBearing" id="1223268138%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="rhumb-bearing.html"><span>rhumb</span><wbr><span><span>Bearing</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1223268138%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="rhumb-bearing.html"><span class="token function">rhumbBearing</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">start<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a><span class="token punctuation">, </span></span><span class="parameter ">end<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a><span class="token punctuation">, </span></span><span class="parameter ">isFinal<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Takes two positions and finds the bearing angle between them along a Rhumb line i.e. the angle measured in degrees start the north line (0 degrees)</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1623916532%2FFunctions%2F1012045182" anchor-label="rhumbDestination" id="-1623916532%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="rhumb-destination.html"><span>rhumb</span><wbr><span><span>Destination</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1623916532%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><a href="rhumb-destination.html"><span class="token function">rhumbDestination</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">origin<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a><span class="token punctuation">, </span></span><span class="parameter ">distance<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">bearing<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">units<span class="token operator">: </span><a href="../io.github.elcolto.geokjson.turf/-units/index.html">Units</a><span class="token operator"> = </span>Units.Kilometers</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a></div><div class="brief "><p class="paragraph">Returns the destination Point having travelled the given distance along a Rhumb line from the <a href="rhumb-destination.html">origin</a> Position with the (variant) given bearing.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1668943165%2FFunctions%2F1012045182" anchor-label="rhumbDistance" id="-1668943165%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="rhumb-distance.html"><span>rhumb</span><wbr><span><span>Distance</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1668943165%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><a href="rhumb-distance.html"><span class="token function">rhumbDistance</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">from<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a><span class="token punctuation">, </span></span><span class="parameter ">to<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-position/index.html">Position</a><span class="token punctuation">, </span></span><span class="parameter ">units<span class="token operator">: </span><a href="../io.github.elcolto.geokjson.turf/-units/index.html">Units</a><span class="token operator"> = </span>Units.Kilometers</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Calculates the distance along a rhumb line between two points in degrees, radians, miles, or kilometers.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1895698581%2FFunctions%2F1012045182" anchor-label="square" id="-1895698581%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="square.html"><span><span>square</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1895698581%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="square.html"><span class="token function">square</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">boundingBox<span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-bounding-box/index.html">BoundingBox</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-bounding-box/index.html">BoundingBox</a></div><div class="brief "><p class="paragraph">Takes a bounding box and calculates the minimum square bounding box that would contain the input.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1530368723%2FFunctions%2F1012045182" anchor-label="toPolygon" id="1530368723%2FFunctions%2F1012045182" data-filterable-set=":turf:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":turf:dokkaHtmlPartial/commonMain" data-filterable-set=":turf:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-polygon.html"><span>to</span><wbr><span><span>Polygon</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1530368723%2FFunctions%2F1012045182"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":turf:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-bounding-box/index.html">BoundingBox</a><span class="token punctuation">.</span><a href="to-polygon.html"><span class="token function">toPolygon</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../geojson/io.github.elcolto.geokjson.geojson/-polygon/index.html">Polygon</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

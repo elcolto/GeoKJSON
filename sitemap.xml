@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://elcolto.github.io/GeoKJSON/</loc>
+         <lastmod>2025-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://elcolto.github.io/GeoKJSON/geojson-dsl/</loc>
+         <lastmod>2025-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://elcolto.github.io/GeoKJSON/geojson/</loc>
+         <lastmod>2025-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://elcolto.github.io/GeoKJSON/ported-functions/</loc>
+         <lastmod>2025-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://elcolto.github.io/GeoKJSON/turf/</loc>
+         <lastmod>2025-09-09</lastmod>
+    </url>
+</urlset>
