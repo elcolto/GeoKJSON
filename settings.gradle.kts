@@ -16,4 +16,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "GeoKJSON"
 
-include("geojson", "turf")
+include(
+    "geojson",
+    "turf"
+)
