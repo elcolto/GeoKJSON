@@ -8,7 +8,7 @@ detekt = "1.23.8"
 binary-validator = "0.18.1"
 kover = "0.9.1"
 publish = "0.34.0"
-dokka = "2.0.0"
+dokka = "2.1.0"
 
 [libraries]
 resources = { module = "com.goncalossilva:resources", version.ref = "resources" }
